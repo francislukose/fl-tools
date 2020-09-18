@@ -14,9 +14,9 @@
 			class="navbar-brand text-muted"
 			action="#{indexPageHandler.handleHomePageRequest}" immediate="true">
 			<img src="#{request.contextPath}/resources/images/logo.png"
-				width="30" height="30" class="d-inline-block align-top" alt=""
+				width="30" height="30" style="margin-right:-0.3rem;" class="d-inline-block align-top" alt=""
 				loading="lazy" />
-			<span class="badge badge-info">Tools</span>
+			<span class="badge badge-info" style="padding:.20rem .4rem;">Tools</span>
 		</h:commandLink>
 		<ul class="navbar-nav mr-auto">
 
@@ -26,12 +26,23 @@
 				aria-expanded="false"> Business Objects </a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<h:commandLink immediate="true" class="dropdown-item"
-						action="#{indexPageHandler.handleBusinessEntityMapViewRequest}">Entities</h:commandLink>
+						action="#{indexPageHandler.handleBusinessEntityMapViewRequest}">
+						<img
+							src="#{request.contextPath}/resources/images/icons/icon-entity.png"
+							width="15" height="15" class="d-inline-block" alt=""
+							loading="lazy" />&nbsp;Entities</h:commandLink>
 					<h:commandLink immediate="true" class="dropdown-item"
-						action="#{indexPageHandler.handleBusinessEntityMapViewRequest}">Enums</h:commandLink>
+						action="#{indexPageHandler.handleBusinessEntityMapViewRequest}">
+						<img
+							src="#{request.contextPath}/resources/images/icons/icon-enum-menu.png"
+							width="15" height="15" class="d-inline-block" alt=""
+							loading="lazy" />&nbsp;Typelist</h:commandLink>
 					<div class="dropdown-divider"></div>
 					<h:commandLink immediate="true" class="dropdown-item"
-						action="#{indexPageHandler.handleBusinessEntityMapViewRequest}">Download</h:commandLink>
+						action="#{indexPageHandler.handleBusinessEntityMapViewRequest}"><img
+							src="#{request.contextPath}/resources/images/icons/icon-download.png"
+							width="15" height="15" class="d-inline-block" alt=""
+							loading="lazy" />&nbsp;Download as Excel</h:commandLink>
 				</div></li>
 		</ul>
 		</nav>

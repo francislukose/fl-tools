@@ -12,12 +12,19 @@
 		<ui:define name="content">
 
 			<div class="d-flex" id="wrapper">
- 
+
 				<!-- Sidebar -->
 				<div class="bg-none border-right vh-100" id="sidebar-wrapper">
 
 					<div class="sidebar-heading border-bottom">Components(#{businessEntityMapView.totalEntityCount})</div>
-					<div class="list-group list-group-flush overflow-auto h-100 border-bottom">
+					<div class="input-group">
+						<input type="text" id="myInput"
+							class="form-control search-control"
+							placeholder="Search for components"
+							onkeyup="searchInList(this,'component-list')" />
+					</div>
+					<div id="component-list"
+						class="list-group list-group-flush overflow-auto h-100 border-bottom">
 
 						<ui:repeat var="businessEntity"
 							value="#{businessEntityMapView.businessEntitiesAsList}">
@@ -37,7 +44,6 @@
 				<div id="page-content-wrapper">
 
 					<div class="container-fluid">
-						<br />
 						<p class="font-weight-bolder">Business Entity Details</p>
 						<div id="content-wrapper">
 							<h:panelGrid id="entityDetails" style="width:100%" columns="1">
@@ -171,9 +177,9 @@
 							</h:panelGrid>
 						</div>
 						<div>
-							<h:panelGrid columns="4"
+							<h:panelGrid columns="8"
 								styleClass="table table-bordered table-sm" style="width:0%;"
-								columnClasses="col-10,col-100,col-10,col-100">
+								columnClasses="col-10,col-100,col-10,col-100,col-10,col-100,col-10,col-100">
 								<h:column>
 									<ui:fragment>
 										<img
