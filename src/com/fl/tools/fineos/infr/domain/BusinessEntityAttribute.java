@@ -10,6 +10,7 @@ public class BusinessEntityAttribute {
 	private String relationship;
 	private boolean businessObjectType;
 	private boolean extension;
+	private boolean enumType;
 
 	public String getAttributeName() {
 		return attributeName;
