@@ -1,4 +1,4 @@
-package com.fl.tools.fineos.ui.handler;
+package com.fl.tools.ui.handler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +10,9 @@ import javax.faces.event.AjaxBehaviorEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.fl.tools.fineos.common.dto.SelectedBusinessEntityDto;
-import com.fl.tools.fineos.infr.domain.BusinessEntityHierarchy;
-import com.fl.tools.fineos.ui.beans.BusinessEntityMapView;
+import com.fl.tools.common.dto.SelectedBusinessEntityDto;
+import com.fl.tools.infr.domain.BusinessEntityHierarchy;
+import com.fl.tools.ui.beans.BusinessEntityMapView;
 
 @Component
 @ManagedBean

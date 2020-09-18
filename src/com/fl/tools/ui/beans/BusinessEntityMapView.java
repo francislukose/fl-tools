@@ -1,4 +1,4 @@
-package com.fl.tools.fineos.ui.beans;
+package com.fl.tools.ui.beans;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import javax.faces.bean.SessionScoped;
 
 import org.springframework.stereotype.Component;
 
-import com.fl.tools.fineos.infr.domain.BusinessEntity;
+import com.fl.tools.infr.domain.BusinessEntity;
 
 @Component
 @ManagedBean

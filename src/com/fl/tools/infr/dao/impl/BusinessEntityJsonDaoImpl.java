@@ -1,4 +1,4 @@
-package com.fl.tools.fineos.infr.dao.impl;
+package com.fl.tools.infr.dao.impl;
 
 import java.util.Collections;
 import java.util.Map;
@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fl.tools.fineos.infr.dao.BusinessEntityDao;
-import com.fl.tools.fineos.infr.domain.BusinessEntity;
+import com.fl.tools.infr.dao.BusinessEntityDao;
+import com.fl.tools.infr.domain.BusinessEntity;
 
 @Component
 public class BusinessEntityJsonDaoImpl implements BusinessEntityDao {

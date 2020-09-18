@@ -1,12 +1,12 @@
-package com.fl.tools.fineos.service;
+package com.fl.tools.service;
 
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fl.tools.fineos.infr.dao.BusinessEntityDao;
-import com.fl.tools.fineos.infr.domain.BusinessEntity;
+import com.fl.tools.infr.dao.BusinessEntityDao;
+import com.fl.tools.infr.domain.BusinessEntity;
 
 @Service
 public class BusinessEntityServiceImpl implements BusinessEntityService {

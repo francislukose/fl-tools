@@ -1,6 +1,6 @@
-package com.fl.tools.fineos.common.dto;
+package com.fl.tools.common.dto;
 
-import com.fl.tools.fineos.infr.domain.BusinessEntityAttribute;
+import com.fl.tools.infr.domain.BusinessEntityAttribute;
 
 public class BusinessEntityAttributeDto {
 	private BusinessEntityAttribute attribute;

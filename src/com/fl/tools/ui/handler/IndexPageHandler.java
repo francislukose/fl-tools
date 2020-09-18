@@ -1,12 +1,12 @@
-package com.fl.tools.fineos.ui.handler;
+package com.fl.tools.ui.handler;
 
 import javax.faces.bean.ManagedBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.fl.tools.fineos.service.BusinessEntityService;
-import com.fl.tools.fineos.ui.beans.BusinessEntityMapView;
+import com.fl.tools.service.BusinessEntityService;
+import com.fl.tools.ui.beans.BusinessEntityMapView;
 
 @Component
 @ManagedBean

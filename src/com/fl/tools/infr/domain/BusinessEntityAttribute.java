@@ -1,4 +1,4 @@
-package com.fl.tools.fineos.infr.domain;
+package com.fl.tools.infr.domain;
 
 public class BusinessEntityAttribute {
 	private String attributeName;

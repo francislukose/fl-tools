@@ -1,9 +1,9 @@
-package com.fl.tools.fineos.common.dto;
+package com.fl.tools.common.dto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fl.tools.fineos.infr.domain.BusinessEntity;
+import com.fl.tools.infr.domain.BusinessEntity;
 
 public class SelectedBusinessEntityDto {
 	private BusinessEntity entity;

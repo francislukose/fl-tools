@@ -1,4 +1,4 @@
-package com.fl.tools.fineos.infr.domain;
+package com.fl.tools.infr.domain;
 
 import java.util.ArrayList;
 import java.util.List;
