@@ -1,0 +1,40 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:body>
+	<ui:composition template="templates/default.xhtml">
+		<ui:define name="content">
+
+			<div class="d-flex" id="wrapper">
+
+				<!-- Page Content -->
+				<div id="page-content-wrapper">
+
+					<div class="container-fluid">
+						<h1 class="mt-4">Simple Sidebar</h1>
+						<p>The starting state of the menu will appear collapsed on
+							smaller screens, and will appear non-collapsed on larger screens.
+							When toggled using the button below, the menu will change.</p>
+						<p>
+							Make sure to keep all page content within the
+							<code>#page-content-wrapper</code>
+							. The top navbar is optional, and just for demonstration. Just
+							create an element with the
+							<code>#menu-toggle</code>
+							ID which will toggle the menu when clicked.
+						</p>
+					</div>
+				</div>
+				<!-- /#page-content-wrapper -->
+			</div>
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

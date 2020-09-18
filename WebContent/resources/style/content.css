@@ -1,0 +1,46 @@
+#content-wrapper{
+	font-size: 0.7rem;
+}
+
+#content-wrapper .table-sm td, .table-sm th{
+	padding: .2rem;
+}
+
+#content-wrapper .table td, .table th{
+	vertical-align: middle;
+	padding: .2rem;
+}
+
+.col-bold-150{
+	font-weight: bold;
+	width: 150px;
+	word-wrap:break-word; 
+}
+.col-75{
+	width: 75px;
+	word-wrap:break-word;
+}
+.col-90{
+	width: 90px;
+	word-wrap:break-word;
+}
+.col-10{
+	width: 10px;
+	word-wrap:break-word;
+}
+.col-150{
+	width: 150px;
+	word-wrap:break-word;
+}
+.col-bold-5{
+	font-weight: bold;
+	width: 5px;
+}
+.col-5{
+	width: 5px;
+}
+
+.extended{
+	color: #9c4c22;
+}
+

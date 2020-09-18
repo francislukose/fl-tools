@@ -1,0 +1,38 @@
+<?xml version = "1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<body>
+	<ui:composition>
+		<!-- Image and text -->
+
+		<nav class="navbar navbar-expand-lg navbar-light bg-light"> <h:commandLink
+			class="navbar-brand text-muted"
+			action="#{indexPageHandler.handleHomePageRequest}" immediate="true">
+			<img src="#{request.contextPath}/resources/images/logo.png"
+				width="30" height="30" class="d-inline-block align-top" alt=""
+				loading="lazy" />
+			<span class="badge badge-info">Tools</span>
+		</h:commandLink>
+		<ul class="navbar-nav mr-auto">
+
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+				role="button" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false"> Business Objects </a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<h:commandLink immediate="true" class="dropdown-item"
+						action="#{indexPageHandler.handleBusinessEntityMapViewRequest}">FINEOS Entities</h:commandLink>
+					<div class="dropdown-divider"></div>
+					<h:commandLink immediate="true" class="dropdown-item"
+						action="#{indexPageHandler.handleBusinessEntityMapViewRequest}">FINEOS Enums</h:commandLink>
+				</div></li>
+		</ul>
+		</nav>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+	<ui:composition template="../../templates/default.xhtml">
+		<ui:define name="content">
+
+			<div class="d-flex" id="wrapper">
+
+				<!-- Sidebar -->
+				<div class="bg-none border-right vh-100" id="sidebar-wrapper">
+
+					<div class="sidebar-heading border-bottom">Components(#{businessEntityMapView.totalEntityCount})</div>
+					<div class="list-group list-group-flush overflow-auto h-100 border-bottom">
+
+						<ui:repeat var="businessEntity"
+							value="#{businessEntityMapView.businessEntitiesAsList}">
+							<h:commandLink
+								styleClass="list-group-item list-group-item-action bg-none sidebar-list-group-item"
+								value="#{businessEntity.simpleName}"
+								onclick="javascript:selectListItem(this);">
+								<f:ajax render="mainForm:entityDetails"
+									listener="#{businessEntitiesPageHandler.handleBusinessEntitySelection}"
+									onevent="onPostAjaxCall" />
+							</h:commandLink>
+						</ui:repeat>
+					</div>
+				</div>
+				<!-- /#sidebar-wrapper -->
+				<!-- Page Content -->
+				<div id="page-content-wrapper">
+
+					<div class="container-fluid">
+						<br />
+						<p class="font-weight-bolder">Business Entity Details</p>
+						<div id="content-wrapper">
+							<h:panelGrid id="entityDetails" style="width:100%" columns="1">
+								<h:panelGrid styleClass="table table-sm" columns="3"
+									columnClasses="col-bold-150,col-bold-5,font-weight-light">
+									<h:outputText value="Full Name" />
+									<h:outputText value=":" />
+									<h:outputText
+										value="#{businessEntitiesPageHandler.entitySelection.entity.fullName}" />
+
+									<h:outputText value="Simple Name" />
+									<h:outputText value=":" />
+									<h:outputText
+										value="#{businessEntitiesPageHandler.entitySelection.entity.simpleName}" />
+
+									<h:outputText value="Table Name" />
+									<h:outputText value=":" />
+									<h:outputText
+										value="#{businessEntitiesPageHandler.entitySelection.entity.tableName}" />
+
+									<h:outputText value="Description" />
+									<h:outputText value=":" />
+									<h:outputText
+										value="#{businessEntitiesPageHandler.entitySelection.entity.description}" />
+
+									<h:outputText value="Hierarchy" />
+									<h:outputText value=":" />
+									<ui:fragment>
+										<ui:repeat var="h"
+											value="#{businessEntitiesPageHandler.hierarchy}">
+											<h:outputText value="#{h}"></h:outputText>
+											<br />
+										</ui:repeat>
+									</ui:fragment>
+								</h:panelGrid>
+
+								<h:dataTable styleClass="table table-hover" var="attr"
+									value="#{businessEntitiesPageHandler.entitySelection.allAttributes}"
+									columnClasses="col-90,col-150,col-150,font-weight-light">
+									<h:column>
+										<ui:fragment rendered="#{attr.fromParent}">
+											<img
+												src="#{request.contextPath}/resources/images/icons/icon-parent-attr.png"
+												width="15" height="10" class="d-inline-block"
+												alt="Base class" data-toggle="tooltip" data-placement="top"
+												title="Owner: Extended. Class [#{attr.parentName}]" />
+										</ui:fragment>
+										<ui:fragment rendered="#{attr.attribute.businessObjectType}">
+											<img
+												src="#{request.contextPath}/resources/images/icons/icon-bo.jpg"
+												width="15" height="10" class="d-inline-block"
+												alt="Business Object" data-toggle="tooltip"
+												data-placement="top" title="Type: Business Object" />
+										</ui:fragment>
+										<ui:fragment rendered="#{attr.attribute.enumType}">
+											<img
+												src="#{request.contextPath}/resources/images/icons/icon-enum.jpg"
+												width="15" height="10" class="d-inline-block" alt="Enum"
+												data-toggle="tooltip" data-placement="top"
+												title="Type: Enum" />
+										</ui:fragment>
+										<ui:fragment rendered="#{attr.attribute.many}">
+											<img
+												src="#{request.contextPath}/resources/images/icons/icon-array.jpg"
+												width="15" height="10" class="d-inline-block" alt="Multiple"
+												data-toggle="tooltip" data-placement="top"
+												title="Cardinality: Multiple" />
+										</ui:fragment>
+										<ui:fragment rendered="#{attr.attribute.oneToOne}">
+											<img
+												src="#{request.contextPath}/resources/images/icons/icon-1-1.jpg"
+												width="15" height="10" class="d-inline-block" alt="OneToOne"
+												data-toggle="tooltip" data-placement="top"
+												title="Relationsip: OneToOne" />
+										</ui:fragment>
+										<ui:fragment rendered="#{attr.attribute.oneToMany}">
+											<img
+												src="#{request.contextPath}/resources/images/icons/icon-1-m.jpg"
+												width="15" height="10" class="d-inline-block"
+												alt="OneToMany" data-toggle="tooltip" data-placement="top"
+												title="Relationsip: OneToMany" />
+										</ui:fragment>
+										<ui:fragment rendered="#{attr.attribute.manyToMany}">
+											<img
+												src="#{request.contextPath}/resources/images/icons/icon-m-m.jpg"
+												width="15" height="10" class="d-inline-block"
+												alt="ManyToMany" data-toggle="tooltip" data-placement="top"
+												title="Relationsip: ManyToMany" />
+										</ui:fragment>
+										<ui:fragment rendered="#{attr.attribute.manyToOne}">
+											<img
+												src="#{request.contextPath}/resources/images/icons/icon-m-1.jpg"
+												width="15" height="10" class="d-inline-block"
+												alt="ManyToOne" data-toggle="tooltip" data-placement="top"
+												title="Relationsip: ManyToOne" />
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<f:facet name="header">Attribute Name</f:facet>
+										<ui:fragment>
+											<span id="entity-attr-row-#{attr.fromParent}"
+												class="#{attr.viewStyle}">#{attr.attribute.attributeName}</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<f:facet name="header">Attribute Type</f:facet>
+										<ui:fragment rendered="#{!attr.attribute.businessObjectType}">
+											<span id="entity-attr-row#{attr.fromParent}"
+												class="#{attr.viewStyle}">#{attr.attribute.typeSimpleName}</span>
+										</ui:fragment>
+										<h:commandLink rendered="#{attr.attribute.businessObjectType}"
+											styleClass="#{attr.viewStyle}"
+											value="#{attr.attribute.typeSimpleName}">
+											<f:ajax render="mainForm:entityDetails"
+												listener="#{businessEntitiesPageHandler.handleBusinessEntitySelection}"
+												onevent="onPostAjaxCall" />
+										</h:commandLink>
+									</h:column>
+									<h:column>
+										<f:facet name="header">Attribute Description</f:facet>
+										<ui:fragment>
+											<span id="entity-attr-row#{attr.fromParent}"
+												class="#{attr.viewStyle}">#{attr.attribute.description}</span>
+										</ui:fragment>
+									</h:column>
+									<f:facet name="footer">
+										<i>* C, I, Flags, PartitionID, and LastUpdateDate
+											attributes are included in all Business Entities.</i>
+									</f:facet>
+								</h:dataTable>
+							</h:panelGrid>
+						</div>
+						<div>
+							<h:panelGrid columns="4"
+								styleClass="table table-bordered table-sm" style="width:0%;"
+								columnClasses="col-10,col-100,col-10,col-100">
+								<h:column>
+									<ui:fragment>
+										<img
+											src="#{request.contextPath}/resources/images/icons/icon-bo.jpg"
+											width="15" height="10" class="d-inline-block"
+											alt="Business Object" />
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge">Business Object</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<img
+											src="#{request.contextPath}/resources/images/icons/icon-enum.jpg"
+											width="15" height="10" class="d-inline-block"
+											alt="Business Object" />
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge">Enum</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<img
+											src="#{request.contextPath}/resources/images/icons/icon-parent-attr.png"
+											width="15" height="10" class="d-inline-block" alt="Owner" />
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge">Extended</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<img
+											src="#{request.contextPath}/resources/images/icons/icon-array.jpg"
+											width="15" height="10" class="d-inline-block"
+											alt="Business Object" />
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge">Multiple</span>
+									</ui:fragment>
+								</h:column>
+
+								<h:column>
+									<ui:fragment>
+										<img
+											src="#{request.contextPath}/resources/images/icons/icon-1-1.jpg"
+											width="15" height="10" class="d-inline-block"
+											alt="Business Object" />
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge">OneToOne</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<img
+											src="#{request.contextPath}/resources/images/icons/icon-1-m.jpg"
+											width="15" height="10" class="d-inline-block"
+											alt="Business Object" />
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge">OneToMany</span>
+									</ui:fragment>
+								</h:column>
+
+								<h:column>
+									<ui:fragment>
+										<img
+											src="#{request.contextPath}/resources/images/icons/icon-m-1.jpg"
+											width="15" height="10" class="d-inline-block"
+											alt="Business Object" />
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge">ManyToOne</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<img
+											src="#{request.contextPath}/resources/images/icons/icon-m-m.jpg"
+											width="15" height="10" class="d-inline-block"
+											alt="Business Object" />
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge">ManyToMany</span>
+									</ui:fragment>
+								</h:column>
+							</h:panelGrid>
+						</div>
+					</div>
+				</div>
+				<!-- /#page-content-wrapper -->
+			</div>
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>
