@@ -82,7 +82,8 @@ $("#img-class-diagram").each(function () {
   if (u1!=null) return;
   var u2 = $(this).attr("uml");
   if (u2=="") return;
-  var s = unescape(encodeURIComponent(u2));
+  
+  var s = unescape(encodeURIComponent($("#plantUMLText").val()));
   if (deflater) {
     if (deflater.port && deflater.port.postMessage) {
       deflater.port.postMessage(s);

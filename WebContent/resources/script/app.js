@@ -27,3 +27,8 @@ function searchInList(e,l) {
 	    }
 	});
 }
+
+function openClassDiagramInNewWindow( e ){
+	window.open($('#' + e).attr("src"), 'popupWindowName', 'dependent=yes, menubar=no, toolbar=no, location=no'); 
+	return false;
+}

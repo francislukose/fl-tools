@@ -77,6 +77,8 @@ public class BusinessEntitiesPageHandler {
 	}
 
 	public String getPlantUMLText() {
-		return umlBuilder.build(entitySelection.getEntity());
+		String uml = umlBuilder.build(entitySelection.getEntity());
+		System.out.println(uml);
+		return uml;
 	}
 }

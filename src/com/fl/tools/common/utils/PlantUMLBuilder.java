@@ -8,11 +8,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import com.fl.tools.infr.domain.BusinessEntity;
+import com.fl.tools.infr.domain.BusinessEntityAttribute;
 import com.fl.tools.infr.domain.BusinessEntityHierarchy;
 import com.fl.tools.ui.beans.BusinessEntityMapView;
 
 @Component
 public class PlantUMLBuilder implements Builder<String, BusinessEntity> {
+	private static final int MAX_USED_CLASSES_IN_DIAGRAM = 12;
 	@Autowired(required = true)
 	private BusinessEntityMapView entityMapView;
 	private BusinessEntityDefBuilder defBuilder = new BusinessEntityDefBuilder();
@@ -41,8 +43,9 @@ public class PlantUMLBuilder implements Builder<String, BusinessEntity> {
 		public List<Def> build(BusinessEntity be) {
 			List<Def> theDefs = new ArrayList<>();
 
-			theDefs.add(buildClassDef(be));
-			theDefs.addAll(buildUsedClassDefs(be));
+			ClassDef def = (ClassDef) buildClassDef(be);
+			theDefs.add(def);
+			theDefs.addAll(buildUsedClassDefs(be, def));
 			theDefs.addAll(buildInheritanceDefs(be));
 
 			return theDefs;
@@ -69,8 +72,9 @@ public class PlantUMLBuilder implements Builder<String, BusinessEntity> {
 			while (beh != null && beh.getNextHierarchy() != null) {
 				BusinessEntity parent = entityMapView.getBusinessEntity(beh.getNextHierarchy().getSimpleName());
 				if (parent != null) {
-					defs.add(buildClassDef(parent));
-					defs.addAll(buildUsedClassDefs(parent));
+					ClassDef parentDef = (ClassDef) buildClassDef(parent);
+					defs.add(parentDef);
+					defs.addAll(buildUsedClassDefs(parent, parentDef));
 				} else {
 					defs.add(new ClassDef(beh.getNextHierarchy().getSimpleName()));
 				}
@@ -83,39 +87,44 @@ public class PlantUMLBuilder implements Builder<String, BusinessEntity> {
 			return defs;
 		}
 
-		private List<Def> buildUsedClassDefs(BusinessEntity be) {
+		private List<Def> buildUsedClassDefs(BusinessEntity be, ClassDef target) {
 			List<Def> defs = new ArrayList<>();
 			PosSelector posSelector = PosSelector.newInstance();
-
-			be.getAttributes().forEach((k, v) -> {
+			int index = 0;
+			for (BusinessEntityAttribute v : be.getAttributes().values()) {
 				if (v.isBusinessObjectType()) {
-					defs.add(new ClassDef(v.getTypeSimpleName()));
-					AssociationRelDef associationRelDef = new AssociationRelDef(be.getSimpleName(),
-							v.getTypeSimpleName(), k).setPos(posSelector.getPos());
-					if (v.isOneToOne()) {
-						associationRelDef.setFromCardinality(Cardinality.ONE);
-						associationRelDef.setToCardinality(Cardinality.ONE);
-						associationRelDef.setOwner(ObjectOwner.TO);
-					}
+					if (index >= MAX_USED_CLASSES_IN_DIAGRAM) {
+						target.addAttr(new AttrDef("-", v.getAttributeName(), v.getTypeSimpleName()));
+					} else {
+						index++;
+						defs.add(new ClassDef(v.getTypeSimpleName()));
+						AssociationRelDef associationRelDef = new AssociationRelDef(be.getSimpleName(),
+								v.getTypeSimpleName(), v.getAttributeName()).setPos(posSelector.getPos());
+						if (v.isOneToOne()) {
+							associationRelDef.setFromCardinality(Cardinality.ONE);
+							associationRelDef.setToCardinality(Cardinality.ONE);
+							associationRelDef.setOwner(ObjectOwner.TO);
+						}
 
-					if (v.isManyToOne()) {
-						associationRelDef.setFromCardinality(Cardinality.MANY);
-						associationRelDef.setToCardinality(Cardinality.ONE);
-						associationRelDef.setOwner(ObjectOwner.TO);
+						if (v.isManyToOne()) {
+							associationRelDef.setFromCardinality(Cardinality.MANY);
+							associationRelDef.setToCardinality(Cardinality.ONE);
+							associationRelDef.setOwner(ObjectOwner.TO);
+						}
+						if (v.isManyToMany()) {
+							associationRelDef.setFromCardinality(Cardinality.MANY);
+							associationRelDef.setToCardinality(Cardinality.MANY);
+							associationRelDef.setOwner(ObjectOwner.NONE);
+						}
+						if (v.isOneToMany()) {
+							associationRelDef.setFromCardinality(Cardinality.ONE);
+							associationRelDef.setToCardinality(Cardinality.MANY);
+							associationRelDef.setOwner(ObjectOwner.FROM);
+						}
+						defs.add(associationRelDef);
 					}
-					if (v.isManyToMany()) {
-						associationRelDef.setFromCardinality(Cardinality.MANY);
-						associationRelDef.setToCardinality(Cardinality.MANY);
-						associationRelDef.setOwner(ObjectOwner.NONE);
-					}
-					if (v.isOneToMany()) {
-						associationRelDef.setFromCardinality(Cardinality.ONE);
-						associationRelDef.setToCardinality(Cardinality.MANY);
-						associationRelDef.setOwner(ObjectOwner.FROM);
-					}
-					defs.add(associationRelDef);
 				}
-			});
+			}
 
 			return defs;
 		}
