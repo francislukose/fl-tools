@@ -35,7 +35,7 @@ public class PlantUMLBuilder implements Builder<String, BusinessEntity> {
 		return buffer.append(buffer2).toString();
 	}
 
-	static class BusinessEntityDefBuilder implements Builder<List<Def>, BusinessEntity> {
+	class BusinessEntityDefBuilder implements Builder<List<Def>, BusinessEntity> {
 
 		@Override
 		public List<Def> build(BusinessEntity be) {
@@ -67,7 +67,13 @@ public class PlantUMLBuilder implements Builder<String, BusinessEntity> {
 
 			BusinessEntityHierarchy beh = be.getHierarchy();
 			while (beh != null && beh.getNextHierarchy() != null) {
-				defs.add(new ClassDef(beh.getNextHierarchy().getSimpleName()));
+				BusinessEntity parent = entityMapView.getBusinessEntity(beh.getNextHierarchy().getSimpleName());
+				if (parent != null) {
+					defs.add(buildClassDef(parent));
+					defs.addAll(buildUsedClassDefs(parent));
+				} else {
+					defs.add(new ClassDef(beh.getNextHierarchy().getSimpleName()));
+				}
 				defs.add(new InheritanceRelDef(beh.getNextHierarchy().getSimpleName(), beh.getSimpleName(),
 						ViewPosision.DOWN));
 
@@ -79,11 +85,35 @@ public class PlantUMLBuilder implements Builder<String, BusinessEntity> {
 
 		private List<Def> buildUsedClassDefs(BusinessEntity be) {
 			List<Def> defs = new ArrayList<>();
+			PosSelector posSelector = PosSelector.newInstance();
 
 			be.getAttributes().forEach((k, v) -> {
 				if (v.isBusinessObjectType()) {
 					defs.add(new ClassDef(v.getTypeSimpleName()));
+					AssociationRelDef associationRelDef = new AssociationRelDef(be.getSimpleName(),
+							v.getTypeSimpleName(), k).setPos(posSelector.getPos());
+					if (v.isOneToOne()) {
+						associationRelDef.setFromCardinality(Cardinality.ONE);
+						associationRelDef.setToCardinality(Cardinality.ONE);
+						associationRelDef.setOwner(ObjectOwner.TO);
+					}
 
+					if (v.isManyToOne()) {
+						associationRelDef.setFromCardinality(Cardinality.MANY);
+						associationRelDef.setToCardinality(Cardinality.ONE);
+						associationRelDef.setOwner(ObjectOwner.TO);
+					}
+					if (v.isManyToMany()) {
+						associationRelDef.setFromCardinality(Cardinality.MANY);
+						associationRelDef.setToCardinality(Cardinality.MANY);
+						associationRelDef.setOwner(ObjectOwner.NONE);
+					}
+					if (v.isOneToMany()) {
+						associationRelDef.setFromCardinality(Cardinality.ONE);
+						associationRelDef.setToCardinality(Cardinality.MANY);
+						associationRelDef.setOwner(ObjectOwner.FROM);
+					}
+					defs.add(associationRelDef);
 				}
 			});
 
@@ -92,23 +122,53 @@ public class PlantUMLBuilder implements Builder<String, BusinessEntity> {
 
 	}
 
-	static interface Def {
-		public String toPlantUMLText();
-	}
-
-	static enum RelOnOff {
-		ON, OFF;
-	}
-
+	////////////////////////////////////////////////////////////////////
 	static enum ViewPosision {
 
 		DOWN("-down-"), UP("-up-");
 
 		private ViewPosision(String n) {
-			this.name = n;
+			this.label = n;
 		}
 
-		private String name;
+		public String label;
+	}
+
+	static enum ObjectOwner {
+		FROM, TO, NONE;
+	}
+
+	static enum Cardinality {
+		ONE("[1]"), MANY("[0..*]");
+
+		Cardinality(String n) {
+			this.label = n;
+		}
+
+		public String label;
+	}
+
+	////////////////////////////////////////////////////////////////////
+	static class PosSelector {
+		static PosSelector newInstance() {
+			return new PosSelector();
+		}
+
+		private boolean up = true;
+
+		public ViewPosision getPos() {
+			if (up) {
+				up = false;
+				return ViewPosision.UP;
+			}
+			up = true;
+			return ViewPosision.DOWN;
+		}
+	}
+
+	////////////////////////////////////////////////////////////////////
+	static interface Def {
+		public String toPlantUMLText();
 	}
 
 	abstract static class RelDef implements Def {
@@ -138,16 +198,70 @@ public class PlantUMLBuilder implements Builder<String, BusinessEntity> {
 
 		@Override
 		public String toPlantUMLText() {
-			return "\n" + from + " <|" + pos.name + " " + to + "\n";
+			return "\n" + from + " <|" + pos.label + " " + to + "\n";
 		}
-
 	}
 
 	static class AssociationRelDef extends RelDef {
+		private String attrName;
+		private Cardinality fromCardinality;
+		private Cardinality toCardinality;
+		private ObjectOwner owner;
+
+		public AssociationRelDef(String from, String to, String attrName) {
+			this.from = from;
+			this.to = to;
+			this.attrName = attrName;
+		}
+
+		public AssociationRelDef setFromCardinality(Cardinality c) {
+			this.fromCardinality = c;
+			return this;
+		}
+
+		public AssociationRelDef setToCardinality(Cardinality c) {
+			this.toCardinality = c;
+			return this;
+		}
+
+		public AssociationRelDef setOwner(ObjectOwner o) {
+			this.owner = o;
+			return this;
+		}
+
+		public AssociationRelDef setPos(ViewPosision p) {
+			this.pos = p;
+			return this;
+		}
 
 		@Override
 		public String toPlantUMLText() {
-			return null;
+			StringBuffer buffer = new StringBuffer();
+
+			buffer.append("\n");
+			buffer.append(this.from);
+			buffer.append(" ");
+			buffer.append("\"");
+			buffer.append(this.fromCardinality.label);
+			buffer.append("\"");
+			buffer.append(" ");
+			if (this.owner == ObjectOwner.FROM) {
+				buffer.append("*");
+			}
+			buffer.append(this.pos.label);
+			if (this.owner == ObjectOwner.TO) {
+				buffer.append("*");
+			}
+			buffer.append(" ");
+			buffer.append("\"");
+			buffer.append(this.toCardinality.label);
+			buffer.append(" ");
+			buffer.append(this.attrName);
+			buffer.append("\"");
+			buffer.append(" ");
+			buffer.append(this.to);
+
+			return buffer.toString();
 		}
 
 	}
