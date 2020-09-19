@@ -19,9 +19,18 @@ public class IndexPageHandler {
 	public String handleHomePageRequest() {
 		return "/index";
 	}
-	public String handleBusinessEntityMapViewRequest() {
-		businessEntityMapView.setBusinessEntities(businessEntityService.getBusinessEntitiesMapView());
 
-		return "pages/bo/entities";
+	public String handleBusinessEntityMapViewRequest() {
+		if (businessEntityMapView == null || businessEntityMapView.getBusinessEntities() == null) {
+			businessEntityMapView.setBusinessEntities(businessEntityService.getBusinessEntitiesMapView());
+		}
+		return "/pages/bo/entities";
+	}
+
+	public String handleTypeListMapViewRequest() {
+		if (businessEntityMapView == null || businessEntityMapView.getTypeLists() == null) {
+			businessEntityMapView.setTypeLists(businessEntityService.getTypeListMapView());
+		}
+		return "/pages/bo/typelists";
 	}
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.fl.tools.infr.dao.BusinessEntityDao;
 import com.fl.tools.infr.domain.BusinessEntity;
+import com.fl.tools.infr.domain.TypeList;
 
 @Service
 public class BusinessEntityServiceImpl implements BusinessEntityService {
@@ -16,6 +17,11 @@ public class BusinessEntityServiceImpl implements BusinessEntityService {
 	@Override
 	public Map<String, BusinessEntity> getBusinessEntitiesMapView() {
 		return businessEntityDao.getBusinessEntities();
+	}
+
+	@Override
+	public Map<String, TypeList> getTypeListMapView() {
+		return businessEntityDao.getTypeLists();
 	}
 
 }

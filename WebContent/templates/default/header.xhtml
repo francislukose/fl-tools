@@ -25,14 +25,14 @@
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> Business Objects </a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<h:commandLink immediate="true" class="dropdown-item"
+					<h:commandLink class="dropdown-item"
 						action="#{indexPageHandler.handleBusinessEntityMapViewRequest}">
 						<img
 							src="#{request.contextPath}/resources/images/icons/icon-entity.png"
 							width="15" height="15" class="d-inline-block" alt=""
 							loading="lazy" />&nbsp;Entities</h:commandLink>
-					<h:commandLink immediate="true" class="dropdown-item"
-						action="#{indexPageHandler.handleBusinessEntityMapViewRequest}">
+					<h:commandLink class="dropdown-item"
+						action="#{indexPageHandler.handleTypeListMapViewRequest}">
 						<img
 							src="#{request.contextPath}/resources/images/icons/icon-enum-menu.png"
 							width="15" height="15" class="d-inline-block" alt=""

@@ -1,0 +1,107 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+	<ui:composition template="../../templates/default.xhtml">
+		<ui:define name="content">
+
+			<div class="d-flex" id="wrapper">
+
+				<!-- Sidebar -->
+				<div class="bg-none border-right vh-100" id="sidebar-wrapper">
+
+					<div class="sidebar-heading border-bottom">Domain
+						Objects(#{businessEntityMapView.totalTypeListCount})</div>
+					<div class="input-group">
+						<input type="text" id="myInput"
+							class="form-control search-control"
+							placeholder="Search for typelist"
+							onkeyup="searchInList(this,'component-list')" />
+					</div>
+					<div id="component-list"
+						class="list-group list-group-flush overflow-auto h-100 border-bottom">
+
+						<ui:repeat var="typeList"
+							value="#{businessEntityMapView.typeListsAsList}">
+							<h:commandLink
+								styleClass="list-group-item list-group-item-action bg-none sidebar-list-group-item"
+								value="#{typeList.simpleName}"
+								onclick="javascript:selectListItem(this);">
+								<f:ajax render="mainForm:entityDetails"
+									listener="#{businessEntitiesPageHandler.handleTypeListSelection}"
+									onevent="onPostAjaxCall" />
+							</h:commandLink>
+						</ui:repeat>
+					</div>
+				</div>
+				<!-- /#sidebar-wrapper -->
+				<!-- Page Content -->
+				<div id="page-content-wrapper">
+
+					<div class="container-fluid">
+						<p class="font-weight-bolder">Domain Object Details</p>
+						<div id="content-wrapper">
+							<h:panelGrid id="entityDetails" style="width:100%" columns="1">
+								<h:panelGrid styleClass="table table-sm" columns="3"
+									columnClasses="col-bold-150,col-bold-5,font-weight-light">
+									<h:outputText value="Full Name" />
+									<h:outputText value=":" />
+									<h:outputText
+										value="#{businessEntitiesPageHandler.typeListSelection.selectedTypeList.fullName}" />
+
+									<h:outputText value="Simple Name" />
+									<h:outputText value=":" />
+									<h:outputText
+										value="#{businessEntitiesPageHandler.typeListSelection.selectedTypeList.simpleName}" />
+										
+									<h:outputText value="Display Name" />
+									<h:outputText value=":" />
+									<h:outputText
+										value="#{businessEntitiesPageHandler.typeListSelection.selectedTypeList.displayName}" />
+
+									<h:outputText value="TypeList ID" />
+									<h:outputText value=":" />
+									<h:outputText
+										value="#{businessEntitiesPageHandler.typeListSelection.selectedTypeList.domainId}" />
+
+									<h:outputText value="Description" />
+									<h:outputText value=":" />
+									<h:outputText
+										value="#{businessEntitiesPageHandler.typeListSelection.selectedTypeList.description}" />
+								</h:panelGrid>
+
+								<h:dataTable styleClass="table table-hover" var="domainObject"
+									value="#{businessEntitiesPageHandler.typeListSelection.selectedTypeList.domainObjects}"
+									columnClasses="col-150,font-weight-light">
+
+									<h:column>
+										<f:facet name="header">Domain ID</f:facet>
+										#{domainObject.id}
+									</h:column>
+									<h:column>
+										<f:facet name="header">Domain Name</f:facet>
+										#{domainObject.name}
+									</h:column>
+
+									<f:facet name="footer">
+
+									</f:facet>
+								</h:dataTable>
+							</h:panelGrid>
+						</div>
+					</div>
+				</div>
+				<!-- /#page-content-wrapper -->
+			</div>
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

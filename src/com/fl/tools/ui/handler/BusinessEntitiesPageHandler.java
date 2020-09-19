@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.fl.tools.common.dto.SelectedBusinessEntityDto;
+import com.fl.tools.common.dto.SelectedTypeListDto;
 import com.fl.tools.infr.domain.BusinessEntityHierarchy;
 import com.fl.tools.ui.beans.BusinessEntityMapView;
 
@@ -20,6 +21,7 @@ public class BusinessEntitiesPageHandler {
 	@Autowired
 	private BusinessEntityMapView businessEntityMapView;
 	private SelectedBusinessEntityDto entitySelection;
+	private SelectedTypeListDto typeListSelection;
 
 	protected void populateParents() {
 		BusinessEntityHierarchy current = entitySelection.getEntity().getHierarchy().getNextHierarchy();
@@ -35,12 +37,24 @@ public class BusinessEntitiesPageHandler {
 		populateParents();
 	}
 
+	public void handleTypeListSelection(AjaxBehaviorEvent evt) {
+		String boSelection = (String) ((HtmlCommandLink) evt.getSource()).getValue();
+		typeListSelection = new SelectedTypeListDto(businessEntityMapView.getTypeList(boSelection));
+	}
+
 	public SelectedBusinessEntityDto getEntitySelection() {
 		if (entitySelection == null && businessEntityMapView != null) {
 			entitySelection = new SelectedBusinessEntityDto(businessEntityMapView.getBusinessEntitiesAsList().get(0));
 			populateParents();
 		}
 		return entitySelection;
+	}
+
+	public SelectedTypeListDto getTypeListSelection() {
+		if (typeListSelection == null && typeListSelection != null) {
+			typeListSelection = new SelectedTypeListDto(businessEntityMapView.getTypeListsAsList().get(0));
+		}
+		return typeListSelection;
 	}
 
 	public List<String> getHierarchy() {
