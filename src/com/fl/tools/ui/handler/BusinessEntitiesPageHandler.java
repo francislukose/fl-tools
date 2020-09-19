@@ -78,14 +78,8 @@ public class BusinessEntitiesPageHandler {
 
 	public String getPlantUMLText() {
 		String uml = umlBuilder.build(entitySelection.getEntity());
-
-//		SourceStringReader reader = new SourceStringReader(uml);
-//		try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
-//			String desc = reader.generateImage(baos, new FileFormatOption(FileFormat.SVG));
-//			final String svg = new String(baos.toByteArray(), Charset.forName("UTF-8"));
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+				
+		System.out.println(uml);
 
 		return uml;
 	}
