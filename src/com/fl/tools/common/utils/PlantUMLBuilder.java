@@ -255,11 +255,11 @@ public class PlantUMLBuilder implements Builder<String, BusinessEntity> {
 			buffer.append("\"");
 			buffer.append(" ");
 			if (this.owner == ObjectOwner.FROM) {
-				buffer.append("*");
+				buffer.append("o");
 			}
 			buffer.append(this.pos.label);
 			if (this.owner == ObjectOwner.TO) {
-				buffer.append("*");
+				buffer.append("o");
 			}
 			buffer.append(" ");
 			buffer.append("\"");
@@ -321,7 +321,7 @@ public class PlantUMLBuilder implements Builder<String, BusinessEntity> {
 		}
 
 		public String toPlantUMLText() {
-			return modifier + name + ":" + type;
+			return modifier + name + " : " + type;
 		}
 
 	}

@@ -71,6 +71,7 @@ $("#img-class-diagram").each(function () {
   $(this).attr("uml", "");
   done = 1;
   $('#exampleModalCenter').modal('handleUpdate');
+  $('#class-diagram-spinner').hide();
 });
 }
 
@@ -82,7 +83,7 @@ $("#img-class-diagram").each(function () {
   if (u1!=null) return;
   var u2 = $(this).attr("uml");
   if (u2=="") return;
-  
+  $('#class-diagram-spinner').show();
   var s = unescape(encodeURIComponent($("#plantUMLText").val()));
   if (deflater) {
     if (deflater.port && deflater.port.postMessage) {

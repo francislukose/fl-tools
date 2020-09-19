@@ -205,8 +205,13 @@
 													</button>
 												</div>
 												<div class="modal-body" style="align-content: center;">
+													<!--Big blue-->
+													<div class="spinner-border text-info" role="status" id="class-diagram-spinner">
+														<span class="sr-only">Loading...</span>
+													</div>
+
 													<img id="img-class-diagram" uml="render"
-														style="max-width: 650px; max-height: 550px; margin-left: auto; margin-right: auto; display: block;" />
+														style="display: none; max-width: 650px; max-height: 550px; margin-left: auto; margin-right: auto; display: block;" />
 													<input id="plantUMLText" type="hidden"
 														value="#{businessEntitiesPageHandler.plantUMLText}"></input>
 												</div>
@@ -216,7 +221,8 @@
 														value="#">
 														<h:outputText value="Open in new window" />
 													</h:outputLink>
-													<span style="width: 5px; padding: 0.6rem;">|</span> <span>Powered by PlantUML</span>
+													<span style="width: 5px; padding: 0.6rem;">|</span> <span>Powered
+														by PlantUML</span>
 												</div>
 											</div>
 										</div>
