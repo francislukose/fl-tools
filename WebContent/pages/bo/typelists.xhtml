@@ -16,8 +16,7 @@
 				<!-- Sidebar -->
 				<div class="bg-none border-right vh-100" id="sidebar-wrapper">
 
-					<div class="sidebar-heading border-bottom">Domain
-						Objects(#{businessEntityMapView.totalTypeListCount})</div>
+					<div class="sidebar-heading border-bottom">Typelists(#{businessEntityMapView.totalTypeListCount})</div>
 					<div class="input-group">
 						<input type="text" id="myInput"
 							class="form-control search-control"
@@ -59,7 +58,7 @@
 									<h:outputText value=":" />
 									<h:outputText
 										value="#{businessEntitiesPageHandler.typeListSelection.selectedTypeList.simpleName}" />
-										
+
 									<h:outputText value="Display Name" />
 									<h:outputText value=":" />
 									<h:outputText
@@ -75,31 +74,33 @@
 									<h:outputText
 										value="#{businessEntitiesPageHandler.typeListSelection.selectedTypeList.description}" />
 								</h:panelGrid>
+								<ui:fragment>
+									<div class="table-wrapper-scroll-y custom-scrollbar">
+										<h:dataTable styleClass="table table-hover" var="domainObject"
+											value="#{businessEntitiesPageHandler.typeListSelection.selectedTypeList.domainObjects}"
+											columnClasses="col-150,font-weight-light">
 
-								<h:dataTable styleClass="table table-hover" var="domainObject"
-									value="#{businessEntitiesPageHandler.typeListSelection.selectedTypeList.domainObjects}"
-									columnClasses="col-150,font-weight-light">
-
-									<h:column>
-										<f:facet name="header">Domain ID</f:facet>
+											<h:column>
+												<f:facet name="header">Domain ID</f:facet>
 										#{domainObject.id}
 									</h:column>
-									<h:column>
-										<f:facet name="header">Domain Name</f:facet>
+											<h:column>
+												<f:facet name="header">Domain Name</f:facet>
 										#{domainObject.name}
 									</h:column>
 
-									<f:facet name="footer">
+											<f:facet name="footer">
 
-									</f:facet>
-								</h:dataTable>
+											</f:facet>
+										</h:dataTable>
+									</div>
+								</ui:fragment>
 							</h:panelGrid>
 						</div>
 					</div>
 				</div>
-				<!-- /#page-content-wrapper -->
 			</div>
-
+			<!-- /#page-content-wrapper -->
 		</ui:define>
 	</ui:composition>
 
