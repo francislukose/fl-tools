@@ -70,6 +70,7 @@ $("#img-class-diagram").each(function () {
   $(this).attr("src", "http://www.plantuml.com/plantuml/img/"+encode64(e.data));
   $(this).attr("uml", "");
   done = 1;
+  $('#exampleModalCenter').modal('handleUpdate');
 });
 }
 

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.fl.tools.common.dto.SelectedBusinessEntityDto;
 import com.fl.tools.common.dto.SelectedTypeListDto;
+import com.fl.tools.common.utils.PlantUMLBuilder;
 import com.fl.tools.infr.domain.BusinessEntity;
 import com.fl.tools.infr.domain.BusinessEntityHierarchy;
 import com.fl.tools.ui.beans.BusinessEntityMapView;
@@ -21,6 +22,9 @@ import com.fl.tools.ui.beans.BusinessEntityMapView;
 public class BusinessEntitiesPageHandler {
 	@Autowired
 	private BusinessEntityMapView businessEntityMapView;
+	@Autowired
+	private PlantUMLBuilder umlBuilder;
+	
 	private SelectedBusinessEntityDto entitySelection;
 	private SelectedTypeListDto typeListSelection;
 
@@ -209,6 +213,8 @@ public class BusinessEntitiesPageHandler {
 
 		System.out.println(buffer.toString());
 
+		String s = umlBuilder.build(entitySelection.getEntity());
+		System.err.println(s);
 		return buffer.toString();
 	}
 }

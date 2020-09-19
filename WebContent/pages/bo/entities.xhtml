@@ -32,7 +32,7 @@
 								styleClass="list-group-item list-group-item-action bg-none sidebar-list-group-item"
 								value="#{businessEntity.simpleName}"
 								onclick="javascript:selectListItem(this);">
-								<f:ajax render="mainForm:entityDetails"
+								<f:ajax render="mainForm:ajax-render-part"
 									listener="#{businessEntitiesPageHandler.handleBusinessEntitySelection}"
 									onevent="onPostAjaxCall" />
 							</h:commandLink>
@@ -46,168 +46,179 @@
 
 					<div class="container-fluid">
 						<p class="font-weight-bolder">Business Entity Details</p>
+
 						<div id="content-wrapper">
-							<h:panelGrid id="entityDetails" style="width:100%" columns="1">
-								<h:panelGrid styleClass="table table-sm" columns="3"
-									columnClasses="col-bold-150,col-bold-5,font-weight-light">
-									<h:outputText value="Full Name" />
-									<h:outputText value=":" />
-									<h:outputText
-										value="#{businessEntitiesPageHandler.entitySelection.entity.fullName}" />
-
-									<h:outputText value="Simple Name" />
-									<h:outputText value=":" />
-									<ui:fragment>
+							<h:panelGrid id="ajax-render-part" style="width:100%" columns="1">
+								<h:panelGrid id="entityDetails" style="width:100%" columns="1">
+									<h:panelGrid styleClass="table table-sm" columns="3"
+										columnClasses="col-bold-150,col-bold-5,font-weight-light">
+										<h:outputText value="Full Name" />
+										<h:outputText value=":" />
 										<h:outputText
-											value="#{businessEntitiesPageHandler.entitySelection.entity.simpleName}" />
-										<span style="width: 5px; padding: 0.6rem;">|</span>
-										<span><a href="#" onclick="callPlantUML();" data-toggle="modal"
-											data-target="#exampleModalCenter">Show UML class diagram</a></span>
-									</ui:fragment>
-									<h:outputText value="Table Name" />
-									<h:outputText value=":" />
-									<h:outputText
-										value="#{businessEntitiesPageHandler.entitySelection.entity.tableName}" />
+											value="#{businessEntitiesPageHandler.entitySelection.entity.fullName}" />
 
-									<h:outputText value="Description" />
-									<h:outputText value=":" />
-									<h:outputText
-										value="#{businessEntitiesPageHandler.entitySelection.entity.description}" />
+										<h:outputText value="Simple Name" />
+										<h:outputText value=":" />
+										<ui:fragment>
+											<h:outputText
+												value="#{businessEntitiesPageHandler.entitySelection.entity.simpleName}" />
+											<span style="width: 5px; padding: 0.6rem;">|</span>
+											<span><a href="#" onclick="callPlantUML();"
+												data-toggle="modal" data-target="#exampleModalCenter">Show
+													UML class diagram</a></span>
+										</ui:fragment>
+										<h:outputText value="Table Name" />
+										<h:outputText value=":" />
+										<h:outputText
+											value="#{businessEntitiesPageHandler.entitySelection.entity.tableName}" />
 
-									<h:outputText value="Hierarchy" />
-									<h:outputText value=":" />
-									<ui:fragment>
-										<ui:repeat var="h"
-											value="#{businessEntitiesPageHandler.hierarchy}">
-											<h:outputText value="#{h}"></h:outputText>
-											<br />
-										</ui:repeat>
-									</ui:fragment>
+										<h:outputText value="Description" />
+										<h:outputText value=":" />
+										<h:outputText
+											value="#{businessEntitiesPageHandler.entitySelection.entity.description}" />
+
+										<h:outputText value="Hierarchy" />
+										<h:outputText value=":" />
+										<ui:fragment>
+											<ui:repeat var="h"
+												value="#{businessEntitiesPageHandler.hierarchy}">
+												<h:outputText value="#{h}"></h:outputText>
+												<br />
+											</ui:repeat>
+										</ui:fragment>
+									</h:panelGrid>
+
+									<h:dataTable styleClass="table table-hover" var="attr"
+										value="#{businessEntitiesPageHandler.entitySelection.allAttributes}"
+										columnClasses="col-90,col-150,col-150,font-weight-light">
+										<h:column>
+											<ui:fragment rendered="#{attr.fromParent}">
+												<img
+													src="#{request.contextPath}/resources/images/icons/icon-parent-attr.png"
+													width="15" height="10" class="d-inline-block"
+													alt="Base class" data-toggle="tooltip" data-placement="top"
+													title="Owner: Extended. Class [#{attr.parentName}]" />
+											</ui:fragment>
+											<ui:fragment rendered="#{attr.attribute.businessObjectType}">
+												<img
+													src="#{request.contextPath}/resources/images/icons/icon-bo.jpg"
+													width="15" height="10" class="d-inline-block"
+													alt="Business Object" data-toggle="tooltip"
+													data-placement="top" title="Type: Business Object" />
+											</ui:fragment>
+											<ui:fragment rendered="#{attr.attribute.enumType}">
+												<img
+													src="#{request.contextPath}/resources/images/icons/icon-enum.jpg"
+													width="15" height="10" class="d-inline-block" alt="Enum"
+													data-toggle="tooltip" data-placement="top"
+													title="Type: Enum" />
+											</ui:fragment>
+											<ui:fragment rendered="#{attr.attribute.many}">
+												<img
+													src="#{request.contextPath}/resources/images/icons/icon-array.jpg"
+													width="15" height="10" class="d-inline-block"
+													alt="Multiple" data-toggle="tooltip" data-placement="top"
+													title="Cardinality: Multiple" />
+											</ui:fragment>
+											<ui:fragment rendered="#{attr.attribute.oneToOne}">
+												<img
+													src="#{request.contextPath}/resources/images/icons/icon-1-1.jpg"
+													width="15" height="10" class="d-inline-block"
+													alt="OneToOne" data-toggle="tooltip" data-placement="top"
+													title="Relationsip: OneToOne" />
+											</ui:fragment>
+											<ui:fragment rendered="#{attr.attribute.oneToMany}">
+												<img
+													src="#{request.contextPath}/resources/images/icons/icon-1-m.jpg"
+													width="15" height="10" class="d-inline-block"
+													alt="OneToMany" data-toggle="tooltip" data-placement="top"
+													title="Relationsip: OneToMany" />
+											</ui:fragment>
+											<ui:fragment rendered="#{attr.attribute.manyToMany}">
+												<img
+													src="#{request.contextPath}/resources/images/icons/icon-m-m.jpg"
+													width="15" height="10" class="d-inline-block"
+													alt="ManyToMany" data-toggle="tooltip" data-placement="top"
+													title="Relationsip: ManyToMany" />
+											</ui:fragment>
+											<ui:fragment rendered="#{attr.attribute.manyToOne}">
+												<img
+													src="#{request.contextPath}/resources/images/icons/icon-m-1.jpg"
+													width="15" height="10" class="d-inline-block"
+													alt="ManyToOne" data-toggle="tooltip" data-placement="top"
+													title="Relationsip: ManyToOne" />
+											</ui:fragment>
+										</h:column>
+										<h:column>
+											<f:facet name="header">Attribute Name</f:facet>
+											<ui:fragment>
+												<span id="entity-attr-row-#{attr.fromParent}"
+													class="#{attr.viewStyle}">#{attr.attribute.attributeName}</span>
+											</ui:fragment>
+										</h:column>
+										<h:column>
+											<f:facet name="header">Attribute Type</f:facet>
+											<ui:fragment rendered="#{!attr.attribute.businessObjectType}">
+												<span id="entity-attr-row#{attr.fromParent}"
+													class="#{attr.viewStyle}">#{attr.attribute.typeSimpleName}</span>
+											</ui:fragment>
+											<h:commandLink
+												rendered="#{attr.attribute.businessObjectType}"
+												styleClass="#{attr.viewStyle}"
+												value="#{attr.attribute.typeSimpleName}">
+												<f:ajax render="mainForm:entityDetails"
+													listener="#{businessEntitiesPageHandler.handleBusinessEntitySelection}"
+													onevent="onPostAjaxCall" />
+											</h:commandLink>
+										</h:column>
+										<h:column>
+											<f:facet name="header">Attribute Description</f:facet>
+											<ui:fragment>
+												<span id="entity-attr-row#{attr.fromParent}"
+													class="#{attr.viewStyle}">#{attr.attribute.description}</span>
+											</ui:fragment>
+										</h:column>
+										<f:facet name="footer">
+											<i>* C, I, Flags, PartitionID, and LastUpdateDate
+												attributes are included in all Business Entities.</i>
+										</f:facet>
+									</h:dataTable>
+
+
+
 								</h:panelGrid>
 
-								<h:dataTable styleClass="table table-hover" var="attr"
-									value="#{businessEntitiesPageHandler.entitySelection.allAttributes}"
-									columnClasses="col-90,col-150,col-150,font-weight-light">
-									<h:column>
-										<ui:fragment rendered="#{attr.fromParent}">
-											<img
-												src="#{request.contextPath}/resources/images/icons/icon-parent-attr.png"
-												width="15" height="10" class="d-inline-block"
-												alt="Base class" data-toggle="tooltip" data-placement="top"
-												title="Owner: Extended. Class [#{attr.parentName}]" />
-										</ui:fragment>
-										<ui:fragment rendered="#{attr.attribute.businessObjectType}">
-											<img
-												src="#{request.contextPath}/resources/images/icons/icon-bo.jpg"
-												width="15" height="10" class="d-inline-block"
-												alt="Business Object" data-toggle="tooltip"
-												data-placement="top" title="Type: Business Object" />
-										</ui:fragment>
-										<ui:fragment rendered="#{attr.attribute.enumType}">
-											<img
-												src="#{request.contextPath}/resources/images/icons/icon-enum.jpg"
-												width="15" height="10" class="d-inline-block" alt="Enum"
-												data-toggle="tooltip" data-placement="top"
-												title="Type: Enum" />
-										</ui:fragment>
-										<ui:fragment rendered="#{attr.attribute.many}">
-											<img
-												src="#{request.contextPath}/resources/images/icons/icon-array.jpg"
-												width="15" height="10" class="d-inline-block" alt="Multiple"
-												data-toggle="tooltip" data-placement="top"
-												title="Cardinality: Multiple" />
-										</ui:fragment>
-										<ui:fragment rendered="#{attr.attribute.oneToOne}">
-											<img
-												src="#{request.contextPath}/resources/images/icons/icon-1-1.jpg"
-												width="15" height="10" class="d-inline-block" alt="OneToOne"
-												data-toggle="tooltip" data-placement="top"
-												title="Relationsip: OneToOne" />
-										</ui:fragment>
-										<ui:fragment rendered="#{attr.attribute.oneToMany}">
-											<img
-												src="#{request.contextPath}/resources/images/icons/icon-1-m.jpg"
-												width="15" height="10" class="d-inline-block"
-												alt="OneToMany" data-toggle="tooltip" data-placement="top"
-												title="Relationsip: OneToMany" />
-										</ui:fragment>
-										<ui:fragment rendered="#{attr.attribute.manyToMany}">
-											<img
-												src="#{request.contextPath}/resources/images/icons/icon-m-m.jpg"
-												width="15" height="10" class="d-inline-block"
-												alt="ManyToMany" data-toggle="tooltip" data-placement="top"
-												title="Relationsip: ManyToMany" />
-										</ui:fragment>
-										<ui:fragment rendered="#{attr.attribute.manyToOne}">
-											<img
-												src="#{request.contextPath}/resources/images/icons/icon-m-1.jpg"
-												width="15" height="10" class="d-inline-block"
-												alt="ManyToOne" data-toggle="tooltip" data-placement="top"
-												title="Relationsip: ManyToOne" />
-										</ui:fragment>
-									</h:column>
-									<h:column>
-										<f:facet name="header">Attribute Name</f:facet>
-										<ui:fragment>
-											<span id="entity-attr-row-#{attr.fromParent}"
-												class="#{attr.viewStyle}">#{attr.attribute.attributeName}</span>
-										</ui:fragment>
-									</h:column>
-									<h:column>
-										<f:facet name="header">Attribute Type</f:facet>
-										<ui:fragment rendered="#{!attr.attribute.businessObjectType}">
-											<span id="entity-attr-row#{attr.fromParent}"
-												class="#{attr.viewStyle}">#{attr.attribute.typeSimpleName}</span>
-										</ui:fragment>
-										<h:commandLink rendered="#{attr.attribute.businessObjectType}"
-											styleClass="#{attr.viewStyle}"
-											value="#{attr.attribute.typeSimpleName}">
-											<f:ajax render="mainForm:entityDetails"
-												listener="#{businessEntitiesPageHandler.handleBusinessEntitySelection}"
-												onevent="onPostAjaxCall" />
-										</h:commandLink>
-									</h:column>
-									<h:column>
-										<f:facet name="header">Attribute Description</f:facet>
-										<ui:fragment>
-											<span id="entity-attr-row#{attr.fromParent}"
-												class="#{attr.viewStyle}">#{attr.attribute.description}</span>
-										</ui:fragment>
-									</h:column>
-									<f:facet name="footer">
-										<i>* C, I, Flags, PartitionID, and LastUpdateDate
-											attributes are included in all Business Entities.</i>
-									</f:facet>
-								</h:dataTable>
-								
 								<!-- Modal -->
 								<ui:fragment>
 									<div class="modal fade" id="exampleModalCenter" tabindex="-1"
 										role="dialog" aria-labelledby="exampleModalCenterTitle"
 										aria-hidden="true">
-										<div class="modal-dialog modal-dialog-centered"
+										<div class="modal-dialog modal-dialog-centered "
 											role="document">
-											<div class="custom-modal-content" style="width: ">
+											<div class="custom-modal-content">
 												<div class="modal-header" style="padding: 0.5rem;">
-													<span class="modal-title" style="font-weight: bold" id="exampleModalLongTitle">Class Diagram - #{businessEntitiesPageHandler.entitySelection.entity.simpleName}</span>
+													<span class="modal-title" style="font-weight: bold"
+														id="exampleModalLongTitle">Class Diagram -
+														#{businessEntitiesPageHandler.entitySelection.entity.simpleName}</span>
 													<button type="button" class="close" data-dismiss="modal"
 														aria-label="Close">
 														<span aria-hidden="true">&times;</span>
 													</button>
 												</div>
 												<div class="modal-body">
-													<img id="img-class-diagram" style="max-height:575px;max-width:970px;" uml="#{businessEntitiesPageHandler.plantUMLText}" />
+													<img id="img-class-diagram"
+														style="max-height: 575px; max-width: 970px;"
+														uml="#{businessEntitiesPageHandler.plantUMLText}" />
 												</div>
 												<div class="modal-footer font-weight-light">Powered by
-													PlantUML</div>
+													PlantTextUML</div>
 											</div>
 										</div>
 									</div>
 								</ui:fragment>
-								
 							</h:panelGrid>
-							
 						</div>
+
 						<div>
 							<h:panelGrid columns="8"
 								styleClass="table table-bordered table-sm" style="width:0%;"
@@ -318,7 +329,7 @@
 									</ui:fragment>
 								</h:column>
 
-								
+
 							</h:panelGrid>
 						</div>
 					</div>

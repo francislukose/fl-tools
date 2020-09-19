@@ -84,20 +84,43 @@ public class BusinessEntityAttribute {
 		this.extension = extension;
 	}
 
+	public void setOneToOne(boolean b) {
+
+	}
+
 	public boolean isOneToOne() {
 		return relationship.equalsIgnoreCase("OneToOne");
 	}
+
 	public boolean isOneToMany() {
 		return relationship.equalsIgnoreCase("OneToMany");
 	}
+
+	public void setOneToMany(boolean b) {
+
+	}
+
 	public boolean isManyToMany() {
 		return relationship.equalsIgnoreCase("ManyToMany");
 	}
+
+	public void setManyToMany(boolean b) {
+
+	}
+
 	public boolean isManyToOne() {
 		return relationship.equalsIgnoreCase("ManyToOne");
 	}
+
+	public void setManyToOne(boolean b) {
+
+	}
+
 	public boolean isEnumType() {
 		return getTypeFullName().contains(".enums.");
 	}
 
+	public void setEnumtype(boolean b) {
+		enumType = b;
+	}
 }
