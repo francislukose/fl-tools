@@ -166,7 +166,7 @@
 												rendered="#{attr.attribute.businessObjectType}"
 												styleClass="#{attr.viewStyle}"
 												value="#{attr.attribute.typeSimpleName}">
-												<f:ajax render="mainForm:entityDetails"
+												<f:ajax render="mainForm:ajax-render-part"
 													listener="#{businessEntitiesPageHandler.handleBusinessEntitySelection}"
 													onevent="onPostAjaxCall" />
 											</h:commandLink>
