@@ -1,10 +1,17 @@
 package com.fl.tools.infr.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class BusinessEntity {
+	public static BusinessEntity BASE_BUSINESS_ENTITY = new BusinessEntity();
+	static {
+		BASE_BUSINESS_ENTITY.setAttributes(new HashMap<>());
+		BASE_BUSINESS_ENTITY.setSimpleName("BusinessEntity");
+	}
+	
 	private String name;
 	private String packageName;
 	private String tableName;

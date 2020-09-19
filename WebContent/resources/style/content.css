@@ -52,3 +52,12 @@ overflow: auto;
 .table-wrapper-scroll-y {
 display: block;
 }
+
+.custom-modal-content{
+	flex-direction:column;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid rgba(0,0,0,.2);
+	border-radius: .3rem;
+	outline: 0; 
+}

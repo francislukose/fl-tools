@@ -39,6 +39,7 @@
 						</ui:repeat>
 					</div>
 				</div>
+
 				<!-- /#sidebar-wrapper -->
 				<!-- Page Content -->
 				<div id="page-content-wrapper">
@@ -56,9 +57,13 @@
 
 									<h:outputText value="Simple Name" />
 									<h:outputText value=":" />
-									<h:outputText
-										value="#{businessEntitiesPageHandler.entitySelection.entity.simpleName}" />
-
+									<ui:fragment>
+										<h:outputText
+											value="#{businessEntitiesPageHandler.entitySelection.entity.simpleName}" />
+										<span style="width: 5px; padding: 0.6rem;">|</span>
+										<span><a href="#" onclick="callPlantUML();" data-toggle="modal"
+											data-target="#exampleModalCenter">Show UML class diagram</a></span>
+									</ui:fragment>
 									<h:outputText value="Table Name" />
 									<h:outputText value=":" />
 									<h:outputText
@@ -174,7 +179,34 @@
 											attributes are included in all Business Entities.</i>
 									</f:facet>
 								</h:dataTable>
+								
+								<!-- Modal -->
+								<ui:fragment>
+									<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+										role="dialog" aria-labelledby="exampleModalCenterTitle"
+										aria-hidden="true">
+										<div class="modal-dialog modal-dialog-centered"
+											role="document">
+											<div class="custom-modal-content" style="width: ">
+												<div class="modal-header" style="padding: 0.5rem;">
+													<span class="modal-title" style="font-weight: bold" id="exampleModalLongTitle">Class Diagram - #{businessEntitiesPageHandler.entitySelection.entity.simpleName}</span>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body">
+													<img id="img-class-diagram" style="max-height:575px;max-width:970px;" uml="#{businessEntitiesPageHandler.plantUMLText}" />
+												</div>
+												<div class="modal-footer font-weight-light">Powered by
+													PlantUML</div>
+											</div>
+										</div>
+									</div>
+								</ui:fragment>
+								
 							</h:panelGrid>
+							
 						</div>
 						<div>
 							<h:panelGrid columns="8"
@@ -285,6 +317,8 @@
 										<span class="badge">ManyToMany</span>
 									</ui:fragment>
 								</h:column>
+
+								
 							</h:panelGrid>
 						</div>
 					</div>
@@ -294,6 +328,7 @@
 
 		</ui:define>
 	</ui:composition>
+
 
 </h:body>
 </html>

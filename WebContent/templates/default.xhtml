@@ -7,7 +7,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-	<title>FINEOS Tools</title>
+	<title>FTools</title>
 	<!-- CSS only -->
 	<link rel="stylesheet"
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -17,7 +17,7 @@
 		href="#{request.contextPath}/resources/style/sidebar.css" />
 	<link rel="stylesheet"
 		href="#{request.contextPath}/resources/style/content.css" />
-
+	
 	<!-- JS, Popper.js, and jQuery -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -30,8 +30,12 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 		crossorigin="anonymous"></script>
-	<script src="#{request.contextPath}/resources/script/app.js" />
 	
+	<script src="#{request.contextPath}/resources/script/app.js" />
+	<script
+		src="#{request.contextPath}/resources/script/jquery_plantuml.js" />
+
+
 </h:head>
 <h:body>
 	<h:form id="mainForm">
