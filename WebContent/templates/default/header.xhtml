@@ -14,9 +14,9 @@
 			class="navbar-brand text-muted"
 			action="#{indexPageHandler.handleHomePageRequest}" immediate="true">
 			<img src="#{request.contextPath}/resources/images/logo.png"
-				width="30" height="30" style="margin-right:-0.3rem;" class="d-inline-block align-top" alt=""
-				loading="lazy" />
-			<span class="badge badge-info" style="padding:.20rem .4rem;">Tools</span>
+				width="30" height="30" style="margin-right: -0.3rem;"
+				class="d-inline-block align-top" alt="" loading="lazy" />
+			<span class="badge badge-info" style="padding: .20rem .4rem;">Tools</span>
 		</h:commandLink>
 		<ul class="navbar-nav mr-auto">
 
@@ -39,7 +39,8 @@
 							loading="lazy" />&nbsp;Typelist</h:commandLink>
 					<div class="dropdown-divider"></div>
 					<h:commandLink immediate="true" class="dropdown-item"
-						action="#{indexPageHandler.handleBusinessEntityMapViewRequest}"><img
+						action="#{indexPageHandler.handleBusinessEntityMapViewRequest}">
+						<img
 							src="#{request.contextPath}/resources/images/icons/icon-download.png"
 							width="15" height="15" class="d-inline-block" alt=""
 							loading="lazy" />&nbsp;Download as Excel</h:commandLink>

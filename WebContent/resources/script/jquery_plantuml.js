@@ -71,7 +71,7 @@ $("#img-class-diagram").each(function () {
   $(this).attr("uml", "");
   done = 1;
   $('#exampleModalCenter').modal('handleUpdate');
-  $('#class-diagram-spinner').hide();
+  stopSpinner('class-diagram-spinner');
 });
 }
 
@@ -80,10 +80,13 @@ var done = 0;
 $("#img-class-diagram").each(function () {
   if (done==1) return;
   var u1 = $(this).attr("src");
-  if (u1!=null) return;
+  if (u1!=null) {
+  	stopSpinner('class-diagram-spinner');
+  	return;
+  }
   var u2 = $(this).attr("uml");
   if (u2=="") return;
-  $('#class-diagram-spinner').show();
+  
   var s = unescape(encodeURIComponent($("#plantUMLText").val()));
   if (deflater) {
     if (deflater.port && deflater.port.postMessage) {

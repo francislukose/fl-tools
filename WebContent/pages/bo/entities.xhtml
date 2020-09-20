@@ -63,9 +63,8 @@
 											<h:outputText
 												value="#{businessEntitiesPageHandler.entitySelection.entity.simpleName}" />
 											<span style="width: 5px; padding: 0.6rem;">|</span>
-											<span><a href="#" onclick="callPlantUML();"
-												data-toggle="modal" data-target="#exampleModalCenter">Show
-													UML class diagram</a></span>
+											<span><a href="#" onclick="" data-toggle="modal"
+												data-target="#exampleModalCenter">Show UML class diagram</a></span>
 										</ui:fragment>
 										<h:outputText value="Table Name" />
 										<h:outputText value=":" />
@@ -206,7 +205,8 @@
 												</div>
 												<div class="modal-body" style="align-content: center;">
 													<!--Big blue-->
-													<div class="spinner-border text-info" role="status" id="class-diagram-spinner">
+													<div class="spinner-border text-info" role="status"
+														id="class-diagram-spinner">
 														<span class="sr-only">Loading...</span>
 													</div>
 
@@ -227,6 +227,7 @@
 											</div>
 										</div>
 									</div>
+									<h:outputScript>initClassDiagramModal();</h:outputScript>
 								</ui:fragment>
 							</h:panelGrid>
 						</div>

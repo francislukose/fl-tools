@@ -1,63 +1,70 @@
-#content-wrapper{
+#content-wrapper {
 	font-size: 0.7rem;
 }
 
-#content-wrapper .table-sm td, .table-sm th{
+#content-wrapper .table-sm td, .table-sm th {
 	padding: .2rem;
 }
 
-#content-wrapper .table td, .table th{
+#content-wrapper .table td, .table th {
 	vertical-align: middle;
 	padding: .2rem;
 }
 
-.col-bold-150{
+.col-bold-150 {
 	font-weight: bold;
 	width: 150px;
-	word-wrap:break-word; 
+	word-wrap: break-word;
 }
-.col-75{
+
+.col-75 {
 	width: 75px;
-	word-wrap:break-word;
+	word-wrap: break-word;
 }
-.col-90{
+
+.col-90 {
 	width: 90px;
-	word-wrap:break-word;
+	word-wrap: break-word;
 }
-.col-10{
+
+.col-10 {
 	width: 10px;
-	word-wrap:break-word;
+	word-wrap: break-word;
 }
-.col-150{
+
+.col-150 {
 	width: 150px;
-	word-wrap:break-word;
+	word-wrap: break-word;
 }
-.col-bold-5{
+
+.col-bold-5 {
 	font-weight: bold;
-	width: 5px;
-}
-.col-5{
 	width: 5px;
 }
 
-.extended{
+.col-5 {
+	width: 5px;
+}
+
+.extended {
 	color: #9c4c22;
 }
 
 .custom-scrollbar {
-position: relative;
-height: 650px;
-overflow: auto;
-}
-.table-wrapper-scroll-y {
-display: block;
+	position: relative;
+	height: 650px;
+	overflow: auto;
 }
 
-.custom-modal-content{
-	flex-direction:column;
+.table-wrapper-scroll-y {
+	display: block;
+}
+
+.custom-modal-content {
+	flex-direction: column;
 	background-color: #fff;
 	background-clip: padding-box;
-	border: 1px solid rgba(0,0,0,.2);
+	border: 1px solid rgba(0, 0, 0, .2);
 	border-radius: .3rem;
-	outline: 0; 
+	outline: 0;
 }

@@ -1,6 +1,15 @@
 $(function () {
   initToolTips();
+  initClassDiagramModal();
 });
+
+function initClassDiagramModal(){
+	startSpinner('class-diagram-spinner');
+	$('#exampleModalCenter').on('show.bs.modal', function () {
+	  startSpinner('class-diagram-spinner');
+	  callPlantUML();
+	});
+}
 
 function onPostAjaxCall(data){
 	if (data.status === 'success') { 
@@ -31,4 +40,16 @@ function searchInList(e,l) {
 function openClassDiagramInNewWindow( e ){
 	window.open($('#' + e).attr("src"), 'popupWindowName', 'dependent=yes, menubar=no, toolbar=no, location=no'); 
 	return false;
+}
+
+$('#exampleModalCenter').on('show.bs.modal', function () {
+  startSpinner('class-diagram-spinner');
+  callPlantUML();
+})
+
+function startSpinner(e){
+	$('#' + e).show();
+}
+function stopSpinner(e){
+	$('#' + e).hide();
 }
