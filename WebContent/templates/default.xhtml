@@ -18,6 +18,10 @@
 	<link rel="stylesheet"
 		href="#{request.contextPath}/resources/style/content.css" />
 
+	<h:outputScript>
+	var ___PLANTUML_SERVER = '#{FToolConfiguration.plantUmlServer}';
+	</h:outputScript>
+
 	<!-- JS, Popper.js, and jQuery -->
 	<script src="#{request.contextPath}/resources/script/jquery-3.5.1.slim.min.js"/>
 	<script

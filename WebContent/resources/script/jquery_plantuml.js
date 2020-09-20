@@ -51,7 +51,7 @@ var PlantUML = {
 	currentImage:'',
 	finishDeflating: function (data){
 		if($('#' + PlantUML.currentImage).attr('uml') != ''){
-			$('#' + PlantUML.currentImage).attr("src", "http://localhost:18080/plantuml/svg/" + encode64(data.data));
+			$('#' + PlantUML.currentImage).attr("src", ___PLANTUML_SERVER + encode64(data.data));
 			$('#' + PlantUML.currentImage).attr("uml", '');
 			$('#spinner-' + PlantUML.currentImage).hide();
 		}
