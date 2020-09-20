@@ -1,6 +1,7 @@
 package com.fl.tools.common.utils.uml;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -55,7 +56,7 @@ public class BusinessEntityBasicDefBuilder extends AbstractBusinessEntityDefBuil
 		return defs;
 	}
 
-	private List<Def> buildInheritanceDefs(BusinessEntity be) {
+	private Collection<Def> buildInheritanceDefs(BusinessEntity be) {
 		List<Def> defs = new ArrayList<>();
 
 		BusinessEntityHierarchy beh = be.getHierarchy();

@@ -35,4 +35,14 @@ public class ClassDef implements Def {
 
 		return buffer.toString();
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return obj != null && name.equalsIgnoreCase(((ClassDef) obj).name);
+	}
+
+	@Override
+	public int hashCode() {
+		return name.hashCode();
+	}
 }

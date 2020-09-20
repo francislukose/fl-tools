@@ -62,4 +62,13 @@ public class AssociationRelDef extends RelDef {
 		return buffer.toString();
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return obj != null && toPlantUMLText().equalsIgnoreCase(((AssociationRelDef) obj).toPlantUMLText());
+	}
+
+	@Override
+	public int hashCode() {
+		return toPlantUMLText().hashCode();
+	}
 }

@@ -1,5 +1,6 @@
 package com.fl.tools.common.utils.uml;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ abstract public class AbstractPlantUMLBuilder implements Builder<String, Busines
 
 		StringBuffer buffer = new StringBuffer();
 		StringBuffer buffer2 = new StringBuffer();
-		List<Def> defs = getDefBuilder().build(be);
+		Collection<Def> defs = getDefBuilder().build(be);
 
 		defs.forEach((e) -> {
 			if (e instanceof ClassDef) {
