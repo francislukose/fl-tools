@@ -11,7 +11,7 @@ public class BusinessEntity {
 		BASE_BUSINESS_ENTITY.setAttributes(new HashMap<>());
 		BASE_BUSINESS_ENTITY.setSimpleName("BusinessEntity");
 	}
-	
+
 	private String name;
 	private String packageName;
 	private String tableName;
@@ -21,6 +21,24 @@ public class BusinessEntity {
 	private boolean deprecated;
 	private Map<String, BusinessEntityAttribute> attributes;
 	private BusinessEntityHierarchy hierarchy;
+	private List<String> siblings;
+	private List<String> children;
+
+	public List<String> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<String> children) {
+		this.children = children;
+	}
+
+	public List<String> getSiblings() {
+		return siblings;
+	}
+
+	public void setSiblings(List<String> siblings) {
+		this.siblings = siblings;
+	}
 
 	public void setTableName(String tableName) {
 		this.tableName = tableName;
