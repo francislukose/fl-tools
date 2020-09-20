@@ -10,6 +10,7 @@ import javax.faces.bean.SessionScoped;
 import org.springframework.stereotype.Component;
 
 import com.fl.tools.infr.domain.BusinessEntity;
+import com.fl.tools.infr.domain.BusinessEntityHierarchy;
 import com.fl.tools.infr.domain.TypeList;
 
 @Component
@@ -18,6 +19,21 @@ import com.fl.tools.infr.domain.TypeList;
 public class BusinessEntityMapView {
 	private Map<String, BusinessEntity> businessEntities;
 	private Map<String, TypeList> typeLists;
+
+	public List<String> getSiblingsOf(BusinessEntity be) {
+		List<String> siblings = new ArrayList();
+
+		BusinessEntity parent = businessEntities.get(be.getDirectParent());
+		if (parent != null) {
+			parent.getChildren().forEach((e) -> {
+				if (!be.getSimpleName().equalsIgnoreCase(e)) {
+					siblings.add(e);
+				}
+			});
+		}
+
+		return siblings;
+	}
 
 	public Map<String, TypeList> getTypeLists() {
 		return typeLists;
@@ -64,16 +80,6 @@ public class BusinessEntityMapView {
 		});
 
 		return boList;
-	}
-
-	public List<BusinessEntity> getSiblings(BusinessEntity be) {
-		List<BusinessEntity> siblings = new ArrayList();
-		BusinessEntity parent = businessEntities.get(be.getHierarchy().getNextHierarchy().getSimpleName());
-		if (parent != null) {
-
-		}
-
-		return siblings;
 	}
 
 	public List<TypeList> getTypeListsAsList() {

@@ -21,8 +21,16 @@ public class BusinessEntity {
 	private boolean deprecated;
 	private Map<String, BusinessEntityAttribute> attributes;
 	private BusinessEntityHierarchy hierarchy;
-	private List<String> siblings;
-	private List<String> children;
+	private String directParent;
+	private List<String> children = new ArrayList<>();
+
+	public String getDirectParent() {
+		return directParent;
+	}
+
+	public void setDirectParent(String directParent) {
+		this.directParent = directParent;
+	}
 
 	public List<String> getChildren() {
 		return children;
@@ -30,14 +38,6 @@ public class BusinessEntity {
 
 	public void setChildren(List<String> children) {
 		this.children = children;
-	}
-
-	public List<String> getSiblings() {
-		return siblings;
-	}
-
-	public void setSiblings(List<String> siblings) {
-		this.siblings = siblings;
 	}
 
 	public void setTableName(String tableName) {

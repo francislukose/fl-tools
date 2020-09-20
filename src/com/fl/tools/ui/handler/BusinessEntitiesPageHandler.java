@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.fl.tools.common.dto.SelectedBusinessEntityDto;
 import com.fl.tools.common.dto.SelectedTypeListDto;
-import com.fl.tools.common.utils.PlantUMLBuilder;
+import com.fl.tools.common.utils.uml.PlantUMLBuilder;
 import com.fl.tools.infr.domain.BusinessEntityHierarchy;
 import com.fl.tools.ui.beans.BusinessEntityMapView;
 
@@ -77,6 +77,8 @@ public class BusinessEntitiesPageHandler {
 	}
 
 	public String getPlantUMLText() {
+		List<String> children = entitySelection.getEntity().getChildren();
+		
 		String uml = umlBuilder.build(entitySelection.getEntity());
 		System.out.println(uml);
 

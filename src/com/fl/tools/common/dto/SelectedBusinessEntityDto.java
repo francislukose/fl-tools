@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fl.tools.infr.domain.BusinessEntity;
+import com.fl.tools.ui.beans.BusinessEntityMapView;
 
 public class SelectedBusinessEntityDto {
 	private BusinessEntity entity;
