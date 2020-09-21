@@ -24,7 +24,7 @@ public class BusinessEntityBasicDefBuilder extends AbstractBusinessEntityDefBuil
 					target.addAttr(new AttrDef("-", v.getAttributeName(), v.getTypeSimpleName()));
 				} else {
 					index++;
-					defs.add(new ClassDef(v.getTypeSimpleName()));
+					defs.add(buildClassDef(entityMapView.getBusinessEntity(v.getTypeSimpleName())));
 					AssociationRelDef associationRelDef = new AssociationRelDef(be.getSimpleName(),
 							v.getTypeSimpleName(), v.getAttributeName()).setPos(posSelector.getPos());
 					if (v.isOneToOne()) {

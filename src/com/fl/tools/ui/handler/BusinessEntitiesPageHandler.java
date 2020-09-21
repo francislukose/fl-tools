@@ -81,14 +81,15 @@ public class BusinessEntitiesPageHandler {
 
 	public String getBasicPlantUMLText() {
 		String uml = basicUmlBuilder.build(entitySelection.getEntity());
-		
+		System.out.println(uml);
+
 		return uml;
 	}
 
 	public String getInheritancePlantUMLText() {
 		String uml = inheritanceUmlBuilder.build(entitySelection.getEntity());
-		System.out.println(uml);
-
+		
 		return uml;
 	}
+
 }
