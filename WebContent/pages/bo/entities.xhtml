@@ -21,7 +21,7 @@
 						<input type="text" id="myInput"
 							class="form-control search-control"
 							placeholder="Search for components"
-							onkeyup="searchInList(this,'component-list')" autocomplete="off"/>
+							onkeyup="searchInList(this,'component-list')" autocomplete="off" />
 					</div>
 					<div id="component-list"
 						class="list-group list-group-flush overflow-auto h-100 border-bottom">
@@ -77,17 +77,12 @@
 													class="d-inline-block align-top" alt="" loading="lazy"
 													title="Inheritance Structure Class Diagram" /></a></span>
 										</ui:fragment>
-										<h:outputText value="Table Name" />
+										<h:outputText value="Database Table Name" />
 										<h:outputText value=":" />
 										<h:outputText
 											value="#{businessEntitiesPageHandler.entitySelection.entity.tableName}" />
-
-										<h:outputText value="Description" />
-										<h:outputText value=":" />
-										<h:outputText
-											value="#{businessEntitiesPageHandler.entitySelection.entity.description}" />
-
-										<h:outputText value="Hierarchy" />
+										
+										<h:outputText value="Class Hierarchy" />
 										<h:outputText value=":" />
 										<ui:fragment>
 											<ui:repeat var="h"
@@ -96,6 +91,13 @@
 												<br />
 											</ui:repeat>
 										</ui:fragment>
+										
+										<h:outputText value="Description" />
+										<h:outputText value=":" />
+										<h:outputText
+											value="#{businessEntitiesPageHandler.entitySelection.entity.description}" />
+
+
 									</h:panelGrid>
 
 									<h:dataTable styleClass="table table-hover" var="attr"
@@ -223,7 +225,7 @@
 
 													<img id="basic-img-class-diagram" uml="plantUMLText" src=""
 														style="display: none; max-width: 650px; max-height: 550px; margin-left: auto; margin-right: auto; display: block;" />
-													
+
 													<input id="plantUMLText" type="hidden"
 														value="#{businessEntitiesPageHandler.basicPlantUMLText}"></input>
 												</div>
@@ -233,6 +235,7 @@
 														value="#">
 														<h:outputText value="Open in new window" />
 													</h:outputLink>
+
 													<span style="width: 5px; padding: 0.6rem;">|</span> <span>Powered
 														by PlantUML</span>
 												</div>
