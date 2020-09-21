@@ -28,9 +28,9 @@ public class BusinessEntityInheritanceDefBuilder extends AbstractBusinessEntityD
 			if (!e.equalsIgnoreCase(originalTarget)) {
 				BusinessEntity child = entityMapView.getBusinessEntity(e);
 				Def theDef = buildClassDef(child);
-				//buildAttrDefs((ClassDef) theDef, child, true, true);
 				defs.add(theDef);
 				defs.add(new InheritanceRelDef(be.getSimpleName(), e, ViewPosition.DOWN));
+				populateChildren(child, defs, originalTarget);
 			}
 		});
 	}

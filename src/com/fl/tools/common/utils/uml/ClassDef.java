@@ -5,6 +5,7 @@ import java.util.List;
 
 public class ClassDef implements Def {
 	private String name;
+	private String steriotype;
 	private List<AttrDef> attrs = new ArrayList<>();
 
 	public ClassDef(String name) {
@@ -16,12 +17,26 @@ public class ClassDef implements Def {
 		return this;
 	}
 
+	public String getSteriotype() {
+		return steriotype;
+	}
+
+	public void setSteriotype(String steriotype) {
+		this.steriotype = steriotype;
+	}
+
 	public String toPlantUMLText() {
 		StringBuffer buffer = new StringBuffer();
 
 		buffer.append("\n");
 		buffer.append("class ");
 		buffer.append(name);
+
+		if (steriotype != null) {
+			buffer.append(" <<");
+			buffer.append(steriotype);
+			buffer.append(">>");
+		}
 		buffer.append(" {");
 		buffer.append("\n");
 

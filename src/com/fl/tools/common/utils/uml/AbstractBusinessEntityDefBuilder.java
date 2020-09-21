@@ -23,7 +23,9 @@ public abstract class AbstractBusinessEntityDefBuilder implements Builder<Collec
 		Collection<Def> theDefs = new HashSet<>();
 
 		ClassDef def = (ClassDef) buildClassDef(be);
+		def.setSteriotype("Entity");
 		theDefs.add(def);
+		theDefs.add(new ClassSkinDef(ClassSkinOption.ClassBackgroundColor, "LightGreen", "Entity"));
 		theDefs.addAll(buildDefs(be, def));
 
 		return theDefs;
