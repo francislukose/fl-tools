@@ -11,7 +11,7 @@ import com.fl.tools.infr.domain.BusinessEntityAttribute;
 import com.fl.tools.infr.domain.BusinessEntityHierarchy;
 
 @Component
-public class BusinessEntityBasicDefBuilder extends AbstractBusinessEntityDefBuilder {
+public class BusinessEntityBasicDefBuilder extends AbstractBusinessEntityClassDiagramBuilder {
 	private static final int MAX_USED_CLASSES_IN_DIAGRAM = 200;
 
 	public List<Def> buildUsedClassDefs(BusinessEntity be, ClassDef target) {

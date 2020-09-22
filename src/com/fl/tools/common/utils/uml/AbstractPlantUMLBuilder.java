@@ -18,18 +18,13 @@ abstract public class AbstractPlantUMLBuilder implements Builder<String, Busines
 		Assert.notNull(be);
 
 		StringBuffer buffer = new StringBuffer();
-		StringBuffer buffer2 = new StringBuffer();
 		Collection<Def> defs = getDefBuilder().build(be);
 
 		defs.forEach((e) -> {
-			if (e instanceof ClassDef) {
-				buffer.append(e.toPlantUMLText());
-			} else {
-				buffer2.append(e.toPlantUMLText());
-			}
+			buffer.append(e.toPlantUMLText());
 		});
 
-		return buffer.append(buffer2).toString();
+		return buffer.toString();
 	}
 
 }

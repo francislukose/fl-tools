@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import com.fl.tools.infr.domain.BusinessEntity;
 
 @Component
-public class BusinessEntityInheritanceDefBuilder extends AbstractBusinessEntityDefBuilder {
+public class BusinessEntityInheritanceDefBuilder extends AbstractBusinessEntityClassDiagramBuilder {
 
 	@Override
 	public Collection<Def> buildDefs(BusinessEntity be, ClassDef target) {

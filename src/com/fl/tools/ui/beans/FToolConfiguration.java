@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @ManagedBean(name = "FToolConfiguration")
 @ApplicationScoped
 public class FToolConfiguration {
-	private String plantUmlServer = "http://localhost:18080/plantuml/svg/";
+	private String plantUmlServer = "http://localhost:8080/plantuml/svg/";
 
 	public String getPlantUmlServer() {
 		return plantUmlServer;
