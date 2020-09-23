@@ -11,6 +11,10 @@ function initClassDiagramModal() {
     $('#inheritanceModalCenter').on('show.bs.modal', function() {
         PlantUML.sendToPlantUML('inheritance-img-class-diagram');
     });
+    
+     $('#erdModalCenter').on('show.bs.modal', function() {
+        PlantUML.sendToPlantUML('erd-img-class-diagram');
+    });
 }
 
 function onPostAjaxCall(data) {

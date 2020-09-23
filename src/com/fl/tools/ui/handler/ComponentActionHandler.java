@@ -1,0 +1,77 @@
+package com.fl.tools.ui.handler;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.component.html.HtmlCommandLink;
+import javax.faces.event.AjaxBehaviorEvent;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.fl.tools.common.dto.SelectedBusinessEntityDto;
+import com.fl.tools.infr.domain.BusinessEntityHierarchy;
+import com.fl.tools.infr.domain.v2.ComponentProxy;
+import com.fl.tools.ui.beans.AttributeUIView;
+import com.fl.tools.ui.beans.ComponentUIView;
+
+@Component
+@ManagedBean
+public class ComponentActionHandler {
+	@Autowired
+	private ComponentUIView componentUIView;
+
+	private ComponentProxy selectedComponent;
+
+	public void setSelectedComponent(ComponentProxy selectedComponent) {
+		this.selectedComponent = selectedComponent;
+	}
+
+	public ComponentProxy getSelectedComponent() {
+		if (selectedComponent == null) {
+			selectedComponent = componentUIView.getComponents().getComponents().values().iterator().next();
+		}
+		return selectedComponent;
+	}
+
+	public List<AttributeUIView> getComponentAttributes() {
+		List<AttributeUIView> attrs = new ArrayList<>();
+		if (selectedComponent != null) {
+			ComponentProxy current = componentUIView.getComponents().getComponent(selectedComponent.getParent());
+			while (current != null) {
+				final String name = current.getName();
+				current.getAttributes().forEach((k, v) -> {
+					attrs.add(new AttributeUIView(v, true, name));
+				});
+				current = componentUIView.getComponents().getComponent(current.getParent());
+			}
+
+			selectedComponent.getAttributes().forEach((k, v) -> {
+				attrs.add(new AttributeUIView(v));
+			});
+		}
+		return attrs;
+	}
+
+	public List<String> getHierarchy() {
+		List<String> hierarchy = new ArrayList<>();
+		if (selectedComponent != null) {
+			hierarchy.add(" - " + selectedComponent.getAbsoluteName());
+			ComponentProxy current = componentUIView.getComponents().getComponent(selectedComponent.getParent());
+			String space = "      ";
+			while (current != null) {
+				hierarchy.add(space + " - " + current.getAbsoluteName());
+				space = space + space;
+				current = componentUIView.getComponents().getComponent(current.getParent());
+			}
+		}
+		return hierarchy;
+	}
+
+	public void handleComponentSelection(AjaxBehaviorEvent evt) {
+		String uuid = (String) evt.getComponent().getAttributes().get("uuid");
+		selectedComponent = componentUIView.getComponents().getComponent(uuid);
+	}
+
+}

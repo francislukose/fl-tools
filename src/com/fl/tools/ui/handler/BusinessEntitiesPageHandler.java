@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import com.fl.tools.common.dto.SelectedBusinessEntityDto;
 import com.fl.tools.common.dto.SelectedTypeListDto;
 import com.fl.tools.common.utils.uml.BasicPlantUMLBuilder;
+import com.fl.tools.common.utils.uml.ERDPlantUMLBuilder;
 import com.fl.tools.common.utils.uml.InheritancePlantUMLBuilder;
 import com.fl.tools.infr.domain.BusinessEntityHierarchy;
 import com.fl.tools.ui.beans.BusinessEntityMapView;
@@ -26,6 +27,8 @@ public class BusinessEntitiesPageHandler {
 	private BasicPlantUMLBuilder basicUmlBuilder;
 	@Autowired
 	private InheritancePlantUMLBuilder inheritanceUmlBuilder;
+	@Autowired
+	private ERDPlantUMLBuilder erdPlantUMLBuilder;
 
 	private SelectedBusinessEntityDto entitySelection;
 	private SelectedTypeListDto typeListSelection;
@@ -79,17 +82,16 @@ public class BusinessEntitiesPageHandler {
 		return hierarchy;
 	}
 
-	public String getBasicPlantUMLText() {
-		String uml = basicUmlBuilder.build(entitySelection.getEntity());
-		System.out.println(uml);
+	public String getErdPlantUMLText() {
+		return erdPlantUMLBuilder.build(entitySelection.getEntity());
+	}
 
-		return uml;
+	public String getBasicPlantUMLText() {
+		return basicUmlBuilder.build(entitySelection.getEntity());
 	}
 
 	public String getInheritancePlantUMLText() {
-		String uml = inheritanceUmlBuilder.build(entitySelection.getEntity());
-		
-		return uml;
+		return inheritanceUmlBuilder.build(entitySelection.getEntity());
 	}
 
 }

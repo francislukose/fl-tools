@@ -1,6 +1,5 @@
 package com.fl.tools.ui.handler;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 
@@ -14,7 +13,9 @@ import org.springframework.stereotype.Component;
 
 import com.fl.tools.common.utils.csv.BusinessEntityCsvBuilder;
 import com.fl.tools.service.BusinessEntityService;
+import com.fl.tools.service.ComponentService;
 import com.fl.tools.ui.beans.BusinessEntityMapView;
+import com.fl.tools.ui.beans.ComponentUIView;
 
 @Component
 @ManagedBean

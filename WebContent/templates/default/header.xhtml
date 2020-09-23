@@ -45,6 +45,19 @@
 							width="15" height="15" class="d-inline-block" alt=""
 							loading="lazy" />&nbsp;Download as Excel</h:commandLink>
 				</div></li>
+
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+				role="button" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false"> Components </a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<h:commandLink class="dropdown-item"
+						action="#{homeMenuHandler.handleClassesAndInterfacesComponentRequest}">
+						<img
+							src="#{request.contextPath}/resources/images/icons/icon-entity.png"
+							width="15" height="15" class="d-inline-block" alt=""
+							loading="lazy" />&nbsp;Classes &amp; Interfaces</h:commandLink>
+				</div></li>
 		</ul>
 		</nav>
 	</ui:composition>
