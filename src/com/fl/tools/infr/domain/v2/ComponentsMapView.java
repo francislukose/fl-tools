@@ -10,7 +10,6 @@ public class ComponentsMapView {
 
 	public ComponentsMapView(Set<Component> components) {
 		components.forEach((e) -> {
-			System.out.println("Adding " + e.getName() + " to map.");
 			this.components.put(e.getUUID(), new ComponentProxy(e));
 		});
 	}

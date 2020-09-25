@@ -17,7 +17,7 @@ public class ComponentProxy {
 			this.attributeMap.put(e.getUUID(), new AttributeProxy(e));
 		});
 	}
-
+	
 	public Map<String, AttributeProxy> getAttributes() {
 		return attributeMap;
 	}

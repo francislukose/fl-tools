@@ -7,10 +7,19 @@ public class Attribute {
 	private String name;
 	private String type;
 	private String UUID;
+	private String typeUUID;
 	private String defaultValue;
 	private Set<Modifier> modifiers = new HashSet<>();
 	private Set<Steriotype> steriotypes = new HashSet<>();
 	private Set<Annotation> annotations = new HashSet<>();
+
+	public void setTypeUUID(String typeUUID) {
+		this.typeUUID = typeUUID;
+	}
+
+	public String getTypeUUID() {
+		return typeUUID;
+	}
 
 	public void setUUID(String uUID) {
 		UUID = uUID;
@@ -66,6 +75,11 @@ public class Attribute {
 
 	public void setAnnotations(Set<Annotation> annotations) {
 		this.annotations = annotations;
+	}
+
+	@Override
+	public String toString() {
+		return UUID;
 	}
 
 }

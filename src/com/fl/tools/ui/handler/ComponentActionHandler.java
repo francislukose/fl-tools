@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.component.html.HtmlCommandLink;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.fl.tools.common.dto.SelectedBusinessEntityDto;
-import com.fl.tools.infr.domain.BusinessEntityHierarchy;
+import com.fl.tools.common.utils.ComponentUtils;
+import com.fl.tools.common.utils.uml.builder.BasicPlantUMLBuilder;
+import com.fl.tools.common.utils.uml.builder.ERDPlantUMLBuilder;
+import com.fl.tools.common.utils.uml.builder.InheritancePlantUMLBuilder;
 import com.fl.tools.infr.domain.v2.ComponentProxy;
 import com.fl.tools.ui.beans.AttributeUIView;
 import com.fl.tools.ui.beans.ComponentUIView;
@@ -20,8 +21,14 @@ import com.fl.tools.ui.beans.ComponentUIView;
 @ManagedBean
 public class ComponentActionHandler {
 	@Autowired
-	private ComponentUIView componentUIView;
+	private BasicPlantUMLBuilder basicUmlBuilder;
+	@Autowired
+	private InheritancePlantUMLBuilder inheritanceUmlBuilder;
+	@Autowired
+	private ERDPlantUMLBuilder erdPlantUMLBuilder;
 
+	@Autowired
+	private ComponentUIView componentUIView;
 	private ComponentProxy selectedComponent;
 
 	public void setSelectedComponent(ComponentProxy selectedComponent) {
@@ -67,6 +74,29 @@ public class ComponentActionHandler {
 			}
 		}
 		return hierarchy;
+	}
+
+	public String getErdPlantUMLText() {
+		if (selectedComponent != null) {
+			String uml =  erdPlantUMLBuilder.build(selectedComponent);
+			System.out.println(uml);
+			return uml;
+		}
+		return "";
+	}
+
+	public String getBasicPlantUMLText() {
+		if (selectedComponent != null) {
+			return basicUmlBuilder.build(selectedComponent);
+		}
+		return "";
+	}
+
+	public String getInheritancePlantUMLText() {
+		if (selectedComponent != null) {
+			return inheritanceUmlBuilder.build(selectedComponent);
+		}
+		return "";
 	}
 
 	public void handleComponentSelection(AjaxBehaviorEvent evt) {

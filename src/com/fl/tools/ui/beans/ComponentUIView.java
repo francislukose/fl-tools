@@ -1,6 +1,7 @@
 package com.fl.tools.ui.beans;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -8,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 
 import org.springframework.stereotype.Component;
 
+import com.fl.tools.infr.domain.v2.AttributeProxy;
 import com.fl.tools.infr.domain.v2.ComponentProxy;
 import com.fl.tools.infr.domain.v2.ComponentsMapView;
 

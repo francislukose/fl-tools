@@ -86,10 +86,13 @@
 												title="Entity Relationship Diagram" />
 											</a>
 										</ui:fragment>
-										<h:outputText value="Database Table Name" rendered="${componentActionHandler.selectedComponent.entity}"/>
-										<h:outputText value=":" rendered="${componentActionHandler.selectedComponent.entity}"/>
+										<h:outputText value="Database Table Name"
+											rendered="${componentActionHandler.selectedComponent.entity}" />
+										<h:outputText value=":"
+											rendered="${componentActionHandler.selectedComponent.entity}" />
 										<h:outputText
-											value="#{componentActionHandler.selectedComponent.tableName}" rendered="${componentActionHandler.selectedComponent.entity}"/>
+											value="#{componentActionHandler.selectedComponent.tableName}"
+											rendered="${componentActionHandler.selectedComponent.entity}" />
 
 										<h:outputText value="Class Hierarchy" />
 										<h:outputText value=":" />
@@ -204,11 +207,144 @@
 												attributes are included in all Business Entities.</i>
 										</f:facet>
 									</h:dataTable>
-
-
-
 								</h:panelGrid>
 
+
+								<!-- Modal -  Basic UML -->
+								<ui:fragment>
+									<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+										role="dialog" aria-labelledby="exampleModalCenterTitle"
+										aria-hidden="true">
+										<div class="modal-dialog modal-lg " role="document">
+											<div class="modal-content">
+												<div class="modal-header" style="padding: 0.5rem;">
+													<span class="modal-title" style="font-weight: bold"
+														id="exampleModalLongTitle">Class Diagram -
+														#{componentActionHandler.selectedComponent.name}</span>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body" style="align-content: center;">
+													<!--Big blue-->
+													<div class="spinner-border text-info" role="status"
+														id="spinner-basic-img-class-diagram">
+														<span class="sr-only">Loading...</span>
+													</div>
+
+													<img id="basic-img-class-diagram" uml="plantUMLText" src=""
+														style="display: none; max-width: 650px; max-height: 550px; margin-left: auto; margin-right: auto; display: block;" />
+
+													<input id="plantUMLText" type="hidden"
+														value="#{componentActionHandler.basicPlantUMLText}"></input>
+												</div>
+												<div class="modal-footer font-weight-light">
+													<h:outputLink
+														onclick="openClassDiagramInNewWindow('basic-img-class-diagram');"
+														value="#">
+														<h:outputText value="Open in new window" />
+													</h:outputLink>
+
+													<span style="width: 5px; padding: 0.6rem;">|</span> <span>Powered
+														by PlantUML</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</ui:fragment>
+
+								<!-- Modal -  Inheritance UML -->
+								<ui:fragment>
+									<div class="modal fade" id="inheritanceModalCenter"
+										tabindex="-1" role="dialog"
+										aria-labelledby="inheritanceModalCenterTitle"
+										aria-hidden="true">
+										<div class="modal-dialog modal-lg " role="document">
+											<div class="modal-content">
+												<div class="modal-header" style="padding: 0.5rem;">
+													<span class="modal-title" style="font-weight: bold"
+														id="inheritanceModalCenterTitle">Class Diagram -
+														#{componentActionHandler.selectedComponent.name}</span>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body" style="align-content: center;">
+													<!--Big blue-->
+													<div class="spinner-border text-info" role="status"
+														id="spinner-inheritance-img-class-diagram">
+														<span class="sr-only">Loading...</span>
+													</div>
+
+													<img id="inheritance-img-class-diagram"
+														uml="inheritancePlantUMLText" src=""
+														style="display: none; max-width: 650px; max-height: 550px; margin-left: auto; margin-right: auto; display: block;" />
+
+													<input id="inheritancePlantUMLText" type="hidden"
+														value="#{componentActionHandler.inheritancePlantUMLText}"></input>
+												</div>
+												<div class="modal-footer font-weight-light">
+													<h:outputLink
+														onclick="openClassDiagramInNewWindow('inheritance-img-class-diagram');"
+														value="#">
+														<h:outputText value="Open in new window" />
+													</h:outputLink>
+													<span style="width: 5px; padding: 0.6rem;">|</span> <span>Powered
+														by PlantUML</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</ui:fragment>
+
+
+								<!-- Modal -  ERD UML -->
+								<ui:fragment>
+									<div class="modal fade" id="erdModalCenter" tabindex="-1"
+										role="dialog" aria-labelledby="erdModalCenterTitle"
+										aria-hidden="true">
+										<div class="modal-dialog modal-lg " role="document">
+											<div class="modal-content">
+												<div class="modal-header" style="padding: 0.5rem;">
+													<span class="modal-title" style="font-weight: bold"
+														id="erdCenterTitle">Entity Relationship Diagram -
+														#{componentActionHandler.selectedComponent.name}</span>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body" style="align-content: center;">
+													<!--Big blue-->
+													<div class="spinner-border text-info" role="status"
+														id="spinner-erd-img-class-diagram">
+														<span class="sr-only">Loading...</span>
+													</div>
+
+													<img id="erd-img-class-diagram" uml="erdPlantUMLText"
+														src=""
+														style="display: none; max-width: 650px; max-height: 550px; margin-left: auto; margin-right: auto; display: block;" />
+
+													<input id="erdPlantUMLText" type="hidden"
+														value="#{componentActionHandler.erdPlantUMLText}"></input>
+												</div>
+												<div class="modal-footer font-weight-light">
+													<h:outputLink
+														onclick="openClassDiagramInNewWindow('erd-img-class-diagram');"
+														value="#">
+														<h:outputText value="Open in new window" />
+													</h:outputLink>
+													<span style="width: 5px; padding: 0.6rem;">|</span> <span>Powered
+														by PlantUML</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</ui:fragment>
+
+								<h:outputScript>initClassDiagramModal();</h:outputScript>
 							</h:panelGrid>
 						</div>
 

@@ -1,6 +1,7 @@
 package com.fl.tools.infr.domain.v2;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 public class AttributeProxy {
@@ -15,11 +16,15 @@ public class AttributeProxy {
 	}
 
 	public String getTypeUUID() {
-		return theAttribute.getUUID();
+		return theAttribute.getTypeUUID();
 	}
 
 	public String getType() {
 		return theAttribute.getType();
+	}
+
+	public String getUUID() {
+		return theAttribute.getUUID();
 	}
 
 	public String getDefaultValue() {
@@ -38,6 +43,16 @@ public class AttributeProxy {
 		return Collections.unmodifiableSet(theAttribute.getAnnotations());
 	}
 
+	public Set<Annotation> getDatabaseColumns() {
+		Set<Annotation> cols = new HashSet<>();
+		theAttribute.getAnnotations().forEach((e) -> {
+			if (Annotation.ANN_DATABASE_COL.equalsIgnoreCase(e.getName())) {
+				cols.add(e);
+			}
+		});
+		return cols;
+	}
+
 	public String getDocumentation() {
 		for (Annotation a : theAttribute.getAnnotations()) {
 			if (a.getName().equalsIgnoreCase(Annotation.ANN_DOCUMENTATION)) {
@@ -51,12 +66,16 @@ public class AttributeProxy {
 		return theAttribute.getSteriotypes().contains(Steriotype.COLLECTION);
 	}
 
-	public boolean isDepricated() {
+	public boolean isDeprecated() {
 		return theAttribute.getSteriotypes().contains(Steriotype.DEPRECATED);
 	}
 
-	public boolean isForignKey() {
+	public boolean isForeignKey() {
 		return theAttribute.getSteriotypes().contains(Steriotype.FOREIGN_KEY);
+	}
+
+	public boolean isPrimaryKey() {
+		return theAttribute.getSteriotypes().contains(Steriotype.PRIMARY_KEY);
 	}
 
 	public boolean isOneToOne() {
@@ -101,5 +120,10 @@ public class AttributeProxy {
 
 	public boolean isStatic() {
 		return theAttribute.getModifiers().contains(Modifier.STATIC);
+	}
+
+	@Override
+	public String toString() {
+		return theAttribute.toString();
 	}
 }

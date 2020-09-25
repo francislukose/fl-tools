@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import com.fl.tools.common.utils.Builder;
 import com.fl.tools.infr.domain.BusinessEntity;
 
-@Component
+@Component("s_InheritancePlantUMLBuilder")
 public class InheritancePlantUMLBuilder extends AbstractPlantUMLBuilder {
 	@Autowired
 	private BusinessEntityInheritanceDefBuilder defBuilder;

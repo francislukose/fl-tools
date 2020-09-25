@@ -10,7 +10,7 @@ import com.fl.tools.infr.domain.BusinessEntity;
 import com.fl.tools.infr.domain.BusinessEntityAttribute;
 import com.fl.tools.infr.domain.BusinessEntityHierarchy;
 
-@Component
+@Component("s_BusinessEntityBasicDefBuilder")
 public class BusinessEntityBasicDefBuilder extends AbstractBusinessEntityClassDiagramBuilder {
 	private static final int MAX_USED_CLASSES_IN_DIAGRAM = 200;
 

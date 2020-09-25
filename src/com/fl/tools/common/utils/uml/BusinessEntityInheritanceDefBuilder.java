@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.fl.tools.infr.domain.BusinessEntity;
 
-@Component
+@Component("s_BusinessEntityInheritanceDefBuilder")
 public class BusinessEntityInheritanceDefBuilder extends AbstractBusinessEntityClassDiagramBuilder {
 
 	@Override

@@ -8,6 +8,7 @@ public class Component {
 	private String name;
 	private String packageName;
 	private Set<Attribute> attributes = new HashSet<>();
+	private Set<Method> methods = new HashSet<>();
 	private String parent;
 	private Set<String> children = new HashSet<>();
 
@@ -15,6 +16,13 @@ public class Component {
 	private Set<Steriotype> steriotypes = new HashSet<>();
 	private Set<Annotation> annotations = new HashSet<>();
 
+	public Set<Method> getMethods() {
+		return methods;
+	}
+
+	public void setMethods(Set<Method> methods) {
+		this.methods = methods;
+	}
 
 	public Set<Attribute> getAttributes() {
 		return attributes;

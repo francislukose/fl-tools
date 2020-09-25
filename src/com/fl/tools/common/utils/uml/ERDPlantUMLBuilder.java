@@ -3,7 +3,7 @@ package com.fl.tools.common.utils.uml;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("s_ERDPlantUMLBuilder")
 public class ERDPlantUMLBuilder extends AbstractPlantUMLBuilder {
 	@Autowired
 	private BusinessEntityERDDefBuilder defBuilder;

@@ -8,8 +8,10 @@ public class Annotation {
 	public static final String ANN_DATABASE_COL = "ColumnName";
 	public static final String ANN_DATABASE_COL_TYPE = "ColumnType";
 	public static final String ANN_DATABASE_COL_SIZE = "ColumnSize";
+	public static final String ANN_DATABASE_COL_STERIOTYPE = "ColumnSteriotype";
 	public static final String ANN_DOCUMENTATION = "Documentation";
 	public static final String ANN_FOREIGN_KEY_NAME = "ForeignKeyName";
+	public static final String ANN_MAPPED_BY = "MappedBy";
 
 	private String name;
 	private String value;
@@ -87,7 +89,8 @@ public class Annotation {
 
 	@Override
 	public String toString() {
-		return "Annotation [name=" + name + ", value=" + value + "]";
+		return "Annotation [name=" + name + ", value=" + value + ", associatedAnnotations=" + associatedAnnotations
+				+ "]";
 	}
 
 }

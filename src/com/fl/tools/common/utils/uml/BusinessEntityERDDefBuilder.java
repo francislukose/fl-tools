@@ -12,7 +12,7 @@ import com.fl.tools.common.dto.SelectedBusinessEntityDto;
 import com.fl.tools.infr.domain.BusinessEntity;
 import com.fl.tools.infr.domain.BusinessEntityAttribute;
 
-@Component
+@Component("s_BusinessEntityERDDefBuilder")
 public class BusinessEntityERDDefBuilder extends AbstractBusinessEntityDefBuilder {
 	protected EntityDef buildEntityDef(BusinessEntity be) {
 		EntityDef theDef = new EntityDef(be.getSimpleName());

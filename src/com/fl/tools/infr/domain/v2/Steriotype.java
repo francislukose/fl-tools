@@ -16,6 +16,7 @@ public class Steriotype {
 
 	public static final Steriotype ENTITY = new Steriotype("entity");
 	public static final Steriotype FOREIGN_KEY = new Steriotype("ForeignKey");
+	public static final Steriotype PRIMARY_KEY = new Steriotype("PrimaryKey");
 
 	private String name;
 
