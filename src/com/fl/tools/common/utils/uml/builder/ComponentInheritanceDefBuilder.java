@@ -1,9 +1,7 @@
 package com.fl.tools.common.utils.uml.builder;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.stereotype.Component;
@@ -12,8 +10,7 @@ import com.fl.tools.common.utils.uml.common.ClassDef;
 import com.fl.tools.common.utils.uml.common.Def;
 import com.fl.tools.common.utils.uml.common.InheritanceRelDef;
 import com.fl.tools.common.utils.uml.common.ViewPosition;
-import com.fl.tools.infr.domain.BusinessEntity;
-import com.fl.tools.infr.domain.v2.ComponentProxy;
+import com.fl.tools.infr.domain.ComponentProxy;
 
 @Component
 public class ComponentInheritanceDefBuilder extends AbstractComponentClassDiagramBuilder {

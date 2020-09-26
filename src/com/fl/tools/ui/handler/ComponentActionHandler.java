@@ -9,13 +9,14 @@ import javax.faces.event.AjaxBehaviorEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.fl.tools.common.utils.ComponentUtils;
 import com.fl.tools.common.utils.uml.builder.BasicPlantUMLBuilder;
 import com.fl.tools.common.utils.uml.builder.ERDPlantUMLBuilder;
 import com.fl.tools.common.utils.uml.builder.InheritancePlantUMLBuilder;
-import com.fl.tools.infr.domain.v2.ComponentProxy;
+import com.fl.tools.infr.domain.ComponentProxy;
+import com.fl.tools.infr.domain.DomainObjectProxy;
 import com.fl.tools.ui.beans.AttributeUIView;
 import com.fl.tools.ui.beans.ComponentUIView;
+import com.fl.tools.ui.beans.DomainObjectsUIView;
 
 @Component
 @ManagedBean
@@ -29,10 +30,18 @@ public class ComponentActionHandler {
 
 	@Autowired
 	private ComponentUIView componentUIView;
+	@Autowired
+	private DomainObjectsUIView domainObjectUIView;
+
 	private ComponentProxy selectedComponent;
+	private DomainObjectProxy selectedDomainObject;
 
 	public void setSelectedComponent(ComponentProxy selectedComponent) {
 		this.selectedComponent = selectedComponent;
+	}
+
+	public DomainObjectProxy getSelectedDomainObject() {
+		return selectedDomainObject;
 	}
 
 	public ComponentProxy getSelectedComponent() {
@@ -78,7 +87,7 @@ public class ComponentActionHandler {
 
 	public String getErdPlantUMLText() {
 		if (selectedComponent != null) {
-			String uml =  erdPlantUMLBuilder.build(selectedComponent);
+			String uml = erdPlantUMLBuilder.build(selectedComponent);
 			System.out.println(uml);
 			return uml;
 		}
@@ -97,6 +106,11 @@ public class ComponentActionHandler {
 			return inheritanceUmlBuilder.build(selectedComponent);
 		}
 		return "";
+	}
+
+	public void handleDomainObjectSelection(AjaxBehaviorEvent evt) {
+		String uuid = (String) evt.getComponent().getAttributes().get("uuid");
+		selectedDomainObject = domainObjectUIView.getDomainObjects().getDomainObjects().get(uuid);
 	}
 
 	public void handleComponentSelection(AjaxBehaviorEvent evt) {

@@ -1,6 +1,6 @@
 package com.fl.tools.ui.beans;
 
-import com.fl.tools.infr.domain.v2.AttributeProxy;
+import com.fl.tools.infr.domain.AttributeProxy;
 
 public class AttributeUIView {
 	private AttributeProxy attribute;

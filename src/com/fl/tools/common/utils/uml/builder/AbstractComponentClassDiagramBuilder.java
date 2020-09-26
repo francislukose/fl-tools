@@ -8,8 +8,7 @@ import com.fl.tools.common.utils.uml.common.ClassDef;
 import com.fl.tools.common.utils.uml.common.ClassSkinDef;
 import com.fl.tools.common.utils.uml.common.ClassSkinOption;
 import com.fl.tools.common.utils.uml.common.Def;
-import com.fl.tools.infr.domain.BusinessEntity;
-import com.fl.tools.infr.domain.v2.ComponentProxy;
+import com.fl.tools.infr.domain.ComponentProxy;
 
 abstract public class AbstractComponentClassDiagramBuilder extends AbstractComponentDefBuilder {
 	public abstract Collection<Def> buildDefs(ComponentProxy be, ClassDef target);

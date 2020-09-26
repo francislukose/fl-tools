@@ -15,8 +15,8 @@ import com.fl.tools.common.utils.uml.common.Def;
 import com.fl.tools.common.utils.uml.common.EntityAttrRef;
 import com.fl.tools.common.utils.uml.common.EntityDef;
 import com.fl.tools.common.utils.uml.common.SimpleDef;
-import com.fl.tools.infr.domain.v2.Annotation;
-import com.fl.tools.infr.domain.v2.ComponentProxy;
+import com.fl.tools.infr.domain.Annotation;
+import com.fl.tools.infr.domain.ComponentProxy;
 
 @Component
 public class ComponentERDDefBuilder extends AbstractComponentDefBuilder {

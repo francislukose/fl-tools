@@ -9,9 +9,10 @@ import javax.faces.bean.SessionScoped;
 
 import org.springframework.stereotype.Component;
 
-import com.fl.tools.infr.domain.v2.AttributeProxy;
-import com.fl.tools.infr.domain.v2.ComponentProxy;
-import com.fl.tools.infr.domain.v2.ComponentsMapView;
+import com.fl.tools.infr.domain.AttributeProxy;
+import com.fl.tools.infr.domain.ComponentProxy;
+import com.fl.tools.infr.domain.ComponentsMapView;
+import com.fl.tools.infr.domain.DomainObjectsMapView;
 
 @Component
 @ManagedBean

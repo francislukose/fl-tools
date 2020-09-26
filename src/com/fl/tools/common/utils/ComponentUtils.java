@@ -3,9 +3,9 @@ package com.fl.tools.common.utils;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.fl.tools.infr.domain.v2.AttributeProxy;
-import com.fl.tools.infr.domain.v2.ComponentProxy;
-import com.fl.tools.infr.domain.v2.ComponentsMapView;
+import com.fl.tools.infr.domain.AttributeProxy;
+import com.fl.tools.infr.domain.ComponentProxy;
+import com.fl.tools.infr.domain.ComponentsMapView;
 
 abstract public class ComponentUtils {
 	public static Collection<AttributeProxy> getAttributes(ComponentsMapView componentView, ComponentProxy component,

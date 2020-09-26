@@ -12,7 +12,7 @@
 
 		<nav class="navbar navbar-expand-lg navbar-light bg-light"> <h:commandLink
 			class="navbar-brand text-muted"
-			action="#{indexPageHandler.handleHomePageRequest}" immediate="true">
+			action="#{homeMenuHandler.handleHomePageRequest}" immediate="true">
 			<img src="#{request.contextPath}/resources/images/logo.png"
 				width="30" height="30" style="margin-right: -0.3rem;"
 				class="d-inline-block align-top" alt="" loading="lazy" />
@@ -20,31 +20,6 @@
 		</h:commandLink>
 		<ul class="navbar-nav mr-auto">
 
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> Business Objects </a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<h:commandLink class="dropdown-item"
-						action="#{indexPageHandler.handleBusinessEntityMapViewRequest}">
-						<img
-							src="#{request.contextPath}/resources/images/icons/icon-entity.png"
-							width="15" height="15" class="d-inline-block" alt=""
-							loading="lazy" />&nbsp;Entities</h:commandLink>
-					<h:commandLink class="dropdown-item"
-						action="#{indexPageHandler.handleTypeListMapViewRequest}">
-						<img
-							src="#{request.contextPath}/resources/images/icons/icon-enum-menu.png"
-							width="15" height="15" class="d-inline-block" alt=""
-							loading="lazy" />&nbsp;Typelist</h:commandLink>
-					<div class="dropdown-divider"></div>
-					<h:commandLink immediate="true" class="dropdown-item"
-						actionListener="#{indexPageHandler.handleBusinessEntityDownloadRequest}">
-						<img
-							src="#{request.contextPath}/resources/images/icons/icon-download.png"
-							width="15" height="15" class="d-inline-block" alt=""
-							loading="lazy" />&nbsp;Download as Excel</h:commandLink>
-				</div></li>
 
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -57,6 +32,18 @@
 							src="#{request.contextPath}/resources/images/icons/icon-entity.png"
 							width="15" height="15" class="d-inline-block" alt=""
 							loading="lazy" />&nbsp;Classes &amp; Interfaces</h:commandLink>
+					<h:commandLink class="dropdown-item"
+						action="#{homeMenuHandler.handleDomainObjectsRequest}">
+						<img
+							src="#{request.contextPath}/resources/images/icons/icon-enum-menu.png"
+							width="15" height="15" class="d-inline-block" alt=""
+							loading="lazy" />&nbsp;Typelist</h:commandLink>
+					<div class="dropdown-divider"></div>
+					<h:commandLink immediate="true" class="dropdown-item">
+						<img
+							src="#{request.contextPath}/resources/images/icons/icon-download.png"
+							width="15" height="15" class="d-inline-block" alt=""
+							loading="lazy" />&nbsp;Download as Excel</h:commandLink>
 				</div></li>
 		</ul>
 		</nav>
