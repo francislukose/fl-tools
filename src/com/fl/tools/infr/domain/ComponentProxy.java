@@ -17,11 +17,11 @@ public class ComponentProxy {
 			this.attributeMap.put(e.getUUID(), new AttributeProxy(e));
 		});
 	}
-	
+
 	public Component getActualObject() {
 		return theComponent;
 	}
-	
+
 	public Map<String, AttributeProxy> getAttributes() {
 		return attributeMap;
 	}
@@ -93,12 +93,24 @@ public class ComponentProxy {
 		return "";
 	}
 
+	public boolean isTypeClass() {
+		return isClass();
+	}
+
 	public boolean isClass() {
 		return theComponent.getSteriotypes().contains(Steriotype.CLASS);
 	}
 
+	public boolean isTypeInterface() {
+		return isInterface();
+	}
+
 	public boolean isInterface() {
 		return theComponent.getSteriotypes().contains(Steriotype.INTERFACE);
+	}
+
+	public boolean isTypeEnum() {
+		return isEnum();
 	}
 
 	public boolean isEnum() {
@@ -109,24 +121,48 @@ public class ComponentProxy {
 		return theComponent.getSteriotypes().contains(Steriotype.ENTITY);
 	}
 
+	public boolean isModifierPublic() {
+		return isPublic();
+	}
+
 	public boolean isPublic() {
 		return theComponent.getModifiers().contains(Modifier.PUBLIC);
+	}
+
+	public boolean isModifierAbstract() {
+		return isAbstract();
 	}
 
 	public boolean isAbstract() {
 		return theComponent.getModifiers().contains(Modifier.ABSTRACT);
 	}
 
+	public boolean isModifierFinal() {
+		return isFinal();
+	}
+
 	public boolean isFinal() {
 		return theComponent.getModifiers().contains(Modifier.FINAL);
+	}
+
+	public boolean isModifierPrivate() {
+		return isPrivate();
 	}
 
 	public boolean isPrivate() {
 		return theComponent.getModifiers().contains(Modifier.PRIVATE);
 	}
 
+	public boolean isModifierProtected() {
+		return isProtected();
+	}
+
 	public boolean isProtected() {
 		return theComponent.getModifiers().contains(Modifier.PROTECTED);
+	}
+
+	public boolean isModifierStatic() {
+		return isStatic();
 	}
 
 	public boolean isStatic() {

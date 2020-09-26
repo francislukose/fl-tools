@@ -110,20 +110,40 @@ public class AttributeProxy {
 		return theAttribute.getModifiers().contains(Modifier.PUBLIC);
 	}
 
+	public boolean isModifierPublic() {
+		return isPublic();
+	}
+
 	public boolean isFinal() {
 		return theAttribute.getModifiers().contains(Modifier.FINAL);
+	}
+
+	public boolean isModifierFinal() {
+		return isFinal();
 	}
 
 	public boolean isPrivate() {
 		return theAttribute.getModifiers().contains(Modifier.PRIVATE);
 	}
 
+	public boolean isModifierPrivate() {
+		return isPrivate();
+	}
+
 	public boolean isProtected() {
 		return theAttribute.getModifiers().contains(Modifier.PROTECTED);
 	}
 
+	public boolean isModifierProtected() {
+		return isProtected();
+	}
+
 	public boolean isStatic() {
 		return theAttribute.getModifiers().contains(Modifier.STATIC);
+	}
+
+	public boolean isModifierStatic() {
+		return isStatic();
 	}
 
 	@Override

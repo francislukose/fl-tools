@@ -61,6 +61,35 @@
 										<h:outputText value="Simple Name" />
 										<h:outputText value=":" />
 										<ui:fragment>
+											<ui:fragment
+												rendered="#{componentActionHandler.selectedComponent.typeClass}">
+												<span class="badge badge-info" style="padding: .0rem .1rem;" title="Class">Class</span>
+											</ui:fragment>
+											<ui:fragment
+												rendered="#{componentActionHandler.selectedComponent.typeInterface}">
+												<span class="badge badge-info" style="padding: .0rem .1rem;" title="Interface">Interface</span>
+											</ui:fragment>
+											<ui:fragment
+												rendered="#{componentActionHandler.selectedComponent.typeEnum}">
+												<span class="badge badge-info" style="padding: .0rem .1rem;" title="Enum">Enum</span>
+											</ui:fragment>
+											<ui:fragment
+												rendered="#{componentActionHandler.selectedComponent.modifierFinal}">
+												<span class="badge badge-info" style="padding: .0rem .1rem;" title="Final">Final</span>
+											</ui:fragment>
+											<ui:fragment
+												rendered="#{componentActionHandler.selectedComponent.modifierAbstract}">
+												<span class="badge badge-info" style="padding: .0rem .1rem;" title="Abstract">Abstract</span>
+											</ui:fragment>
+											<ui:fragment
+												rendered="#{componentActionHandler.selectedComponent.modifierPublic}">
+												<span class="badge badge-info" style="padding: .0rem .1rem;" title="Public">Public</span>
+											</ui:fragment>
+											<ui:fragment
+												rendered="#{componentActionHandler.selectedComponent.modifierStatic}">
+												<span class="badge badge-info" style="padding: .0rem .1rem;" title="Static">Static</span>
+											</ui:fragment>
+											<span style="width: 5px; padding: 0.6rem;">|</span>
 											<h:outputText
 												value="#{componentActionHandler.selectedComponent.name}" />
 											<span style="width: 5px; padding: 0.6rem;">|</span>
@@ -77,7 +106,8 @@
 													width="20" height="20" style="margin-right: -0.3rem;"
 													class="d-inline-block align-top" alt="" loading="lazy"
 													title="Inheritance Structure Class Diagram" /></a></span>
-											<ui:fragment rendered="#{componentActionHandler.selectedComponent.entity}">
+											<ui:fragment
+												rendered="#{componentActionHandler.selectedComponent.entity}">
 												<span style="width: 5px; padding: 0.6rem;">|</span>
 												<a href="#" onclick="" data-toggle="modal"
 													data-target="#erdModalCenter"> <img
