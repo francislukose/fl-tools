@@ -34,22 +34,21 @@ public class ComponentERDDefBuilder extends AbstractComponentDefBuilder {
 		Set<Def> defs = new HashSet<>();
 
 		defs.add(new SimpleDef("skinparam linetype ortho"));
-		
-		
+
 		EntityDef rootDef = buildEntityDefs(component);
 		defs.add(rootDef);
 
 		buildAssociations(rootDef, component, defs);
-		
-		
+
 		List<Def> sortedDef = new ArrayList<>(defs);
 		Collections.sort(sortedDef, new Comparator<Def>() {
 			@Override
 			public int compare(Def o1, Def o2) {
 				if (o1 instanceof Sortable && o2 instanceof Sortable) {
-					return ((Sortable) o1).getSortOrder() > ((Sortable) o2).getSortOrder() ? 1 : -1;
+					return ((Sortable) o1).getSortOrder() > ((Sortable) o2).getSortOrder() ? 1
+							: ((Sortable) o1).getSortOrder() == ((Sortable) o2).getSortOrder() ? 0 : -1;
 				}
-				return -1;
+				return 0;
 			}
 
 		});

@@ -41,6 +41,9 @@ public class ComponentActionHandler {
 	}
 
 	public DomainObjectProxy getSelectedDomainObject() {
+		if (selectedDomainObject == null) {
+			selectedDomainObject = domainObjectUIView.getDomainObjects().getDomainObjects().values().iterator().next();
+		}
 		return selectedDomainObject;
 	}
 

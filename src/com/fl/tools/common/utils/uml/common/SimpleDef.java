@@ -1,6 +1,6 @@
 package com.fl.tools.common.utils.uml.common;
 
-public class SimpleDef implements Def {
+public class SimpleDef implements Def,Sortable {
 	private String defText;
 
 	public SimpleDef(String s) {
@@ -21,6 +21,11 @@ public class SimpleDef implements Def {
 	@Override
 	public boolean equals(Object obj) {
 		return obj != null && ((SimpleDef) obj).defText.equalsIgnoreCase(defText);
+	}
+
+	@Override
+	public int getSortOrder() {
+		return 3;
 	}
 
 }
