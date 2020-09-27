@@ -25,8 +25,6 @@ public class ComponentJsonDaoImpl implements ComponentDao {
 				ObjectMapper om = new ObjectMapper();
 				String jsonText = om.writerWithDefaultPrettyPrinter().writeValueAsString(c);
 				fos.write(jsonText.getBytes());
-
-				System.out.println("FILE WROTE TO " + boFile.getAbsolutePath());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

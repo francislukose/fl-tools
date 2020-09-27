@@ -3,7 +3,7 @@ package com.fl.tools.common.utils.uml.common;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EntityDef implements Def {
+public class EntityDef implements Def, Sortable {
 
 	private String name;
 	private List<Def> attrs = new ArrayList<>();
@@ -43,5 +43,10 @@ public class EntityDef implements Def {
 	@Override
 	public boolean equals(Object obj) {
 		return obj != null && ((EntityDef) obj).name.equalsIgnoreCase(name);
+	}
+
+	@Override
+	public int getSortOrder() {
+		return 1;
 	}
 }
