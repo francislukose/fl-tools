@@ -1,17 +1,26 @@
 package com.fl.tools.infr.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Method {
 	private String name;
 	private String UUID;
-	private String returnType;
 	private String returnTypeUUID;
-
+	private List<MethodParam> parameters = new ArrayList<>();
 	private Set<Modifier> modifiers = new HashSet<>();
 	private Set<Steriotype> steriotypes = new HashSet<>();
 	private Set<Annotation> annotations = new HashSet<>();
+
+	public List<MethodParam> getParameters() {
+		return parameters;
+	}
+
+	public void setParameters(List<MethodParam> parameters) {
+		this.parameters = parameters;
+	}
 
 	public String getName() {
 		return name;
@@ -27,14 +36,6 @@ public class Method {
 
 	public void setUUID(String uUID) {
 		UUID = uUID;
-	}
-
-	public String getReturnType() {
-		return returnType;
-	}
-
-	public void setReturnType(String returnType) {
-		this.returnType = returnType;
 	}
 
 	public String getReturnTypeUUID() {

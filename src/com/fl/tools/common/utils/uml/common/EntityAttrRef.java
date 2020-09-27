@@ -2,12 +2,18 @@ package com.fl.tools.common.utils.uml.common;
 
 import org.eclipse.jdt.internal.compiler.ast.SuperReference;
 
-public class EntityAttrRef extends AttrDef {
+public class EntityAttrRef implements Def {
+	private String modifier;
+	private String name;
+	private String type;
+
 	private String size;
 	private String steriotype;
 
 	public EntityAttrRef(String modifier, String name, String type) {
-		super(modifier, name, type);
+		this.modifier = modifier;
+		this.name = name;
+		this.type = type;
 	}
 
 	public String getSize() {
@@ -31,7 +37,7 @@ public class EntityAttrRef extends AttrDef {
 	@Override
 	public String toPlantUMLText() {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(super.toPlantUMLText());
+		buffer.append(modifier + " " + name + " : " + type);
 		if (size != null && size.length() > 0) {
 			buffer.append(" (");
 			buffer.append(size);

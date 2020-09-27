@@ -26,10 +26,12 @@
 	width: 90px;
 	word-wrap: break-word;
 }
+
 .col-30 {
 	width: 30px;
 	word-wrap: break-word;
 }
+
 .col-10 {
 	width: 10px;
 	word-wrap: break-word;
@@ -70,4 +72,11 @@
 	border: 1px solid rgba(0, 0, 0, .2);
 	border-radius: .3rem;
 	outline: 0;
+}
+
+.accordion .fa {
+	margin-right: 0.5rem;
+}
+.card-header-custom{
+	padding:.1rem .25rem;
 }

@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClassDef implements Def {
+	private ClassModifier[] modifiers;
 	private String name;
 	private String steriotype;
 	private List<AttrDef> attrs = new ArrayList<>();
 
-	public ClassDef(String name) {
+	public ClassDef(ClassModifier[] modifiers, String name) {
+		this.modifiers = modifiers;
 		this.name = name;
 	}
 
@@ -29,7 +31,11 @@ public class ClassDef implements Def {
 		StringBuffer buffer = new StringBuffer();
 
 		buffer.append("\n");
-		buffer.append("class ");
+		for (ClassModifier cm : modifiers) {
+			buffer.append(cm.getValue());
+			buffer.append(" ");
+		}
+
 		buffer.append(name);
 
 		if (steriotype != null) {

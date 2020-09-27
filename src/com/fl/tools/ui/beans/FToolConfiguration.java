@@ -2,15 +2,17 @@ package com.fl.tools.ui.beans;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
 @ManagedBean(name = "FToolConfiguration")
 @ApplicationScoped
 public class FToolConfiguration {
-	private String plantUmlServer = "http://localhost:8080/plantuml/svg/";
+	@Value("${ftool.components.uml.UmlProviderURL}")
+	private String plantUmlServer;
 
 	public String getPlantUmlServer() {
 		return plantUmlServer;

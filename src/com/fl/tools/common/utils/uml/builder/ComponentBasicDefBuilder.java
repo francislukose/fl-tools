@@ -29,7 +29,7 @@ public class ComponentBasicDefBuilder extends AbstractComponentClassDiagramBuild
 		for (AttributeProxy v : be.getAttributes().values()) {
 			if (v.isEntity()) {
 				if (index >= MAX_USED_CLASSES_IN_DIAGRAM) {
-					target.addAttr(new AttrDef("-", v.getName(), v.getType()));
+					target.addAttr(new AttrDef(getAttributeModifier(v), v.getName(), v.getType()));
 				} else {
 					index++;
 					defs.add(buildClassDef(componentUiView.getComponents().getComponent(v.getTypeUUID())));
