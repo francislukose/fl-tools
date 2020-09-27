@@ -63,31 +63,48 @@
 										<ui:fragment>
 											<ui:fragment
 												rendered="#{componentActionHandler.selectedComponent.typeClass}">
-												<span class="badge badge-info" style="padding: .0rem .1rem;" title="Class">Class</span>
+												<span class="badge badge-info" style="padding: .0rem .1rem;"
+													title="Class">C</span>
 											</ui:fragment>
 											<ui:fragment
 												rendered="#{componentActionHandler.selectedComponent.typeInterface}">
-												<span class="badge badge-info" style="padding: .0rem .1rem;" title="Interface">Interface</span>
+												<span class="badge badge-info" style="padding: .0rem .1rem;"
+													title="Interface">I</span>
 											</ui:fragment>
 											<ui:fragment
 												rendered="#{componentActionHandler.selectedComponent.typeEnum}">
-												<span class="badge badge-info" style="padding: .0rem .1rem;" title="Enum">Enum</span>
+												<span class="badge badge-info" style="padding: .0rem .1rem;"
+													title="Enum">E</span>
 											</ui:fragment>
 											<ui:fragment
 												rendered="#{componentActionHandler.selectedComponent.modifierFinal}">
-												<span class="badge badge-info" style="padding: .0rem .1rem;" title="Final">Final</span>
+												<span class="badge badge-info" style="padding: .0rem .1rem;"
+													title="Final">F</span>
 											</ui:fragment>
 											<ui:fragment
 												rendered="#{componentActionHandler.selectedComponent.modifierAbstract}">
-												<span class="badge badge-info" style="padding: .0rem .1rem;" title="Abstract">Abstract</span>
+												<span class="badge badge-info" style="padding: .0rem .1rem;"
+													title="Abstract">A</span>
 											</ui:fragment>
 											<ui:fragment
 												rendered="#{componentActionHandler.selectedComponent.modifierPublic}">
-												<span class="badge badge-info" style="padding: .0rem .1rem;" title="Public">Public</span>
+												<span class="badge badge-success"
+													style="padding: .0rem .1rem;" title="Public">P</span>
+											</ui:fragment>
+											<ui:fragment
+												rendered="#{componentActionHandler.selectedComponent.modifierPrivate}">
+												<span class="badge badge-danger"
+													style="padding: .0rem .1rem;" title="Private">P</span>
+											</ui:fragment>
+											<ui:fragment
+												rendered="#{componentActionHandler.selectedComponent.modifierProtected}">
+												<span class="badge badge-warning"
+													style="padding: .0rem .1rem;" title="Protected">P</span>
 											</ui:fragment>
 											<ui:fragment
 												rendered="#{componentActionHandler.selectedComponent.modifierStatic}">
-												<span class="badge badge-info" style="padding: .0rem .1rem;" title="Static">Static</span>
+												<span class="badge badge-info" style="padding: .0rem .1rem;"
+													title="Static">S</span>
 											</ui:fragment>
 											<span style="width: 5px; padding: 0.6rem;">|</span>
 											<h:outputText
@@ -107,7 +124,7 @@
 													class="d-inline-block align-top" alt="" loading="lazy"
 													title="Inheritance Structure Class Diagram" /></a></span>
 											<ui:fragment
-												rendered="#{componentActionHandler.selectedComponent.entity}">
+												rendered="#{componentActionHandler.selectedComponent.entity and !componentActionHandler.selectedComponent.modifierAbstract}">
 												<span style="width: 5px; padding: 0.6rem;">|</span>
 												<a href="#" onclick="" data-toggle="modal"
 													data-target="#erdModalCenter"> <img
@@ -146,7 +163,7 @@
 
 									<h:dataTable styleClass="table table-hover" var="attr"
 										value="#{componentActionHandler.componentAttributes}"
-										columnClasses="col-90,col-150,col-150,font-weight-light">
+										columnClasses="col-90,col-30,col-150,col-150,font-weight-light">
 										<h:column>
 											<ui:fragment rendered="#{attr.fromParent}">
 												<img
@@ -206,6 +223,24 @@
 											</ui:fragment>
 										</h:column>
 										<h:column>
+											<ui:fragment rendered="#{attr.attribute.modifierPublic}">
+												<span class="badge badge-success"
+													style="padding: .0rem .1rem;" title="Public">P</span>
+											</ui:fragment>
+											<ui:fragment rendered="#{attr.attribute.modifierPrivate}">
+												<span class="badge badge-danger"
+													style="padding: .0rem .1rem;" title="Private">P</span>
+											</ui:fragment>
+											<ui:fragment rendered="#{attr.attribute.modifierProtected}">
+												<span class="badge badge-warning"
+													style="padding: .0rem .1rem;" title="Protected">P</span>
+											</ui:fragment>
+											<ui:fragment rendered="#{attr.attribute.modifierStatic}">
+												<span class="badge badge-info"
+													style="padding: .0rem .1rem;" title="Static">S</span>
+											</ui:fragment>
+										</h:column>
+										<h:column>
 											<f:facet name="header">Attribute Name</f:facet>
 											<ui:fragment>
 												<span id="entity-attr-row-#{attr.fromParent}"
@@ -235,8 +270,7 @@
 											</ui:fragment>
 										</h:column>
 										<f:facet name="footer">
-											<i>* C, I, Flags, PartitionID, and LastUpdateDate
-												attributes are included in all Business Entities.</i>
+											<i></i>
 										</f:facet>
 									</h:dataTable>
 								</h:panelGrid>
@@ -407,7 +441,7 @@
 								</h:column>
 								<h:column>
 									<ui:fragment>
-										<span class="badge">Enum</span>
+										<span class="badge">Domain Object</span>
 									</ui:fragment>
 								</h:column>
 								<h:column>
@@ -490,7 +524,105 @@
 									</ui:fragment>
 								</h:column>
 
-
+								<h:column>
+									<ui:fragment>
+										<span class="badge badge-info" style="padding: .0rem .1rem;"
+											title="Class">C</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge">Class</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge badge-info" style="padding: .0rem .1rem;"
+											title="Interface">I</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge">Interface</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge badge-info" style="padding: .0rem .1rem;"
+											title="Enum">E</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge">Enum</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge badge-info" style="padding: .0rem .1rem;"
+											title="Final">F</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge">Final</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge badge-info" style="padding: .0rem .1rem;"
+											title="Abstract">A</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge">Abstract</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge badge-success"
+											style="padding: .0rem .1rem;" title="Public">P</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge">Public</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge badge-danger" style="padding: .0rem .1rem;"
+											title="Private">P</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge">Private</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge badge-warning"
+											style="padding: .0rem .1rem;" title="Protected">P</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge">Protected</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge badge-info" style="padding: .0rem .1rem;"
+											title="Static">S</span>
+									</ui:fragment>
+								</h:column>
+								<h:column>
+									<ui:fragment>
+										<span class="badge">Static</span>
+									</ui:fragment>
+								</h:column>
 							</h:panelGrid>
 						</div>
 					</div>

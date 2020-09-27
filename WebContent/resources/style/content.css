@@ -26,7 +26,10 @@
 	width: 90px;
 	word-wrap: break-word;
 }
-
+.col-30 {
+	width: 30px;
+	word-wrap: break-word;
+}
 .col-10 {
 	width: 10px;
 	word-wrap: break-word;
