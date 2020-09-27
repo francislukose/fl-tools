@@ -107,6 +107,11 @@
 												<span class="badge badge-info" style="padding: .0rem .1rem;"
 													title="Static">S</span>
 											</ui:fragment>
+											<ui:fragment rendered="#{componentActionHandler.selectedComponent.entity}">
+												<img
+													src="#{request.contextPath}/resources/images/icons/icon-bo.jpg"
+													width="15" height="10" class="d-inline-block" title="Entity" />
+											</ui:fragment>
 											<span style="width: 5px; padding: 0.6rem;">|</span>
 											<h:outputText
 												value="#{componentActionHandler.selectedComponent.name}" />
@@ -166,10 +171,11 @@
 									<ui:fragment>
 										<div class="accordion" id="accordionAttributes">
 											<div class="card">
-												<div class="card-header card-header-custom" id="headingOne">
+												<div class="card-header card-header-custom" id="headingTwo">
 													<h2 class="mb-0">
-														<button type="button" class="btn btn-link"
-															data-toggle="collapse" data-target="#collapseOne">
+														<button type="button" area-expanded="true"
+															class="btn btn-link" data-toggle="collapse"
+															data-target="#collapseOne">
 															<i class="fa fa-plus"></i> Attributes
 														</button>
 													</h2>
@@ -321,8 +327,6 @@
 													aria-labelledby="headingTwo"
 													data-parent="#accordionAttributes">
 													<div class="card-body">
-
-
 														<c:set var="dtMethod"
 															value="#{componentActionHandler.componentMethods}"
 															scope="request" />
