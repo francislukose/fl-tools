@@ -3,12 +3,14 @@ package com.fl.tools.infr.domain;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 public class ComponentProxy {
 	private Component theComponent;
 	private Map<String, AttributeProxy> attributeMap;
+	private Set<MethodProxy> methods;
 
 	public ComponentProxy(Component theComponent) {
 		this.theComponent = theComponent;
@@ -16,6 +18,15 @@ public class ComponentProxy {
 		theComponent.getAttributes().forEach((e) -> {
 			this.attributeMap.put(e.getUUID(), new AttributeProxy(e));
 		});
+
+		this.methods = new HashSet<>();
+		theComponent.getMethods().forEach((e) -> {
+			this.methods.add(new MethodProxy(e));
+		});
+	}
+
+	public Collection<MethodProxy> getMethods() {
+		return this.methods;
 	}
 
 	public Component getActualObject() {

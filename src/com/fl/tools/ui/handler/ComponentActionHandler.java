@@ -16,7 +16,9 @@ import com.fl.tools.infr.domain.ComponentProxy;
 import com.fl.tools.infr.domain.DomainObjectProxy;
 import com.fl.tools.ui.beans.AttributeUIView;
 import com.fl.tools.ui.beans.ComponentUIView;
+import com.fl.tools.ui.beans.Datatable;
 import com.fl.tools.ui.beans.DomainObjectsUIView;
+import com.fl.tools.ui.beans.MethodUIView;
 
 @Component
 @ManagedBean
@@ -54,7 +56,26 @@ public class ComponentActionHandler {
 		return selectedComponent;
 	}
 
-	public List<AttributeUIView> getComponentAttributes() {
+	public Datatable<MethodUIView> getComponentMethods() {
+		List<MethodUIView> attrs = new ArrayList<>();
+		if (selectedComponent != null) {
+			ComponentProxy current = componentUIView.getComponents().getComponent(selectedComponent.getParent());
+			while (current != null) {
+				final String name = current.getName();
+				current.getMethods().forEach((v) -> {
+					attrs.add(new MethodUIView(v, true, name));
+				});
+				current = componentUIView.getComponents().getComponent(current.getParent());
+			}
+
+			selectedComponent.getMethods().forEach((v) -> {
+				attrs.add(new MethodUIView(v));
+			});
+		}
+		return new Datatable<>(attrs);
+	}
+
+	public Datatable<AttributeUIView> getComponentAttributes() {
 		List<AttributeUIView> attrs = new ArrayList<>();
 		if (selectedComponent != null) {
 			ComponentProxy current = componentUIView.getComponents().getComponent(selectedComponent.getParent());
@@ -70,7 +91,7 @@ public class ComponentActionHandler {
 				attrs.add(new AttributeUIView(v));
 			});
 		}
-		return attrs;
+		return new Datatable<>(attrs);
 	}
 
 	public List<String> getHierarchy() {

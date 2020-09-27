@@ -5,7 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:body>
 	<ui:composition template="../../templates/default.xhtml">
@@ -177,11 +178,14 @@
 													aria-labelledby="headingOne"
 													data-parent="#accordionAttributes">
 													<div class="card-body">
-
+														<c:set var="dtAttributes"
+															value="#{componentActionHandler.componentAttributes}"
+															scope="request" />
 
 														<h:dataTable styleClass="table table-hover" var="attr"
-															value="#{componentActionHandler.componentAttributes}"
-															columnClasses="col-90,col-30,col-150,col-150,font-weight-light">
+															value="#{dtAttributes.results}"
+															columnClasses="col-90,col-30,col-150,col-150,font-weight-light"
+															rendered="#{!dtAttributes.isEmpty}">
 															<h:column>
 																<ui:fragment rendered="#{attr.fromParent}">
 																	<img
@@ -296,6 +300,9 @@
 															</f:facet>
 														</h:dataTable>
 
+														<ui:fragment rendered="#{dtAttributes.isEmpty}">
+															<p>No attributes available for the component.</p>
+														</ui:fragment>
 
 													</div>
 												</div>
@@ -314,15 +321,77 @@
 													aria-labelledby="headingTwo"
 													data-parent="#accordionAttributes">
 													<div class="card-body">
-														<p>
-															
-														</p>
+
+
+														<c:set var="dtMethod"
+															value="#{componentActionHandler.componentMethods}"
+															scope="request" />
+														<h:dataTable styleClass="table table-hover" var="m"
+															value="#{dtMethod.results}"
+															columnClasses="col-30,col-30,col-150,col-150,font-weight-light"
+															rendered="#{!dtMethod.isEmpty}">
+															<h:column>
+																<ui:fragment rendered="#{m.fromParent}">
+																	<img
+																		src="#{request.contextPath}/resources/images/icons/icon-parent-attr.png"
+																		width="15" height="10" class="d-inline-block"
+																		alt="Base class" data-toggle="tooltip"
+																		data-placement="top"
+																		title="Owner: Extended. Class [#{m.parentName}]" />
+																</ui:fragment>
+
+															</h:column>
+															<h:column>
+																<ui:fragment rendered="#{m.method.modifierPublic}">
+																	<span class="badge badge-success"
+																		style="padding: .0rem .1rem;" title="Public">P</span>
+																</ui:fragment>
+																<ui:fragment rendered="#{m.method.modifierPrivate}">
+																	<span class="badge badge-danger"
+																		style="padding: .0rem .1rem;" title="Private">P</span>
+																</ui:fragment>
+																<ui:fragment rendered="#{m.method.modifierProtected}">
+																	<span class="badge badge-warning"
+																		style="padding: .0rem .1rem;" title="Protected">P</span>
+																</ui:fragment>
+																<ui:fragment rendered="#{m.method.modifierStatic}">
+																	<span class="badge badge-info"
+																		style="padding: .0rem .1rem;" title="Static">S</span>
+																</ui:fragment>
+															</h:column>
+															<h:column>
+																<f:facet name="header">Method Name</f:facet>
+																<ui:fragment>
+																	<span id="entity-attr-row-#{m.fromParent}"
+																		class="#{m.viewStyle}">#{m.method.name}</span>
+																</ui:fragment>
+															</h:column>
+															<h:column>
+																<f:facet name="header">Return Type</f:facet>
+																<ui:fragment>
+																	<span id="entity-attr-row#{m.fromParent}"
+																		class="#{m.viewStyle}">#{m.method.type}</span>
+																</ui:fragment>
+															</h:column>
+															<h:column>
+																<f:facet name="header">Method Description</f:facet>
+																<ui:fragment>
+																	<span id="entity-attr-row#{m.fromParent}"
+																		class="#{m.viewStyle}">#{m.method.documentation}</span>
+																</ui:fragment>
+															</h:column>
+															<f:facet name="footer">
+																<i></i>
+															</f:facet>
+														</h:dataTable>
+
+														<ui:fragment rendered="#{dtMethod.isEmpty}">
+															<p>No methods available for the component.</p>
+														</ui:fragment>
 													</div>
 												</div>
 											</div>
 										</div>
-
-
 
 									</ui:fragment>
 
