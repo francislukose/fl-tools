@@ -13,6 +13,10 @@ public class DomainObjectProxy {
 		return actualObject.getDomainValues();
 	}
 
+	public int getDomainValueCount() {
+		return actualObject.getDomainValues().size();
+	}
+
 	public String getUUID() {
 		return actualObject.getUUID();
 	}

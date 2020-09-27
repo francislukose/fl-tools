@@ -33,7 +33,7 @@
 								styleClass="list-group-item list-group-item-action bg-none sidebar-list-group-item"
 								value="#{domainObject.name}"
 								onclick="javascript:selectListItem(this);">
-								<f:attribute name="uuid" value="#{domainObject.UUID}"/>
+								<f:attribute name="uuid" value="#{domainObject.UUID}" />
 								<f:ajax render="mainForm:entityDetails"
 									listener="#{componentActionHandler.handleDomainObjectSelection}"
 									onevent="onPostAjaxCall" />
@@ -56,7 +56,7 @@
 									<h:outputText
 										value="#{componentActionHandler.selectedDomainObject.name}" />
 
-									
+
 
 									<h:outputText value="Display Name" />
 									<h:outputText value=":" />
@@ -76,6 +76,7 @@
 								<ui:fragment>
 									<div class="table-wrapper-scroll-y custom-scrollbar">
 										<h:dataTable styleClass="table table-hover" var="domainValue"
+											rendered="#{componentActionHandler.selectedDomainObject.domainValueCount > 0}"
 											value="#{componentActionHandler.selectedDomainObject.domainValues}"
 											columnClasses="col-150,font-weight-light">
 
