@@ -43,14 +43,14 @@ public class ComponentActionHandler {
 	}
 
 	public DomainObjectProxy getSelectedDomainObject() {
-		if (selectedDomainObject == null) {
+		if (selectedDomainObject == null && domainObjectUIView != null && !domainObjectUIView.isEmpty()) {
 			selectedDomainObject = domainObjectUIView.getDomainObjects().getDomainObjects().values().iterator().next();
 		}
 		return selectedDomainObject;
 	}
 
 	public ComponentProxy getSelectedComponent() {
-		if (selectedComponent == null) {
+		if (selectedComponent == null && componentUIView.getComponents() != null) {
 			selectedComponent = componentUIView.getComponents().getComponents().values().iterator().next();
 		}
 		return selectedComponent;

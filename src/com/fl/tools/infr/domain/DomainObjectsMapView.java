@@ -13,9 +13,11 @@ public class DomainObjectsMapView {
 	}
 
 	public DomainObjectsMapView(Collection<DomainObject> domainObjects) {
-		domainObjects.forEach((e) -> {
-			this.domainObjects.put(e.getUUID(), new DomainObjectProxy(e));
-		});
+		if (domainObjects != null) {
+			domainObjects.forEach((e) -> {
+				this.domainObjects.put(e.getUUID(), new DomainObjectProxy(e));
+			});
+		}
 	}
 
 	public Map<String, DomainObjectProxy> getDomainObjects() {

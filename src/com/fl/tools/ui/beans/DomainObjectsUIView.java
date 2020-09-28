@@ -26,15 +26,25 @@ public class DomainObjectsUIView {
 		this.domainObjects = domainObjects;
 	}
 
+	public boolean isEmpty() {
+		return domainObjects == null || domainObjects.getDomainObjects().isEmpty();
+	}
+
 	public List<DomainObjectProxy> getDomainObjectsAsList() {
 		List<DomainObjectProxy> elements = new ArrayList<>();
-		domainObjects.getDomainObjects().forEach((k, v) -> {
-			elements.add(v);
-		});
+		if (!isEmpty()) {
+			domainObjects.getDomainObjects().forEach((k, v) -> {
+				elements.add(v);
+			});
+		}
 		return elements;
 	}
 
 	public int getSize() {
+		if (isEmpty()) {
+			return 0;
+		}
+
 		return domainObjects.getDomainObjects().size();
 	}
 }

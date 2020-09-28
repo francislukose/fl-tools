@@ -45,62 +45,76 @@
 				<!-- Page Content -->
 				<div id="page-content-wrapper">
 
-					<div class="container-fluid">
-						<p class="font-weight-bolder">Domain Object Details</p>
-						<div id="content-wrapper">
-							<h:panelGrid id="entityDetails" style="width:100%" columns="1">
-								<h:panelGrid styleClass="table table-sm" columns="3"
-									columnClasses="col-bold-150,col-bold-5,font-weight-light">
-									<h:outputText value="Name" />
-									<h:outputText value=":" />
-									<h:outputText
-										value="#{componentActionHandler.selectedDomainObject.name}" />
+					<ui:fragment rendered="#{domainObjectsUIView.size > 0}">
+						<div class="container-fluid">
+							<p class="font-weight-bolder">Domain Object Details</p>
+							<div id="content-wrapper">
+								<h:panelGrid id="entityDetails" style="width:100%" columns="1">
+									<h:panelGrid styleClass="table table-sm" columns="3"
+										columnClasses="col-bold-150,col-bold-5,font-weight-light">
+										<h:outputText value="Name" />
+										<h:outputText value=":" />
+										<h:outputText
+											value="#{componentActionHandler.selectedDomainObject.name}" />
 
 
 
-									<h:outputText value="Display Name" />
-									<h:outputText value=":" />
-									<h:outputText
-										value="#{componentActionHandler.selectedDomainObject.displayName}" />
+										<h:outputText value="Display Name" />
+										<h:outputText value=":" />
+										<h:outputText
+											value="#{componentActionHandler.selectedDomainObject.displayName}" />
 
-									<h:outputText value="Domain Object ID" />
-									<h:outputText value=":" />
-									<h:outputText
-										value="#{componentActionHandler.selectedDomainObject.domainId}" />
+										<h:outputText value="Domain Object ID" />
+										<h:outputText value=":" />
+										<h:outputText
+											value="#{componentActionHandler.selectedDomainObject.domainId}" />
 
-									<h:outputText value="Description" />
-									<h:outputText value=":" />
-									<h:outputText
-										value="#{componentActionHandler.selectedDomainObject.description}" />
-								</h:panelGrid>
-								<ui:fragment>
-									<div class="table-wrapper-scroll-y custom-scrollbar">
-										<ui:fragment rendered="#{componentActionHandler.selectedDomainObject.domainValueCount == 0}">
-											<p>No domain values available for the domain object.</p>
-										</ui:fragment>
-										<h:dataTable styleClass="table table-hover" var="domainValue"
-											rendered="#{componentActionHandler.selectedDomainObject.domainValueCount > 0}"
-											value="#{componentActionHandler.selectedDomainObject.domainValues}"
-											columnClasses="col-150,font-weight-light">
+										<h:outputText value="Description" />
+										<h:outputText value=":" />
+										<h:outputText
+											value="#{componentActionHandler.selectedDomainObject.description}" />
+									</h:panelGrid>
+									<ui:fragment>
+										<div class="table-wrapper-scroll-y custom-scrollbar">
+											<ui:fragment
+												rendered="#{componentActionHandler.selectedDomainObject.domainValueCount == 0}">
+												<p>No domain values available for the domain object.</p>
+											</ui:fragment>
+											<h:dataTable styleClass="table table-hover" var="domainValue"
+												rendered="#{componentActionHandler.selectedDomainObject.domainValueCount > 0}"
+												value="#{componentActionHandler.selectedDomainObject.domainValues}"
+												columnClasses="col-150,font-weight-light">
 
-											<h:column>
-												<f:facet name="header">Domain ID</f:facet>
+												<h:column>
+													<f:facet name="header">Domain ID</f:facet>
 										#{domainValue.id}
 									</h:column>
-											<h:column>
-												<f:facet name="header">Domain Name</f:facet>
+												<h:column>
+													<f:facet name="header">Domain Name</f:facet>
 										#{domainValue.name}
 									</h:column>
 
-											<f:facet name="footer">
+												<f:facet name="footer">
 
-											</f:facet>
-										</h:dataTable>
-									</div>
-								</ui:fragment>
-							</h:panelGrid>
+												</f:facet>
+											</h:dataTable>
+										</div>
+									</ui:fragment>
+								</h:panelGrid>
+							</div>
 						</div>
-					</div>
+					</ui:fragment>
+
+					<ui:fragment rendered="#{domainObjectsUIView.size == 0}">
+						<div class="container-fluid">
+							<div id="content-wrapper">
+								<br />
+								<p>There is no domain objects available for the selected
+									profile. Please choose another profile or update profile domain
+									object source.</p>
+							</div>
+						</div>
+					</ui:fragment>
 				</div>
 			</div>
 			<!-- /#page-content-wrapper -->

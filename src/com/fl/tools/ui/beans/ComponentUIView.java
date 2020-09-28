@@ -30,13 +30,18 @@ public class ComponentUIView {
 
 	public List<ComponentProxy> getComponentsAsList() {
 		List<ComponentProxy> elements = new ArrayList<>();
-		components.getComponents().forEach((k, v) -> {
-			elements.add(v);
-		});
+		if (components != null) {
+			components.getComponents().forEach((k, v) -> {
+				elements.add(v);
+			});
+		}
 		return elements;
 	}
 
 	public int getSize() {
+		if (components == null) {
+			return 0;
+		}
 		return components.size();
 	}
 }

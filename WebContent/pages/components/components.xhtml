@@ -45,714 +45,731 @@
 				<!-- /#sidebar-wrapper -->
 				<!-- Page Content -->
 				<div id="page-content-wrapper">
+					<ui:fragment rendered="#{componentUIView.size > 0}">
+						<div class="container-fluid">
+							<p class="font-weight-bolder">Component Details</p>
 
-					<div class="container-fluid">
-						<p class="font-weight-bolder">Component Details</p>
-
-						<div id="content-wrapper">
-							<h:panelGrid id="ajax-render-part" style="width:100%" columns="1">
-								<h:panelGrid id="entityDetails" style="width:100%" columns="1">
-									<h:panelGrid styleClass="table table-sm" columns="3"
-										columnClasses="col-bold-150,col-bold-5,font-weight-light">
-										<h:outputText value="Full Name" />
-										<h:outputText value=":" />
-										<h:outputText
-											value="#{componentActionHandler.selectedComponent.packageName}.#{componentActionHandler.selectedComponent.name}" />
-
-										<h:outputText value="Simple Name" />
-										<h:outputText value=":" />
-										<ui:fragment>
-											<ui:fragment
-												rendered="#{componentActionHandler.selectedComponent.typeClass}">
-												<span class="badge badge-info" style="padding: .0rem .1rem;"
-													title="Class">C</span>
-											</ui:fragment>
-											<ui:fragment
-												rendered="#{componentActionHandler.selectedComponent.typeInterface}">
-												<span class="badge badge-info" style="padding: .0rem .1rem;"
-													title="Interface">I</span>
-											</ui:fragment>
-											<ui:fragment
-												rendered="#{componentActionHandler.selectedComponent.typeEnum}">
-												<span class="badge badge-info" style="padding: .0rem .1rem;"
-													title="Enum">E</span>
-											</ui:fragment>
-											<ui:fragment
-												rendered="#{componentActionHandler.selectedComponent.modifierFinal}">
-												<span class="badge badge-info" style="padding: .0rem .1rem;"
-													title="Final">F</span>
-											</ui:fragment>
-											<ui:fragment
-												rendered="#{componentActionHandler.selectedComponent.modifierAbstract}">
-												<span class="badge badge-info" style="padding: .0rem .1rem;"
-													title="Abstract">A</span>
-											</ui:fragment>
-											<ui:fragment
-												rendered="#{componentActionHandler.selectedComponent.modifierPublic}">
-												<span class="badge badge-success"
-													style="padding: .0rem .1rem;" title="Public">P</span>
-											</ui:fragment>
-											<ui:fragment
-												rendered="#{componentActionHandler.selectedComponent.modifierPrivate}">
-												<span class="badge badge-danger"
-													style="padding: .0rem .1rem;" title="Private">P</span>
-											</ui:fragment>
-											<ui:fragment
-												rendered="#{componentActionHandler.selectedComponent.modifierProtected}">
-												<span class="badge badge-warning"
-													style="padding: .0rem .1rem;" title="Protected">P</span>
-											</ui:fragment>
-											<ui:fragment
-												rendered="#{componentActionHandler.selectedComponent.modifierStatic}">
-												<span class="badge badge-info" style="padding: .0rem .1rem;"
-													title="Static">S</span>
-											</ui:fragment>
-											<ui:fragment rendered="#{componentActionHandler.selectedComponent.entity}">
-												<img
-													src="#{request.contextPath}/resources/images/icons/icon-bo.jpg"
-													width="15" height="10" class="d-inline-block" title="Entity" />
-											</ui:fragment>
-											<span style="width: 5px; padding: 0.6rem;">|</span>
+							<div id="content-wrapper">
+								<h:panelGrid id="ajax-render-part" style="width:100%"
+									columns="1">
+									<h:panelGrid id="entityDetails" style="width:100%" columns="1">
+										<h:panelGrid styleClass="table table-sm" columns="3"
+											columnClasses="col-bold-150,col-bold-5,font-weight-light">
+											<h:outputText value="Full Name" />
+											<h:outputText value=":" />
 											<h:outputText
-												value="#{componentActionHandler.selectedComponent.name}" />
-											<span style="width: 5px; padding: 0.6rem;">|</span>
-											<span><a href="#" onclick="" data-toggle="modal"
-												data-target="#exampleModalCenter"><img
-													src="#{request.contextPath}/resources/images/icons/icon-cd.png"
-													width="20" height="20" style="margin-right: -0.3rem;"
-													class="d-inline-block align-top" alt="" loading="lazy"
-													title="Class Diagram" /></a></span>
-											<span style="width: 5px; padding: 0.6rem;">|</span>
-											<span><a href="#" onclick="" data-toggle="modal"
-												data-target="#inheritanceModalCenter"><img
-													src="#{request.contextPath}/resources/images/icons/icon-inheritance.png"
-													width="20" height="20" style="margin-right: -0.3rem;"
-													class="d-inline-block align-top" alt="" loading="lazy"
-													title="Inheritance Structure Class Diagram" /></a></span>
-											<ui:fragment
-												rendered="#{componentActionHandler.selectedComponent.entity and !componentActionHandler.selectedComponent.modifierAbstract}">
+												value="#{componentActionHandler.selectedComponent.packageName}.#{componentActionHandler.selectedComponent.name}" />
+
+											<h:outputText value="Simple Name" />
+											<h:outputText value=":" />
+											<ui:fragment>
+												<ui:fragment
+													rendered="#{componentActionHandler.selectedComponent.typeClass}">
+													<span class="badge badge-info"
+														style="padding: .0rem .1rem;" title="Class">C</span>
+												</ui:fragment>
+												<ui:fragment
+													rendered="#{componentActionHandler.selectedComponent.typeInterface}">
+													<span class="badge badge-info"
+														style="padding: .0rem .1rem;" title="Interface">I</span>
+												</ui:fragment>
+												<ui:fragment
+													rendered="#{componentActionHandler.selectedComponent.typeEnum}">
+													<span class="badge badge-info"
+														style="padding: .0rem .1rem;" title="Enum">E</span>
+												</ui:fragment>
+												<ui:fragment
+													rendered="#{componentActionHandler.selectedComponent.modifierFinal}">
+													<span class="badge badge-info"
+														style="padding: .0rem .1rem;" title="Final">F</span>
+												</ui:fragment>
+												<ui:fragment
+													rendered="#{componentActionHandler.selectedComponent.modifierAbstract}">
+													<span class="badge badge-info"
+														style="padding: .0rem .1rem;" title="Abstract">A</span>
+												</ui:fragment>
+												<ui:fragment
+													rendered="#{componentActionHandler.selectedComponent.modifierPublic}">
+													<span class="badge badge-success"
+														style="padding: .0rem .1rem;" title="Public">P</span>
+												</ui:fragment>
+												<ui:fragment
+													rendered="#{componentActionHandler.selectedComponent.modifierPrivate}">
+													<span class="badge badge-danger"
+														style="padding: .0rem .1rem;" title="Private">P</span>
+												</ui:fragment>
+												<ui:fragment
+													rendered="#{componentActionHandler.selectedComponent.modifierProtected}">
+													<span class="badge badge-warning"
+														style="padding: .0rem .1rem;" title="Protected">P</span>
+												</ui:fragment>
+												<ui:fragment
+													rendered="#{componentActionHandler.selectedComponent.modifierStatic}">
+													<span class="badge badge-info"
+														style="padding: .0rem .1rem;" title="Static">S</span>
+												</ui:fragment>
+												<ui:fragment
+													rendered="#{componentActionHandler.selectedComponent.entity}">
+													<img
+														src="#{request.contextPath}/resources/images/icons/icon-bo.jpg"
+														width="15" height="10" class="d-inline-block"
+														title="Entity" />
+												</ui:fragment>
 												<span style="width: 5px; padding: 0.6rem;">|</span>
-												<a href="#" onclick="" data-toggle="modal"
-													data-target="#erdModalCenter"> <img
-													src="#{request.contextPath}/resources/images/icons/icon-erd.png"
-													width="20" height="20" style="margin-right: -0.3rem;"
-													class="d-inline-block align-top" alt="" loading="lazy"
-													title="Entity Relationship Diagram" />
-												</a>
+												<h:outputText
+													value="#{componentActionHandler.selectedComponent.name}" />
+												<span style="width: 5px; padding: 0.6rem;">|</span>
+												<span><a href="#" onclick="" data-toggle="modal"
+													data-target="#exampleModalCenter"><img
+														src="#{request.contextPath}/resources/images/icons/icon-cd.png"
+														width="20" height="20" style="margin-right: -0.3rem;"
+														class="d-inline-block align-top" alt="" loading="lazy"
+														title="Class Diagram" /></a></span>
+												<span style="width: 5px; padding: 0.6rem;">|</span>
+												<span><a href="#" onclick="" data-toggle="modal"
+													data-target="#inheritanceModalCenter"><img
+														src="#{request.contextPath}/resources/images/icons/icon-inheritance.png"
+														width="20" height="20" style="margin-right: -0.3rem;"
+														class="d-inline-block align-top" alt="" loading="lazy"
+														title="Inheritance Structure Class Diagram" /></a></span>
+												<ui:fragment
+													rendered="#{componentActionHandler.selectedComponent.entity and !componentActionHandler.selectedComponent.modifierAbstract}">
+													<span style="width: 5px; padding: 0.6rem;">|</span>
+													<a href="#" onclick="" data-toggle="modal"
+														data-target="#erdModalCenter"> <img
+														src="#{request.contextPath}/resources/images/icons/icon-erd.png"
+														width="20" height="20" style="margin-right: -0.3rem;"
+														class="d-inline-block align-top" alt="" loading="lazy"
+														title="Entity Relationship Diagram" />
+													</a>
+												</ui:fragment>
 											</ui:fragment>
-										</ui:fragment>
-										<h:outputText value="Database Table Name"
-											rendered="${componentActionHandler.selectedComponent.entity}" />
-										<h:outputText value=":"
-											rendered="${componentActionHandler.selectedComponent.entity}" />
-										<h:outputText
-											value="#{componentActionHandler.selectedComponent.tableName}"
-											rendered="${componentActionHandler.selectedComponent.entity}" />
+											<h:outputText value="Database Table Name"
+												rendered="${componentActionHandler.selectedComponent.entity}" />
+											<h:outputText value=":"
+												rendered="${componentActionHandler.selectedComponent.entity}" />
+											<h:outputText
+												value="#{componentActionHandler.selectedComponent.tableName}"
+												rendered="${componentActionHandler.selectedComponent.entity}" />
 
-										<h:outputText value="Class Hierarchy" />
-										<h:outputText value=":" />
+											<h:outputText value="Class Hierarchy" />
+											<h:outputText value=":" />
+											<ui:fragment>
+												<ui:repeat var="h"
+													value="#{componentActionHandler.hierarchy}">
+													<h:outputText value="#{h}"></h:outputText>
+													<br />
+												</ui:repeat>
+											</ui:fragment>
+
+											<h:outputText value="Description" />
+											<h:outputText value=":" />
+											<h:outputText
+												value="#{componentActionHandler.selectedComponent.documentation}" />
+
+
+										</h:panelGrid>
+
+
 										<ui:fragment>
-											<ui:repeat var="h"
-												value="#{componentActionHandler.hierarchy}">
-												<h:outputText value="#{h}"></h:outputText>
-												<br />
-											</ui:repeat>
-										</ui:fragment>
+											<div class="accordion" id="accordionAttributes">
+												<div class="card">
+													<div class="card-header card-header-custom" id="headingTwo">
+														<h2 class="mb-0">
+															<button type="button" area-expanded="true"
+																class="btn btn-link" data-toggle="collapse"
+																data-target="#collapseOne">
+																<i class="fa fa-plus"></i> Attributes
+															</button>
+														</h2>
+													</div>
+													<div id="collapseOne" class="collapse show"
+														aria-labelledby="headingOne"
+														data-parent="#accordionAttributes">
+														<div class="card-body">
+															<c:set var="dtAttributes"
+																value="#{componentActionHandler.componentAttributes}"
+																scope="request" />
 
-										<h:outputText value="Description" />
-										<h:outputText value=":" />
-										<h:outputText
-											value="#{componentActionHandler.selectedComponent.documentation}" />
+															<h:dataTable styleClass="table table-hover" var="attr"
+																value="#{dtAttributes.results}"
+																columnClasses="col-90,col-30,col-150,col-150,font-weight-light"
+																rendered="#{!dtAttributes.isEmpty}">
+																<h:column>
+																	<ui:fragment rendered="#{attr.fromParent}">
+																		<img
+																			src="#{request.contextPath}/resources/images/icons/icon-parent-attr.png"
+																			width="15" height="10" class="d-inline-block"
+																			alt="Base class" data-toggle="tooltip"
+																			data-placement="top"
+																			title="Owner: Extended. Class [#{attr.parentName}]" />
+																	</ui:fragment>
+																	<ui:fragment rendered="#{attr.attribute.entity}">
+																		<img
+																			src="#{request.contextPath}/resources/images/icons/icon-bo.jpg"
+																			width="15" height="10" class="d-inline-block"
+																			alt="Business Object" data-toggle="tooltip"
+																			data-placement="top" title="Type: Entity" />
+																	</ui:fragment>
+																	<ui:fragment rendered="#{attr.attribute.enumType}">
+																		<img
+																			src="#{request.contextPath}/resources/images/icons/icon-enum.jpg"
+																			width="15" height="10" class="d-inline-block"
+																			alt="Enum" data-toggle="tooltip" data-placement="top"
+																			title="Type: Enum" />
+																	</ui:fragment>
+																	<ui:fragment rendered="#{attr.attribute.collection}">
+																		<img
+																			src="#{request.contextPath}/resources/images/icons/icon-array.jpg"
+																			width="15" height="10" class="d-inline-block"
+																			alt="Multiple" data-toggle="tooltip"
+																			data-placement="top" title="Cardinality: Multiple" />
+																	</ui:fragment>
+																	<ui:fragment rendered="#{attr.attribute.oneToOne}">
+																		<img
+																			src="#{request.contextPath}/resources/images/icons/icon-1-1.jpg"
+																			width="15" height="10" class="d-inline-block"
+																			alt="OneToOne" data-toggle="tooltip"
+																			data-placement="top" title="Relationsip: OneToOne" />
+																	</ui:fragment>
+																	<ui:fragment rendered="#{attr.attribute.oneToMany}">
+																		<img
+																			src="#{request.contextPath}/resources/images/icons/icon-1-m.jpg"
+																			width="15" height="10" class="d-inline-block"
+																			alt="OneToMany" data-toggle="tooltip"
+																			data-placement="top" title="Relationsip: OneToMany" />
+																	</ui:fragment>
+																	<ui:fragment rendered="#{attr.attribute.manyToMany}">
+																		<img
+																			src="#{request.contextPath}/resources/images/icons/icon-m-m.jpg"
+																			width="15" height="10" class="d-inline-block"
+																			alt="ManyToMany" data-toggle="tooltip"
+																			data-placement="top" title="Relationsip: ManyToMany" />
+																	</ui:fragment>
+																	<ui:fragment rendered="#{attr.attribute.manyToOne}">
+																		<img
+																			src="#{request.contextPath}/resources/images/icons/icon-m-1.jpg"
+																			width="15" height="10" class="d-inline-block"
+																			alt="ManyToOne" data-toggle="tooltip"
+																			data-placement="top" title="Relationsip: ManyToOne" />
+																	</ui:fragment>
+																</h:column>
+																<h:column>
+																	<ui:fragment
+																		rendered="#{attr.attribute.modifierPublic}">
+																		<span class="badge badge-success"
+																			style="padding: .0rem .1rem;" title="Public">P</span>
+																	</ui:fragment>
+																	<ui:fragment
+																		rendered="#{attr.attribute.modifierPrivate}">
+																		<span class="badge badge-danger"
+																			style="padding: .0rem .1rem;" title="Private">P</span>
+																	</ui:fragment>
+																	<ui:fragment
+																		rendered="#{attr.attribute.modifierProtected}">
+																		<span class="badge badge-warning"
+																			style="padding: .0rem .1rem;" title="Protected">P</span>
+																	</ui:fragment>
+																	<ui:fragment
+																		rendered="#{attr.attribute.modifierStatic}">
+																		<span class="badge badge-info"
+																			style="padding: .0rem .1rem;" title="Static">S</span>
+																	</ui:fragment>
+																</h:column>
+																<h:column>
+																	<f:facet name="header">Attribute Name</f:facet>
+																	<ui:fragment>
+																		<span id="entity-attr-row-#{attr.fromParent}"
+																			class="#{attr.viewStyle}">#{attr.attribute.name}</span>
+																	</ui:fragment>
+																</h:column>
+																<h:column>
+																	<f:facet name="header">Attribute Type</f:facet>
+																	<ui:fragment rendered="#{!attr.attribute.entity}">
+																		<span id="entity-attr-row#{attr.fromParent}"
+																			class="#{attr.viewStyle}">#{attr.attribute.type}</span>
+																	</ui:fragment>
+																	<h:commandLink rendered="#{attr.attribute.entity}"
+																		styleClass="#{attr.viewStyle}"
+																		value="#{attr.attribute.type}">
+																		<f:attribute name="uuid"
+																			value="#{attr.attribute.typeUUID}"></f:attribute>
+																		<f:ajax render="mainForm:ajax-render-part"
+																			listener="#{componentActionHandler.handleComponentSelection}"
+																			onevent="onPostAjaxCall" />
+																	</h:commandLink>
+																</h:column>
+																<h:column>
+																	<f:facet name="header">Attribute Description</f:facet>
+																	<ui:fragment>
+																		<span id="entity-attr-row#{attr.fromParent}"
+																			class="#{attr.viewStyle}">#{attr.attribute.documentation}</span>
+																	</ui:fragment>
+																</h:column>
+																<f:facet name="footer">
+																	<i></i>
+																</f:facet>
+															</h:dataTable>
+
+															<ui:fragment rendered="#{dtAttributes.isEmpty}">
+																<p>No attributes available for the component.</p>
+															</ui:fragment>
+
+														</div>
+													</div>
+												</div>
+
+												<div class="card">
+													<div class="card-header card-header-custom" id="headingTwo">
+														<h2 class="mb-0">
+															<button type="button" class="btn btn-link collapsed"
+																data-toggle="collapse" data-target="#collapseTwo">
+																<i class="fa fa-plus"></i> Methods
+															</button>
+														</h2>
+													</div>
+													<div id="collapseTwo" class="collapse"
+														aria-labelledby="headingTwo"
+														data-parent="#accordionAttributes">
+														<div class="card-body">
+															<c:set var="dtMethod"
+																value="#{componentActionHandler.componentMethods}"
+																scope="request" />
+															<h:dataTable styleClass="table table-hover" var="m"
+																value="#{dtMethod.results}"
+																columnClasses="col-30,col-30,col-150,col-150,font-weight-light"
+																rendered="#{!dtMethod.isEmpty}">
+																<h:column>
+																	<ui:fragment rendered="#{m.fromParent}">
+																		<img
+																			src="#{request.contextPath}/resources/images/icons/icon-parent-attr.png"
+																			width="15" height="10" class="d-inline-block"
+																			alt="Base class" data-toggle="tooltip"
+																			data-placement="top"
+																			title="Owner: Extended. Class [#{m.parentName}]" />
+																	</ui:fragment>
+
+																</h:column>
+																<h:column>
+																	<ui:fragment rendered="#{m.method.modifierPublic}">
+																		<span class="badge badge-success"
+																			style="padding: .0rem .1rem;" title="Public">P</span>
+																	</ui:fragment>
+																	<ui:fragment rendered="#{m.method.modifierPrivate}">
+																		<span class="badge badge-danger"
+																			style="padding: .0rem .1rem;" title="Private">P</span>
+																	</ui:fragment>
+																	<ui:fragment rendered="#{m.method.modifierProtected}">
+																		<span class="badge badge-warning"
+																			style="padding: .0rem .1rem;" title="Protected">P</span>
+																	</ui:fragment>
+																	<ui:fragment rendered="#{m.method.modifierStatic}">
+																		<span class="badge badge-info"
+																			style="padding: .0rem .1rem;" title="Static">S</span>
+																	</ui:fragment>
+																</h:column>
+																<h:column>
+																	<f:facet name="header">Method Name</f:facet>
+																	<ui:fragment>
+																		<span id="entity-attr-row-#{m.fromParent}"
+																			class="#{m.viewStyle}">#{m.method.name}</span>
+																	</ui:fragment>
+																</h:column>
+																<h:column>
+																	<f:facet name="header">Return Type</f:facet>
+																	<ui:fragment>
+																		<span id="entity-attr-row#{m.fromParent}"
+																			class="#{m.viewStyle}">#{m.method.type}</span>
+																	</ui:fragment>
+																</h:column>
+																<h:column>
+																	<f:facet name="header">Method Description</f:facet>
+																	<ui:fragment>
+																		<span id="entity-attr-row#{m.fromParent}"
+																			class="#{m.viewStyle}">#{m.method.documentation}</span>
+																	</ui:fragment>
+																</h:column>
+																<f:facet name="footer">
+																	<i></i>
+																</f:facet>
+															</h:dataTable>
+
+															<ui:fragment rendered="#{dtMethod.isEmpty}">
+																<p>No methods available for the component.</p>
+															</ui:fragment>
+														</div>
+													</div>
+												</div>
+											</div>
+
+										</ui:fragment>
 
 
 									</h:panelGrid>
 
 
+									<!-- Modal -  Basic UML -->
 									<ui:fragment>
-										<div class="accordion" id="accordionAttributes">
-											<div class="card">
-												<div class="card-header card-header-custom" id="headingTwo">
-													<h2 class="mb-0">
-														<button type="button" area-expanded="true"
-															class="btn btn-link" data-toggle="collapse"
-															data-target="#collapseOne">
-															<i class="fa fa-plus"></i> Attributes
+										<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+											role="dialog" aria-labelledby="exampleModalCenterTitle"
+											aria-hidden="true">
+											<div class="modal-dialog modal-lg " role="document">
+												<div class="modal-content">
+													<div class="modal-header" style="padding: 0.5rem;">
+														<span class="modal-title" style="font-weight: bold"
+															id="exampleModalLongTitle">Class Diagram -
+															#{componentActionHandler.selectedComponent.name}</span>
+														<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">&times;</span>
 														</button>
-													</h2>
-												</div>
-												<div id="collapseOne" class="collapse show"
-													aria-labelledby="headingOne"
-													data-parent="#accordionAttributes">
-													<div class="card-body">
-														<c:set var="dtAttributes"
-															value="#{componentActionHandler.componentAttributes}"
-															scope="request" />
-
-														<h:dataTable styleClass="table table-hover" var="attr"
-															value="#{dtAttributes.results}"
-															columnClasses="col-90,col-30,col-150,col-150,font-weight-light"
-															rendered="#{!dtAttributes.isEmpty}">
-															<h:column>
-																<ui:fragment rendered="#{attr.fromParent}">
-																	<img
-																		src="#{request.contextPath}/resources/images/icons/icon-parent-attr.png"
-																		width="15" height="10" class="d-inline-block"
-																		alt="Base class" data-toggle="tooltip"
-																		data-placement="top"
-																		title="Owner: Extended. Class [#{attr.parentName}]" />
-																</ui:fragment>
-																<ui:fragment rendered="#{attr.attribute.entity}">
-																	<img
-																		src="#{request.contextPath}/resources/images/icons/icon-bo.jpg"
-																		width="15" height="10" class="d-inline-block"
-																		alt="Business Object" data-toggle="tooltip"
-																		data-placement="top" title="Type: Entity" />
-																</ui:fragment>
-																<ui:fragment rendered="#{attr.attribute.enumType}">
-																	<img
-																		src="#{request.contextPath}/resources/images/icons/icon-enum.jpg"
-																		width="15" height="10" class="d-inline-block"
-																		alt="Enum" data-toggle="tooltip" data-placement="top"
-																		title="Type: Enum" />
-																</ui:fragment>
-																<ui:fragment rendered="#{attr.attribute.collection}">
-																	<img
-																		src="#{request.contextPath}/resources/images/icons/icon-array.jpg"
-																		width="15" height="10" class="d-inline-block"
-																		alt="Multiple" data-toggle="tooltip"
-																		data-placement="top" title="Cardinality: Multiple" />
-																</ui:fragment>
-																<ui:fragment rendered="#{attr.attribute.oneToOne}">
-																	<img
-																		src="#{request.contextPath}/resources/images/icons/icon-1-1.jpg"
-																		width="15" height="10" class="d-inline-block"
-																		alt="OneToOne" data-toggle="tooltip"
-																		data-placement="top" title="Relationsip: OneToOne" />
-																</ui:fragment>
-																<ui:fragment rendered="#{attr.attribute.oneToMany}">
-																	<img
-																		src="#{request.contextPath}/resources/images/icons/icon-1-m.jpg"
-																		width="15" height="10" class="d-inline-block"
-																		alt="OneToMany" data-toggle="tooltip"
-																		data-placement="top" title="Relationsip: OneToMany" />
-																</ui:fragment>
-																<ui:fragment rendered="#{attr.attribute.manyToMany}">
-																	<img
-																		src="#{request.contextPath}/resources/images/icons/icon-m-m.jpg"
-																		width="15" height="10" class="d-inline-block"
-																		alt="ManyToMany" data-toggle="tooltip"
-																		data-placement="top" title="Relationsip: ManyToMany" />
-																</ui:fragment>
-																<ui:fragment rendered="#{attr.attribute.manyToOne}">
-																	<img
-																		src="#{request.contextPath}/resources/images/icons/icon-m-1.jpg"
-																		width="15" height="10" class="d-inline-block"
-																		alt="ManyToOne" data-toggle="tooltip"
-																		data-placement="top" title="Relationsip: ManyToOne" />
-																</ui:fragment>
-															</h:column>
-															<h:column>
-																<ui:fragment rendered="#{attr.attribute.modifierPublic}">
-																	<span class="badge badge-success"
-																		style="padding: .0rem .1rem;" title="Public">P</span>
-																</ui:fragment>
-																<ui:fragment
-																	rendered="#{attr.attribute.modifierPrivate}">
-																	<span class="badge badge-danger"
-																		style="padding: .0rem .1rem;" title="Private">P</span>
-																</ui:fragment>
-																<ui:fragment
-																	rendered="#{attr.attribute.modifierProtected}">
-																	<span class="badge badge-warning"
-																		style="padding: .0rem .1rem;" title="Protected">P</span>
-																</ui:fragment>
-																<ui:fragment rendered="#{attr.attribute.modifierStatic}">
-																	<span class="badge badge-info"
-																		style="padding: .0rem .1rem;" title="Static">S</span>
-																</ui:fragment>
-															</h:column>
-															<h:column>
-																<f:facet name="header">Attribute Name</f:facet>
-																<ui:fragment>
-																	<span id="entity-attr-row-#{attr.fromParent}"
-																		class="#{attr.viewStyle}">#{attr.attribute.name}</span>
-																</ui:fragment>
-															</h:column>
-															<h:column>
-																<f:facet name="header">Attribute Type</f:facet>
-																<ui:fragment rendered="#{!attr.attribute.entity}">
-																	<span id="entity-attr-row#{attr.fromParent}"
-																		class="#{attr.viewStyle}">#{attr.attribute.type}</span>
-																</ui:fragment>
-																<h:commandLink rendered="#{attr.attribute.entity}"
-																	styleClass="#{attr.viewStyle}"
-																	value="#{attr.attribute.type}">
-																	<f:attribute name="uuid"
-																		value="#{attr.attribute.typeUUID}"></f:attribute>
-																	<f:ajax render="mainForm:ajax-render-part"
-																		listener="#{componentActionHandler.handleComponentSelection}"
-																		onevent="onPostAjaxCall" />
-																</h:commandLink>
-															</h:column>
-															<h:column>
-																<f:facet name="header">Attribute Description</f:facet>
-																<ui:fragment>
-																	<span id="entity-attr-row#{attr.fromParent}"
-																		class="#{attr.viewStyle}">#{attr.attribute.documentation}</span>
-																</ui:fragment>
-															</h:column>
-															<f:facet name="footer">
-																<i></i>
-															</f:facet>
-														</h:dataTable>
-
-														<ui:fragment rendered="#{dtAttributes.isEmpty}">
-															<p>No attributes available for the component.</p>
-														</ui:fragment>
-
 													</div>
-												</div>
-											</div>
+													<div class="modal-body" style="align-content: center;">
+														<!--Big blue-->
+														<div class="spinner-border text-info" role="status"
+															id="spinner-basic-img-class-diagram">
+															<span class="sr-only">Loading...</span>
+														</div>
 
-											<div class="card">
-												<div class="card-header card-header-custom" id="headingTwo">
-													<h2 class="mb-0">
-														<button type="button" class="btn btn-link collapsed"
-															data-toggle="collapse" data-target="#collapseTwo">
-															<i class="fa fa-plus"></i> Methods
-														</button>
-													</h2>
-												</div>
-												<div id="collapseTwo" class="collapse"
-													aria-labelledby="headingTwo"
-													data-parent="#accordionAttributes">
-													<div class="card-body">
-														<c:set var="dtMethod"
-															value="#{componentActionHandler.componentMethods}"
-															scope="request" />
-														<h:dataTable styleClass="table table-hover" var="m"
-															value="#{dtMethod.results}"
-															columnClasses="col-30,col-30,col-150,col-150,font-weight-light"
-															rendered="#{!dtMethod.isEmpty}">
-															<h:column>
-																<ui:fragment rendered="#{m.fromParent}">
-																	<img
-																		src="#{request.contextPath}/resources/images/icons/icon-parent-attr.png"
-																		width="15" height="10" class="d-inline-block"
-																		alt="Base class" data-toggle="tooltip"
-																		data-placement="top"
-																		title="Owner: Extended. Class [#{m.parentName}]" />
-																</ui:fragment>
+														<img id="basic-img-class-diagram" uml="plantUMLText"
+															src=""
+															style="display: none; max-width: 650px; max-height: 550px; margin-left: auto; margin-right: auto; display: block;" />
 
-															</h:column>
-															<h:column>
-																<ui:fragment rendered="#{m.method.modifierPublic}">
-																	<span class="badge badge-success"
-																		style="padding: .0rem .1rem;" title="Public">P</span>
-																</ui:fragment>
-																<ui:fragment rendered="#{m.method.modifierPrivate}">
-																	<span class="badge badge-danger"
-																		style="padding: .0rem .1rem;" title="Private">P</span>
-																</ui:fragment>
-																<ui:fragment rendered="#{m.method.modifierProtected}">
-																	<span class="badge badge-warning"
-																		style="padding: .0rem .1rem;" title="Protected">P</span>
-																</ui:fragment>
-																<ui:fragment rendered="#{m.method.modifierStatic}">
-																	<span class="badge badge-info"
-																		style="padding: .0rem .1rem;" title="Static">S</span>
-																</ui:fragment>
-															</h:column>
-															<h:column>
-																<f:facet name="header">Method Name</f:facet>
-																<ui:fragment>
-																	<span id="entity-attr-row-#{m.fromParent}"
-																		class="#{m.viewStyle}">#{m.method.name}</span>
-																</ui:fragment>
-															</h:column>
-															<h:column>
-																<f:facet name="header">Return Type</f:facet>
-																<ui:fragment>
-																	<span id="entity-attr-row#{m.fromParent}"
-																		class="#{m.viewStyle}">#{m.method.type}</span>
-																</ui:fragment>
-															</h:column>
-															<h:column>
-																<f:facet name="header">Method Description</f:facet>
-																<ui:fragment>
-																	<span id="entity-attr-row#{m.fromParent}"
-																		class="#{m.viewStyle}">#{m.method.documentation}</span>
-																</ui:fragment>
-															</h:column>
-															<f:facet name="footer">
-																<i></i>
-															</f:facet>
-														</h:dataTable>
+														<input id="plantUMLText" type="hidden"
+															value="#{componentActionHandler.basicPlantUMLText}"></input>
+													</div>
+													<div class="modal-footer font-weight-light">
+														<h:outputLink
+															onclick="openClassDiagramInNewWindow('basic-img-class-diagram');"
+															value="#">
+															<h:outputText value="Open in new window" />
+														</h:outputLink>
 
-														<ui:fragment rendered="#{dtMethod.isEmpty}">
-															<p>No methods available for the component.</p>
-														</ui:fragment>
+														<span style="width: 5px; padding: 0.6rem;">|</span> <span>Powered
+															by PlantUML</span>
 													</div>
 												</div>
 											</div>
 										</div>
+									</ui:fragment>
 
+									<!-- Modal -  Inheritance UML -->
+									<ui:fragment>
+										<div class="modal fade" id="inheritanceModalCenter"
+											tabindex="-1" role="dialog"
+											aria-labelledby="inheritanceModalCenterTitle"
+											aria-hidden="true">
+											<div class="modal-dialog modal-lg " role="document">
+												<div class="modal-content">
+													<div class="modal-header" style="padding: 0.5rem;">
+														<span class="modal-title" style="font-weight: bold"
+															id="inheritanceModalCenterTitle">Class Diagram -
+															#{componentActionHandler.selectedComponent.name}</span>
+														<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<div class="modal-body" style="align-content: center;">
+														<!--Big blue-->
+														<div class="spinner-border text-info" role="status"
+															id="spinner-inheritance-img-class-diagram">
+															<span class="sr-only">Loading...</span>
+														</div>
+
+														<img id="inheritance-img-class-diagram"
+															uml="inheritancePlantUMLText" src=""
+															style="display: none; max-width: 650px; max-height: 550px; margin-left: auto; margin-right: auto; display: block;" />
+
+														<input id="inheritancePlantUMLText" type="hidden"
+															value="#{componentActionHandler.inheritancePlantUMLText}"></input>
+													</div>
+													<div class="modal-footer font-weight-light">
+														<h:outputLink
+															onclick="openClassDiagramInNewWindow('inheritance-img-class-diagram');"
+															value="#">
+															<h:outputText value="Open in new window" />
+														</h:outputLink>
+														<span style="width: 5px; padding: 0.6rem;">|</span> <span>Powered
+															by PlantUML</span>
+													</div>
+												</div>
+											</div>
+										</div>
 									</ui:fragment>
 
 
+									<!-- Modal -  ERD UML -->
+									<ui:fragment>
+										<div class="modal fade" id="erdModalCenter" tabindex="-1"
+											role="dialog" aria-labelledby="erdModalCenterTitle"
+											aria-hidden="true">
+											<div class="modal-dialog modal-lg " role="document">
+												<div class="modal-content">
+													<div class="modal-header" style="padding: 0.5rem;">
+														<span class="modal-title" style="font-weight: bold"
+															id="erdCenterTitle">Entity Relationship Diagram -
+															#{componentActionHandler.selectedComponent.name}</span>
+														<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<div class="modal-body" style="align-content: center;">
+														<!--Big blue-->
+														<div class="spinner-border text-info" role="status"
+															id="spinner-erd-img-class-diagram">
+															<span class="sr-only">Loading...</span>
+														</div>
+
+														<img id="erd-img-class-diagram" uml="erdPlantUMLText"
+															src=""
+															style="display: none; max-width: 650px; max-height: 550px; margin-left: auto; margin-right: auto; display: block;" />
+
+														<input id="erdPlantUMLText" type="hidden"
+															value="#{componentActionHandler.erdPlantUMLText}"></input>
+													</div>
+													<div class="modal-footer font-weight-light">
+														<h:outputLink
+															onclick="openClassDiagramInNewWindow('erd-img-class-diagram');"
+															value="#">
+															<h:outputText value="Open in new window" />
+														</h:outputLink>
+														<span style="width: 5px; padding: 0.6rem;">|</span> <span>Powered
+															by PlantUML</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</ui:fragment>
+
+									<h:outputScript>initClassDiagramModal();</h:outputScript>
 								</h:panelGrid>
+							</div>
 
+							<div>
+								<h:panelGrid columns="8"
+									styleClass="table table-bordered table-sm" style="width:0%;"
+									columnClasses="col-10,col-100,col-10,col-100,col-10,col-100,col-10,col-100">
+									<h:column>
+										<ui:fragment>
+											<img
+												src="#{request.contextPath}/resources/images/icons/icon-bo.jpg"
+												width="15" height="10" class="d-inline-block"
+												alt="Business Object" />
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge">Entity</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<img
+												src="#{request.contextPath}/resources/images/icons/icon-enum.jpg"
+												width="15" height="10" class="d-inline-block"
+												alt="Business Object" />
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge">Domain Object</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<img
+												src="#{request.contextPath}/resources/images/icons/icon-parent-attr.png"
+												width="15" height="10" class="d-inline-block" alt="Owner" />
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge">Extended</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<img
+												src="#{request.contextPath}/resources/images/icons/icon-array.jpg"
+												width="15" height="10" class="d-inline-block"
+												alt="Business Object" />
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge">Multiple</span>
+										</ui:fragment>
+									</h:column>
 
-								<!-- Modal -  Basic UML -->
-								<ui:fragment>
-									<div class="modal fade" id="exampleModalCenter" tabindex="-1"
-										role="dialog" aria-labelledby="exampleModalCenterTitle"
-										aria-hidden="true">
-										<div class="modal-dialog modal-lg " role="document">
-											<div class="modal-content">
-												<div class="modal-header" style="padding: 0.5rem;">
-													<span class="modal-title" style="font-weight: bold"
-														id="exampleModalLongTitle">Class Diagram -
-														#{componentActionHandler.selectedComponent.name}</span>
-													<button type="button" class="close" data-dismiss="modal"
-														aria-label="Close">
-														<span aria-hidden="true">&times;</span>
-													</button>
-												</div>
-												<div class="modal-body" style="align-content: center;">
-													<!--Big blue-->
-													<div class="spinner-border text-info" role="status"
-														id="spinner-basic-img-class-diagram">
-														<span class="sr-only">Loading...</span>
-													</div>
+									<h:column>
+										<ui:fragment>
+											<img
+												src="#{request.contextPath}/resources/images/icons/icon-1-1.jpg"
+												width="15" height="10" class="d-inline-block"
+												alt="Business Object" />
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge">OneToOne</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<img
+												src="#{request.contextPath}/resources/images/icons/icon-1-m.jpg"
+												width="15" height="10" class="d-inline-block"
+												alt="Business Object" />
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge">OneToMany</span>
+										</ui:fragment>
+									</h:column>
 
-													<img id="basic-img-class-diagram" uml="plantUMLText" src=""
-														style="display: none; max-width: 650px; max-height: 550px; margin-left: auto; margin-right: auto; display: block;" />
+									<h:column>
+										<ui:fragment>
+											<img
+												src="#{request.contextPath}/resources/images/icons/icon-m-1.jpg"
+												width="15" height="10" class="d-inline-block"
+												alt="Business Object" />
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge">ManyToOne</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<img
+												src="#{request.contextPath}/resources/images/icons/icon-m-m.jpg"
+												width="15" height="10" class="d-inline-block"
+												alt="Business Object" />
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge">ManyToMany</span>
+										</ui:fragment>
+									</h:column>
 
-													<input id="plantUMLText" type="hidden"
-														value="#{componentActionHandler.basicPlantUMLText}"></input>
-												</div>
-												<div class="modal-footer font-weight-light">
-													<h:outputLink
-														onclick="openClassDiagramInNewWindow('basic-img-class-diagram');"
-														value="#">
-														<h:outputText value="Open in new window" />
-													</h:outputLink>
-
-													<span style="width: 5px; padding: 0.6rem;">|</span> <span>Powered
-														by PlantUML</span>
-												</div>
-											</div>
-										</div>
-									</div>
-								</ui:fragment>
-
-								<!-- Modal -  Inheritance UML -->
-								<ui:fragment>
-									<div class="modal fade" id="inheritanceModalCenter"
-										tabindex="-1" role="dialog"
-										aria-labelledby="inheritanceModalCenterTitle"
-										aria-hidden="true">
-										<div class="modal-dialog modal-lg " role="document">
-											<div class="modal-content">
-												<div class="modal-header" style="padding: 0.5rem;">
-													<span class="modal-title" style="font-weight: bold"
-														id="inheritanceModalCenterTitle">Class Diagram -
-														#{componentActionHandler.selectedComponent.name}</span>
-													<button type="button" class="close" data-dismiss="modal"
-														aria-label="Close">
-														<span aria-hidden="true">&times;</span>
-													</button>
-												</div>
-												<div class="modal-body" style="align-content: center;">
-													<!--Big blue-->
-													<div class="spinner-border text-info" role="status"
-														id="spinner-inheritance-img-class-diagram">
-														<span class="sr-only">Loading...</span>
-													</div>
-
-													<img id="inheritance-img-class-diagram"
-														uml="inheritancePlantUMLText" src=""
-														style="display: none; max-width: 650px; max-height: 550px; margin-left: auto; margin-right: auto; display: block;" />
-
-													<input id="inheritancePlantUMLText" type="hidden"
-														value="#{componentActionHandler.inheritancePlantUMLText}"></input>
-												</div>
-												<div class="modal-footer font-weight-light">
-													<h:outputLink
-														onclick="openClassDiagramInNewWindow('inheritance-img-class-diagram');"
-														value="#">
-														<h:outputText value="Open in new window" />
-													</h:outputLink>
-													<span style="width: 5px; padding: 0.6rem;">|</span> <span>Powered
-														by PlantUML</span>
-												</div>
-											</div>
-										</div>
-									</div>
-								</ui:fragment>
-
-
-								<!-- Modal -  ERD UML -->
-								<ui:fragment>
-									<div class="modal fade" id="erdModalCenter" tabindex="-1"
-										role="dialog" aria-labelledby="erdModalCenterTitle"
-										aria-hidden="true">
-										<div class="modal-dialog modal-lg " role="document">
-											<div class="modal-content">
-												<div class="modal-header" style="padding: 0.5rem;">
-													<span class="modal-title" style="font-weight: bold"
-														id="erdCenterTitle">Entity Relationship Diagram -
-														#{componentActionHandler.selectedComponent.name}</span>
-													<button type="button" class="close" data-dismiss="modal"
-														aria-label="Close">
-														<span aria-hidden="true">&times;</span>
-													</button>
-												</div>
-												<div class="modal-body" style="align-content: center;">
-													<!--Big blue-->
-													<div class="spinner-border text-info" role="status"
-														id="spinner-erd-img-class-diagram">
-														<span class="sr-only">Loading...</span>
-													</div>
-
-													<img id="erd-img-class-diagram" uml="erdPlantUMLText"
-														src=""
-														style="display: none; max-width: 650px; max-height: 550px; margin-left: auto; margin-right: auto; display: block;" />
-
-													<input id="erdPlantUMLText" type="hidden"
-														value="#{componentActionHandler.erdPlantUMLText}"></input>
-												</div>
-												<div class="modal-footer font-weight-light">
-													<h:outputLink
-														onclick="openClassDiagramInNewWindow('erd-img-class-diagram');"
-														value="#">
-														<h:outputText value="Open in new window" />
-													</h:outputLink>
-													<span style="width: 5px; padding: 0.6rem;">|</span> <span>Powered
-														by PlantUML</span>
-												</div>
-											</div>
-										</div>
-									</div>
-								</ui:fragment>
-
-								<h:outputScript>initClassDiagramModal();</h:outputScript>
-							</h:panelGrid>
+									<h:column>
+										<ui:fragment>
+											<span class="badge badge-info" style="padding: .0rem .1rem;"
+												title="Class">C</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge">Class</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge badge-info" style="padding: .0rem .1rem;"
+												title="Interface">I</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge">Interface</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge badge-info" style="padding: .0rem .1rem;"
+												title="Enum">E</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge">Enum</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge badge-info" style="padding: .0rem .1rem;"
+												title="Final">F</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge">Final</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge badge-info" style="padding: .0rem .1rem;"
+												title="Abstract">A</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge">Abstract</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge badge-success"
+												style="padding: .0rem .1rem;" title="Public">P</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge">Public</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge badge-danger"
+												style="padding: .0rem .1rem;" title="Private">P</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge">Private</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge badge-warning"
+												style="padding: .0rem .1rem;" title="Protected">P</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge">Protected</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge badge-info" style="padding: .0rem .1rem;"
+												title="Static">S</span>
+										</ui:fragment>
+									</h:column>
+									<h:column>
+										<ui:fragment>
+											<span class="badge">Static</span>
+										</ui:fragment>
+									</h:column>
+								</h:panelGrid>
+							</div>
 						</div>
-
-						<div>
-							<h:panelGrid columns="8"
-								styleClass="table table-bordered table-sm" style="width:0%;"
-								columnClasses="col-10,col-100,col-10,col-100,col-10,col-100,col-10,col-100">
-								<h:column>
-									<ui:fragment>
-										<img
-											src="#{request.contextPath}/resources/images/icons/icon-bo.jpg"
-											width="15" height="10" class="d-inline-block"
-											alt="Business Object" />
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge">Entity</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<img
-											src="#{request.contextPath}/resources/images/icons/icon-enum.jpg"
-											width="15" height="10" class="d-inline-block"
-											alt="Business Object" />
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge">Domain Object</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<img
-											src="#{request.contextPath}/resources/images/icons/icon-parent-attr.png"
-											width="15" height="10" class="d-inline-block" alt="Owner" />
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge">Extended</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<img
-											src="#{request.contextPath}/resources/images/icons/icon-array.jpg"
-											width="15" height="10" class="d-inline-block"
-											alt="Business Object" />
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge">Multiple</span>
-									</ui:fragment>
-								</h:column>
-
-								<h:column>
-									<ui:fragment>
-										<img
-											src="#{request.contextPath}/resources/images/icons/icon-1-1.jpg"
-											width="15" height="10" class="d-inline-block"
-											alt="Business Object" />
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge">OneToOne</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<img
-											src="#{request.contextPath}/resources/images/icons/icon-1-m.jpg"
-											width="15" height="10" class="d-inline-block"
-											alt="Business Object" />
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge">OneToMany</span>
-									</ui:fragment>
-								</h:column>
-
-								<h:column>
-									<ui:fragment>
-										<img
-											src="#{request.contextPath}/resources/images/icons/icon-m-1.jpg"
-											width="15" height="10" class="d-inline-block"
-											alt="Business Object" />
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge">ManyToOne</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<img
-											src="#{request.contextPath}/resources/images/icons/icon-m-m.jpg"
-											width="15" height="10" class="d-inline-block"
-											alt="Business Object" />
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge">ManyToMany</span>
-									</ui:fragment>
-								</h:column>
-
-								<h:column>
-									<ui:fragment>
-										<span class="badge badge-info" style="padding: .0rem .1rem;"
-											title="Class">C</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge">Class</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge badge-info" style="padding: .0rem .1rem;"
-											title="Interface">I</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge">Interface</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge badge-info" style="padding: .0rem .1rem;"
-											title="Enum">E</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge">Enum</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge badge-info" style="padding: .0rem .1rem;"
-											title="Final">F</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge">Final</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge badge-info" style="padding: .0rem .1rem;"
-											title="Abstract">A</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge">Abstract</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge badge-success"
-											style="padding: .0rem .1rem;" title="Public">P</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge">Public</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge badge-danger" style="padding: .0rem .1rem;"
-											title="Private">P</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge">Private</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge badge-warning"
-											style="padding: .0rem .1rem;" title="Protected">P</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge">Protected</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge badge-info" style="padding: .0rem .1rem;"
-											title="Static">S</span>
-									</ui:fragment>
-								</h:column>
-								<h:column>
-									<ui:fragment>
-										<span class="badge">Static</span>
-									</ui:fragment>
-								</h:column>
-							</h:panelGrid>
+					</ui:fragment>
+					<ui:fragment rendered="#{componentUIView.size == 0}">
+						<div class="container-fluid">
+							<div id="content-wrapper">
+							<br/>
+								<p>There is no components available for the selected
+									profile. Please choose another profile or update profile
+									component source.</p>
+							</div>
 						</div>
-					</div>
+					</ui:fragment>
 				</div>
 				<!-- /#page-content-wrapper -->
 			</div>
