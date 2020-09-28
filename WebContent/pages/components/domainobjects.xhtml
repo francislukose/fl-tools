@@ -75,6 +75,9 @@
 								</h:panelGrid>
 								<ui:fragment>
 									<div class="table-wrapper-scroll-y custom-scrollbar">
+										<ui:fragment rendered="#{componentActionHandler.selectedDomainObject.domainValueCount == 0}">
+											<p>No domain values available for the domain object.</p>
+										</ui:fragment>
 										<h:dataTable styleClass="table table-hover" var="domainValue"
 											rendered="#{componentActionHandler.selectedDomainObject.domainValueCount > 0}"
 											value="#{componentActionHandler.selectedDomainObject.domainValues}"
