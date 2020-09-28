@@ -58,8 +58,8 @@ public class ComponentActionHandler {
 
 	public Datatable<MethodUIView> getComponentMethods() {
 		List<MethodUIView> attrs = new ArrayList<>();
-		if (selectedComponent != null) {
-			ComponentProxy current = componentUIView.getComponents().getComponent(selectedComponent.getParent());
+		if (getSelectedComponent() != null) {
+			ComponentProxy current = componentUIView.getComponents().getComponent(getSelectedComponent().getParent());
 			while (current != null) {
 				final String name = current.getName();
 				current.getMethods().forEach((v) -> {
@@ -68,7 +68,7 @@ public class ComponentActionHandler {
 				current = componentUIView.getComponents().getComponent(current.getParent());
 			}
 
-			selectedComponent.getMethods().forEach((v) -> {
+			getSelectedComponent().getMethods().forEach((v) -> {
 				attrs.add(new MethodUIView(v));
 			});
 		}
@@ -77,8 +77,8 @@ public class ComponentActionHandler {
 
 	public Datatable<AttributeUIView> getComponentAttributes() {
 		List<AttributeUIView> attrs = new ArrayList<>();
-		if (selectedComponent != null) {
-			ComponentProxy current = componentUIView.getComponents().getComponent(selectedComponent.getParent());
+		if (getSelectedComponent() != null) {
+			ComponentProxy current = componentUIView.getComponents().getComponent(getSelectedComponent().getParent());
 			while (current != null) {
 				final String name = current.getName();
 				current.getAttributes().forEach((k, v) -> {
@@ -87,7 +87,7 @@ public class ComponentActionHandler {
 				current = componentUIView.getComponents().getComponent(current.getParent());
 			}
 
-			selectedComponent.getAttributes().forEach((k, v) -> {
+			getSelectedComponent().getAttributes().forEach((k, v) -> {
 				attrs.add(new AttributeUIView(v));
 			});
 		}
