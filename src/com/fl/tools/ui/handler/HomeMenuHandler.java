@@ -37,4 +37,7 @@ public class HomeMenuHandler {
 		return "/pages/components/domainobjects";
 	}
 
+	public String handleDownloadRequest() {
+		return "/pages/components/download";
+	}
 }

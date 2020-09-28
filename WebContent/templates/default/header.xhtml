@@ -39,7 +39,8 @@
 							width="15" height="15" class="d-inline-block" alt=""
 							loading="lazy" />&nbsp;Domain Objects</h:commandLink>
 					<div class="dropdown-divider"></div>
-					<h:commandLink immediate="true" class="dropdown-item">
+					<h:commandLink immediate="true" class="dropdown-item"
+						action="#{homeMenuHandler.handleDownloadRequest}">
 						<img
 							src="#{request.contextPath}/resources/images/icons/icon-download.png"
 							width="15" height="15" class="d-inline-block" alt=""
