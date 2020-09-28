@@ -112,7 +112,6 @@ public class ComponentActionHandler {
 	public String getErdPlantUMLText() {
 		if (selectedComponent != null) {
 			String uml = erdPlantUMLBuilder.build(selectedComponent);
-			System.out.println(uml);
 			return uml;
 		}
 		return "";
