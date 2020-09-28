@@ -1,4 +1,4 @@
-package com.fl.tools.ui.beans;
+package com.fl.tools.ui;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-@ManagedBean(name = "FToolConfiguration")
+@ManagedBean(name = "FToolUIConfiguration")
 @ApplicationScoped
-public class FToolConfiguration {
+public class FToolUIConfiguration {
 	@Value("${ftool.components.uml.UmlProviderURL}")
 	private String plantUmlServer;
 

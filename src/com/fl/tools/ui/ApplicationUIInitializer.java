@@ -1,7 +1,9 @@
 package com.fl.tools.ui;
 
+import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.SessionScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,8 +13,9 @@ import com.fl.tools.ui.beans.ComponentUIView;
 import com.fl.tools.ui.beans.DomainObjectsUIView;
 
 @Component
-@ApplicationScoped
-public class Application {
+@ManagedBean
+@SessionScoped
+public class ApplicationUIInitializer {
 	@Autowired
 	private ComponentService componentService;
 	@Autowired
