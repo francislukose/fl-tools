@@ -22,10 +22,7 @@
 	<welcome-file-list>
 		<welcome-file>index.xhtml</welcome-file>
 	</welcome-file-list>
-	<error-page>
-		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
-		<location>/pages/errors/expired.xhtml</location>
-	</error-page>
+	
 	<error-page>
 		<error-code>500</error-code>
 		<location>/pages/errors/expired.xhtml</location>
