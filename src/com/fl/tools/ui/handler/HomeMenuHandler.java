@@ -24,20 +24,18 @@ public class HomeMenuHandler {
 	}
 
 	public String handleClassesAndInterfacesComponentRequest() {
-		if (componentUIView.getComponents() == null) {
-			componentUIView.setComponents(componentService.getComponents());
-		}
 		return "/pages/components/components";
 	}
 
 	public String handleDomainObjectsRequest() {
-		if (domainObjectsUIView.getDomainObjects() == null) {
-			domainObjectsUIView.setDomainObjects(componentService.getDomainObjects());
-		}
 		return "/pages/components/domainobjects";
 	}
 
 	public String handleDownloadRequest() {
 		return "/pages/components/download";
+	}
+
+	public String handleManageProfilesRequest() {
+		return "/pages/profile/manageprofile";
 	}
 }

@@ -16,13 +16,13 @@ public class ComponentServiceImpl implements ComponentService {
 	private DomainObjectDao domainDao;
 
 	@Override
-	public ComponentsMapView getComponents() {
-		return componentDao.getComponents();
+	public ComponentsMapView getComponents(String profileVersionUUID) {
+		return componentDao.getComponents(profileVersionUUID);
 	}
 
 	@Override
-	public DomainObjectsMapView getDomainObjects() {
-		return domainDao.getDomainObjects();
+	public DomainObjectsMapView getDomainObjects(String profileVersionUUID) {
+		return domainDao.getDomainObjects(profileVersionUUID);
 	}
 
 }

@@ -6,9 +6,11 @@
 	<artifactId>fl-tools</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
+
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
+
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
@@ -26,10 +28,18 @@
 					<warSourceDirectory>WebContent</warSourceDirectory>
 				</configuration>
 			</plugin>
+
 		</plugins>
 	</build>
 	<dependencies>
-		
+		<!-- https://mvnrepository.com/artifact/javax.annotation/javax.annotation-api -->
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+
+
 		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

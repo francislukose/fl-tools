@@ -19,17 +19,6 @@ public class ComponentJsonDaoImpl implements ComponentDao {
 		private ComponentsMapView components;
 		private boolean initialized = false;
 
-		private void save(Set<com.fl.tools.infr.domain.Component> c) {
-			File boFile = new File("./tmp-components-1.json");
-			try (FileOutputStream fos = new FileOutputStream(boFile)) {
-				ObjectMapper om = new ObjectMapper();
-				String jsonText = om.writerWithDefaultPrettyPrinter().writeValueAsString(c);
-				fos.write(jsonText.getBytes());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
 		synchronized public void init() {
 			if (!initialized) {
 				try {
@@ -60,20 +49,8 @@ public class ComponentJsonDaoImpl implements ComponentDao {
 	}
 
 	@Override
-	public ComponentsMapView getComponents() {
+	public ComponentsMapView getComponents(String profileVersionUUID) {
 		return dataSource.getComponentsMapView();
-	}
-
-	static class ColName {
-		static String getColName(String s) {
-			String name = "";
-			if (s.length() > 13) {
-				name = s.substring(0, 13);
-			} else {
-				name = s;
-			}
-			return name.toUpperCase();
-		}
 	}
 
 }

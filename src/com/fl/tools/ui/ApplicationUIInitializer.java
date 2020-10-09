@@ -18,6 +18,7 @@ import com.fl.tools.ui.beans.DomainObjectsUIView;
 public class ApplicationUIInitializer {
 	@Autowired
 	private ComponentService componentService;
+	
 	@Autowired
 	private ComponentUIView componentUIView;
 	@Autowired
@@ -25,7 +26,7 @@ public class ApplicationUIInitializer {
 
 	@PostConstruct
 	public void init() {
-		componentUIView.setComponents(componentService.getComponents());
-		domainObjectsUIView.setDomainObjects(componentService.getDomainObjects());
+		componentUIView.setComponents(componentService.getComponents(null));
+		domainObjectsUIView.setDomainObjects(componentService.getDomainObjects(null));
 	}
 }

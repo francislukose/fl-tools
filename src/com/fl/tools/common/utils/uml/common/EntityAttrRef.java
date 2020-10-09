@@ -1,7 +1,5 @@
 package com.fl.tools.common.utils.uml.common;
 
-import org.eclipse.jdt.internal.compiler.ast.SuperReference;
-
 public class EntityAttrRef implements Def {
 	private String modifier;
 	private String name;

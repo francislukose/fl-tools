@@ -50,7 +50,7 @@ public class ComponentActionHandler {
 	}
 
 	public ComponentProxy getSelectedComponent() {
-		if (selectedComponent == null && componentUIView.getComponents() != null) {
+		if (selectedComponent == null && componentUIView.getSize() > 0) {
 			selectedComponent = componentUIView.getComponents().getComponents().values().iterator().next();
 		}
 		return selectedComponent;

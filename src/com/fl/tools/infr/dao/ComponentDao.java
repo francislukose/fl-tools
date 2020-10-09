@@ -4,5 +4,5 @@ import com.fl.tools.infr.domain.ComponentsMapView;
 
 public interface ComponentDao {
 
-	public ComponentsMapView getComponents();
+	public ComponentsMapView getComponents(String profileVersionUUID);
 }

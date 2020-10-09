@@ -1,0 +1,22 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="profile-configs" type="profile-configsType"/>
+  <xs:complexType name="profile-versionType">
+    <xs:sequence>
+      <xs:element type="xs:boolean" name="component-config"/>
+      <xs:element type="xs:boolean" name="domain-objects-config"/>
+    </xs:sequence>
+    <xs:attribute type="xs:float" name="name" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="profile-configType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="profile-name"/>
+      <xs:element type="profile-versionType" name="profile-version" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="id" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="profile-configsType">
+    <xs:sequence>
+      <xs:element type="profile-configType" name="profile-config" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,61 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:body>
+	<ui:composition template="../../templates/default.xhtml">
+		<ui:define name="content">
+
+			<div class="d-flex" id="wrapper">
+				<div class="bg-none border-right vh-100" id="sidebar-wrapper">
+
+					<div class="sidebar-heading border-bottom">Profiles()</div>
+					<div class="input-group">
+						<input type="text" id="myInput"
+							class="form-control search-control"
+							placeholder="Search for profiles"
+							onkeyup="searchInList(this,'component-list')" autocomplete="off" />
+					</div>
+					<div id="component-list"
+						class="list-group list-group-flush overflow-auto h-100 border-bottom">
+
+						<a onclick="javascript:selectListItem(this);"
+							class="list-group-item list-group-item-action bg-none sidebar-list-group-item">FINEOS</a>
+							<a onclick="javascript:selectListItem(this);"
+							class="list-group-item list-group-item-action bg-none sidebar-list-group-item">Limelight</a>
+							<a onclick="javascript:selectListItem(this);"
+							class="list-group-item list-group-item-action bg-none sidebar-list-group-item">GuideWire - ClaimCenter</a>
+							<a onclick="javascript:selectListItem(this);"
+							class="list-group-item list-group-item-action bg-none sidebar-list-group-item">GuideWire - PolicyCenter</a>
+							<a onclick="javascript:selectListItem(this);"
+							class="list-group-item list-group-item-action bg-none sidebar-list-group-item">GuideWire - BillingCenter</a>
+					</div>
+				</div>
+				<!-- Page Content -->
+				<div id="page-content-wrapper">
+					<ui:fragment>
+						<div class="container-fluid">
+							<div id="content-wrapper">
+								<br />
+								<p>There is no components available for the selected
+									profile. Please choose another profile or update profile
+									component source.</p>
+							</div>
+						</div>
+					</ui:fragment>
+				</div>
+				<!-- /#page-content-wrapper -->
+			</div>
+
+		</ui:define>
+	</ui:composition>
+
+
+</h:body>
+</html>

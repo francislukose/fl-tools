@@ -59,7 +59,7 @@ public class DomainObjectsJsonDaoImpl implements DomainObjectDao {
 	}
 
 	@Override
-	public DomainObjectsMapView getDomainObjects() {
+	public DomainObjectsMapView getDomainObjects(String profileVersionUUID) {
 		return new DomainObjectsMapView(dataSource.getDomainObjects());
 	}
 }

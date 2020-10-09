@@ -1,0 +1,9 @@
+<profile-configs>
+	<profile-config id="FINEOS">
+		<profile-name>FINEOS</profile-name>
+		<profile-version name="1.0">
+			<component-config>true</component-config>
+			<domain-objects-config>true</domain-objects-config>
+		</profile-version>
+	</profile-config>
+</profile-configs>
