@@ -8,7 +8,9 @@
 
 <h:head profile="http://www.w3.org/2005/10/profile">
 	<title>FTools</title>
-	<link rel="shortcut icon" href="#{request.contextPath}/resources/images/logo.png" type="image/png"/>
+	<link rel="shortcut icon"
+		href="#{request.contextPath}/resources/images/logo.png"
+		type="image/png" />
 	<!-- CSS only -->
 	<link rel="stylesheet"
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -18,7 +20,8 @@
 		href="#{request.contextPath}/resources/style/sidebar.css" />
 	<link rel="stylesheet"
 		href="#{request.contextPath}/resources/style/content.css" />
-	<link rel="icon" type="image/png" href="#{request.contextPath}/resources/images/logo.png"/>
+	<link rel="icon" type="image/png"
+		href="#{request.contextPath}/resources/images/logo.png" />
 	<h:outputScript>
 	var ___PLANTUML_SERVER = '#{FToolUIConfiguration.plantUmlServer}';
 	</h:outputScript>
@@ -42,19 +45,21 @@
 
 </h:head>
 <h:body>
-	<h:form id="mainForm">
-		<ui:insert name="header">
-			<ui:include src="/templates/default/header.xhtml" />
-		</ui:insert>
-		<ui:insert name="content">
-			<ui:include src="/templates/default/contents.xhtml" />
-		</ui:insert>
 
-		<div>
-			<ui:insert name="footer">
-				<ui:include src="/templates/default/footer.xhtml" />
-			</ui:insert>
-		</div>
-	</h:form>
+	<ui:insert name="header">
+		<h:form id="headerForm">
+			<ui:include src="/templates/default/header.xhtml" />
+		</h:form>
+	</ui:insert>
+	<ui:insert name="content">
+		<ui:include src="/templates/default/contents.xhtml" />
+	</ui:insert>
+
+	<div>
+		<ui:insert name="footer">
+			<ui:include src="/templates/default/footer.xhtml" />
+		</ui:insert>
+	</div>
+
 </h:body>
 </html>

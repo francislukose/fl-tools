@@ -10,113 +10,115 @@
 <h:body>
 	<ui:composition template="../../templates/default.xhtml">
 		<ui:define name="content">
+			<h:form id="mainForm">
+				<div class="d-flex" id="wrapper">
 
-			<div class="d-flex" id="wrapper">
+					<!-- Sidebar -->
+					<div class="bg-none border-right vh-100" id="sidebar-wrapper">
 
-				<!-- Sidebar -->
-				<div class="bg-none border-right vh-100" id="sidebar-wrapper">
+						<div class="sidebar-heading border-bottom">Domain
+							Objects(#{domainObjectsUIView.size})</div>
+						<div class="input-group">
+							<input type="text" id="myInput"
+								class="form-control search-control"
+								placeholder="Search for DomainObject"
+								onkeyup="searchInList(this,'component-list')" autocomplete="off" />
+						</div>
+						<div id="component-list"
+							class="list-group list-group-flush overflow-auto h-100 border-bottom">
 
-					<div class="sidebar-heading border-bottom">Domain
-						Objects(#{domainObjectsUIView.size})</div>
-					<div class="input-group">
-						<input type="text" id="myInput"
-							class="form-control search-control"
-							placeholder="Search for DomainObject"
-							onkeyup="searchInList(this,'component-list')" autocomplete="off" />
+							<ui:repeat var="domainObject"
+								value="#{domainObjectsUIView.domainObjectsAsList}">
+								<h:commandLink
+									styleClass="list-group-item list-group-item-action bg-none sidebar-list-group-item"
+									value="#{domainObject.name}"
+									onclick="javascript:selectListItem(this);">
+									<f:attribute name="uuid" value="#{domainObject.UUID}" />
+									<f:ajax render="mainForm:entityDetails"
+										listener="#{componentActionHandler.handleDomainObjectSelection}"
+										onevent="onPostAjaxCall" />
+								</h:commandLink>
+							</ui:repeat>
+						</div>
 					</div>
-					<div id="component-list"
-						class="list-group list-group-flush overflow-auto h-100 border-bottom">
+					<!-- /#sidebar-wrapper -->
+					<!-- Page Content -->
+					<div id="page-content-wrapper">
 
-						<ui:repeat var="domainObject"
-							value="#{domainObjectsUIView.domainObjectsAsList}">
-							<h:commandLink
-								styleClass="list-group-item list-group-item-action bg-none sidebar-list-group-item"
-								value="#{domainObject.name}"
-								onclick="javascript:selectListItem(this);">
-								<f:attribute name="uuid" value="#{domainObject.UUID}" />
-								<f:ajax render="mainForm:entityDetails"
-									listener="#{componentActionHandler.handleDomainObjectSelection}"
-									onevent="onPostAjaxCall" />
-							</h:commandLink>
-						</ui:repeat>
-					</div>
-				</div>
-				<!-- /#sidebar-wrapper -->
-				<!-- Page Content -->
-				<div id="page-content-wrapper">
-
-					<ui:fragment rendered="#{domainObjectsUIView.size > 0}">
-						<div class="container-fluid">
-							<p class="font-weight-bolder">Domain Object Details</p>
-							<div id="content-wrapper">
-								<h:panelGrid id="entityDetails" style="width:100%" columns="1">
-									<h:panelGrid styleClass="table table-sm" columns="3"
-										columnClasses="col-bold-150,col-bold-5,font-weight-light">
-										<h:outputText value="Name" />
-										<h:outputText value=":" />
-										<h:outputText
-											value="#{componentActionHandler.selectedDomainObject.name}" />
+						<ui:fragment rendered="#{domainObjectsUIView.size > 0}">
+							<div class="container-fluid">
+								<p class="font-weight-bolder">Domain Object Details</p>
+								<div id="content-wrapper">
+									<h:panelGrid id="entityDetails" style="width:100%" columns="1">
+										<h:panelGrid styleClass="table table-sm" columns="3"
+											columnClasses="col-bold-150,col-bold-5,font-weight-light">
+											<h:outputText value="Name" />
+											<h:outputText value=":" />
+											<h:outputText
+												value="#{componentActionHandler.selectedDomainObject.name}" />
 
 
 
-										<h:outputText value="Display Name" />
-										<h:outputText value=":" />
-										<h:outputText
-											value="#{componentActionHandler.selectedDomainObject.displayName}" />
+											<h:outputText value="Display Name" />
+											<h:outputText value=":" />
+											<h:outputText
+												value="#{componentActionHandler.selectedDomainObject.displayName}" />
 
-										<h:outputText value="Domain Object ID" />
-										<h:outputText value=":" />
-										<h:outputText
-											value="#{componentActionHandler.selectedDomainObject.domainId}" />
+											<h:outputText value="Domain Object ID" />
+											<h:outputText value=":" />
+											<h:outputText
+												value="#{componentActionHandler.selectedDomainObject.domainId}" />
 
-										<h:outputText value="Description" />
-										<h:outputText value=":" />
-										<h:outputText
-											value="#{componentActionHandler.selectedDomainObject.description}" />
-									</h:panelGrid>
-									<ui:fragment>
-										<div class="table-wrapper-scroll-y custom-scrollbar">
-											<ui:fragment
-												rendered="#{componentActionHandler.selectedDomainObject.domainValueCount == 0}">
-												<p>No domain values available for the domain object.</p>
-											</ui:fragment>
-											<h:dataTable styleClass="table table-hover" var="domainValue"
-												rendered="#{componentActionHandler.selectedDomainObject.domainValueCount > 0}"
-												value="#{componentActionHandler.selectedDomainObject.domainValues}"
-												columnClasses="col-150,font-weight-light">
+											<h:outputText value="Description" />
+											<h:outputText value=":" />
+											<h:outputText
+												value="#{componentActionHandler.selectedDomainObject.description}" />
+										</h:panelGrid>
+										<ui:fragment>
+											<div class="table-wrapper-scroll-y custom-scrollbar">
+												<ui:fragment
+													rendered="#{componentActionHandler.selectedDomainObject.domainValueCount == 0}">
+													<p>No domain values available for the domain object.</p>
+												</ui:fragment>
+												<h:dataTable styleClass="table table-hover"
+													var="domainValue"
+													rendered="#{componentActionHandler.selectedDomainObject.domainValueCount > 0}"
+													value="#{componentActionHandler.selectedDomainObject.domainValues}"
+													columnClasses="col-150,font-weight-light">
 
-												<h:column>
-													<f:facet name="header">Domain ID</f:facet>
+													<h:column>
+														<f:facet name="header">Domain ID</f:facet>
 										#{domainValue.id}
 									</h:column>
-												<h:column>
-													<f:facet name="header">Domain Name</f:facet>
+													<h:column>
+														<f:facet name="header">Domain Name</f:facet>
 										#{domainValue.name}
 									</h:column>
 
-												<f:facet name="footer">
+													<f:facet name="footer">
 
-												</f:facet>
-											</h:dataTable>
-										</div>
-									</ui:fragment>
-								</h:panelGrid>
+													</f:facet>
+												</h:dataTable>
+											</div>
+										</ui:fragment>
+									</h:panelGrid>
+								</div>
 							</div>
-						</div>
-					</ui:fragment>
+						</ui:fragment>
 
-					<ui:fragment rendered="#{domainObjectsUIView.size == 0}">
-						<div class="container-fluid">
-							<div id="content-wrapper">
-								<br />
-								<p>There is no domain objects available for the selected
-									profile. Please choose another profile or update profile domain
-									object source.</p>
+						<ui:fragment rendered="#{domainObjectsUIView.size == 0}">
+							<div class="container-fluid">
+								<div id="content-wrapper">
+									<br />
+									<p>There is no domain objects available for the selected
+										profile. Please choose another profile or update profile
+										domain object source.</p>
+								</div>
 							</div>
-						</div>
-					</ui:fragment>
+						</ui:fragment>
+					</div>
 				</div>
-			</div>
+			</h:form>
 			<!-- /#page-content-wrapper -->
 		</ui:define>
 	</ui:composition>

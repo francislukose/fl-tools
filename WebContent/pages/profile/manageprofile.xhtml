@@ -11,48 +11,97 @@
 <h:body>
 	<ui:composition template="../../templates/default.xhtml">
 		<ui:define name="content">
+			<h:form id="mainForm" enctype="multipart/form-data">
+				<div class="d-flex" id="wrapper">
+					<div class="bg-none border-right vh-100" id="sidebar-wrapper">
 
-			<div class="d-flex" id="wrapper">
-				<div class="bg-none border-right vh-100" id="sidebar-wrapper">
-
-					<div class="sidebar-heading border-bottom">Profiles()</div>
-					<div class="input-group">
-						<input type="text" id="myInput"
-							class="form-control search-control"
-							placeholder="Search for profiles"
-							onkeyup="searchInList(this,'component-list')" autocomplete="off" />
-					</div>
-					<div id="component-list"
-						class="list-group list-group-flush overflow-auto h-100 border-bottom">
-
-						<a onclick="javascript:selectListItem(this);"
-							class="list-group-item list-group-item-action bg-none sidebar-list-group-item">FINEOS</a>
-							<a onclick="javascript:selectListItem(this);"
-							class="list-group-item list-group-item-action bg-none sidebar-list-group-item">Limelight</a>
-							<a onclick="javascript:selectListItem(this);"
-							class="list-group-item list-group-item-action bg-none sidebar-list-group-item">GuideWire - ClaimCenter</a>
-							<a onclick="javascript:selectListItem(this);"
-							class="list-group-item list-group-item-action bg-none sidebar-list-group-item">GuideWire - PolicyCenter</a>
-							<a onclick="javascript:selectListItem(this);"
-							class="list-group-item list-group-item-action bg-none sidebar-list-group-item">GuideWire - BillingCenter</a>
-					</div>
-				</div>
-				<!-- Page Content -->
-				<div id="page-content-wrapper">
-					<ui:fragment>
-						<div class="container-fluid">
-							<div id="content-wrapper">
-								<br />
-								<p>There is no components available for the selected
-									profile. Please choose another profile or update profile
-									component source.</p>
-							</div>
+						<div class="sidebar-heading border-bottom">Profiles(#{profileUIView.size})</div>
+						<div class="input-group">
+							<input type="text" id="myInput"
+								class="form-control search-control"
+								placeholder="Search for profiles"
+								onkeyup="searchInList(this,'component-list')" autocomplete="off" />
 						</div>
-					</ui:fragment>
-				</div>
-				<!-- /#page-content-wrapper -->
-			</div>
+						<div id="component-list"
+							class="list-group list-group-flush overflow-auto h-100 border-bottom">
 
+							<ui:repeat var="theProfile"
+								value="#{profileUIView.profiles.profiles}">
+								<h:commandLink data="#{theProfile.UUID}"
+									styleClass="list-group-item list-group-item-action bg-none sidebar-list-group-item"
+									onclick="javascript:selectListItem(this);"
+									value="#{theProfile.name}">
+									<f:attribute name="uuid" value="#{theProfile.UUID}" />
+									<f:ajax render="mainForm:ajax-render-part"
+										listener="#{profilesActionHandler.handleViewSelectedProfileRequest}" />
+								</h:commandLink>
+							</ui:repeat>
+						</div>
+					</div>
+					<!-- Page Content -->
+					<div id="page-content-wrapper">
+						<ui:fragment>
+							<div class="container-fluid">
+								<div id="content-wrapper">
+									<p>
+										<h:panelGrid id="ajax-render-part" style="width:100%"
+											columns="1">
+											<ui:fragment rendered="#{profileUIView.newProfileView}">
+												<h:panelGrid styleClass="table table-sm" columns="3"
+													columnClasses="col-bold-150,col-bold-5,font-weight-light">
+													<h:outputText value="Profile Name" />
+													<h:outputText value=":" />
+													<ui:fragment>
+														<h:inputText id="profileName" styleClass="form-control"
+															value="#{profileFormBean.profileName}" required="true"
+															validatorMessage="Please enter a valid profile name." />
+														<h:message for="profileName" style="color:red" />
+													</ui:fragment>
+													<h:outputText value="Profile Version" />
+													<h:outputText value=":" />
+													<ui:fragment>
+														<h:inputText id="profileVersion" styleClass="form-control"
+															value="#{profileFormBean.profileVersion}" required="true"
+															validatorMessage="Please enter a valid profile version name." />
+														<h:message for="profileVersion" style="color:red" />
+													</ui:fragment>
+													<h:outputText value="Components Data File" />
+													<h:outputText value=":" />
+													<ui:fragment>
+														<h:inputFile id="components" styleClass="form-control"
+															value="#{profileFormBean.components}" required="true"
+															validatorMessage="Please choose components file." />
+														<h:message for="components" style="color:red" />
+													</ui:fragment>
+													<h:outputText value="Domain Objects Data File" />
+													<h:outputText value=":" />
+													<h:inputFile styleClass="form-control"
+														value="#{profileFormBean.domainObjects}" />
+
+													<h:commandButton value="Save Profile"
+														styleClass="btn btn-primary btn-md"
+														action="#{profilesActionHandler.handleSaveProfileRequest}"></h:commandButton>
+
+												</h:panelGrid>
+											</ui:fragment>
+											<h:panelGrid rendered="#{profileUIView.viewProfileView}">
+												<h:commandLink styleClass="btn btn-primary btn-md"
+													value="Create new profile">
+													<f:attribute name="ViewType" value="0" />
+													<f:ajax render="mainForm:ajax-render-part" event="click"
+														listener="#{profilesActionHandler.handleNewProfileRequest}"></f:ajax>
+												</h:commandLink>
+											View Profile
+										</h:panelGrid>
+										</h:panelGrid>
+									</p>
+								</div>
+							</div>
+						</ui:fragment>
+					</div>
+					<!-- /#page-content-wrapper -->
+				</div>
+			</h:form>
 		</ui:define>
 	</ui:composition>
 

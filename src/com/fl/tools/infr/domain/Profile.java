@@ -6,7 +6,16 @@ import java.util.Set;
 public class Profile {
 	private String UUID;
 	private String name;
+	private boolean defaultProfile;
 	private Set<ProfileVersion> profiles = new HashSet<>();
+
+	public boolean isDefaultProfile() {
+		return defaultProfile;
+	}
+
+	public void setDefaultProfile(boolean defaultProfile) {
+		this.defaultProfile = defaultProfile;
+	}
 
 	public String getName() {
 		return name;

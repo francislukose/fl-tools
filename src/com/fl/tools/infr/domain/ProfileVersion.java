@@ -3,8 +3,15 @@ package com.fl.tools.infr.domain;
 public class ProfileVersion {
 	private String UUID;
 	private String versionNumber;
-	private String componentConfig;
-	private String domainObjectConfig;
+	private boolean defaultVersion;
+
+	public boolean isDefaultVersion() {
+		return defaultVersion;
+	}
+
+	public void setDefaultVersion(boolean defaultVersion) {
+		this.defaultVersion = defaultVersion;
+	}
 
 	public String getUUID() {
 		return UUID;
@@ -21,21 +28,4 @@ public class ProfileVersion {
 	public void setVersionNumber(String versionNumber) {
 		this.versionNumber = versionNumber;
 	}
-
-	public String getComponentConfig() {
-		return componentConfig;
-	}
-
-	public void setComponentConfig(String componentConfig) {
-		this.componentConfig = componentConfig;
-	}
-
-	public String getDomainObjectConfig() {
-		return domainObjectConfig;
-	}
-
-	public void setDomainObjectConfig(String domainObjectConfig) {
-		this.domainObjectConfig = domainObjectConfig;
-	}
-
 }
