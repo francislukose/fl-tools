@@ -47,6 +47,9 @@
 										<h:panelGrid id="ajax-render-part" style="width:100%"
 											columns="1">
 											<ui:fragment rendered="#{profileUIView.newProfileView}">
+												<p>
+													<h2>Create New Profile</h2>
+												</p>
 												<h:panelGrid styleClass="table table-sm" columns="3"
 													columnClasses="col-bold-150,col-bold-5,font-weight-light">
 													<h:outputText value="Profile Name" />
@@ -54,29 +57,37 @@
 													<ui:fragment>
 														<h:inputText id="profileName" styleClass="form-control"
 															value="#{profileFormBean.profileName}" required="true"
-															validatorMessage="Please enter a valid profile name." />
+															binding="#{profileName}" />
 														<h:message for="profileName" style="color:red" />
 													</ui:fragment>
 													<h:outputText value="Profile Version" />
 													<h:outputText value=":" />
 													<ui:fragment>
 														<h:inputText id="profileVersion" styleClass="form-control"
-															value="#{profileFormBean.profileVersion}" required="true"
-															validatorMessage="Please enter a valid profile version name." />
+															value="#{profileFormBean.profileVersion}" required="true">
+															<f:validator
+																validatorId="com.fl.tools.ui.validators.ProfileVersionValidator" />
+															<f:attribute name="profileName" value="#{profileName}" />
+														</h:inputText>
 														<h:message for="profileVersion" style="color:red" />
 													</ui:fragment>
 													<h:outputText value="Components Data File" />
 													<h:outputText value=":" />
 													<ui:fragment>
 														<h:inputFile id="components" styleClass="form-control"
-															value="#{profileFormBean.components}" required="true"
-															validatorMessage="Please choose components file." />
+															value="#{profileFormBean.components}" required="true">
+															<f:validator
+																validatorId="com.fl.tools.ui.validators.ProfileComponentsValidator" />
+														</h:inputFile>
 														<h:message for="components" style="color:red" />
 													</ui:fragment>
 													<h:outputText value="Domain Objects Data File" />
 													<h:outputText value=":" />
 													<h:inputFile styleClass="form-control"
-														value="#{profileFormBean.domainObjects}" />
+														value="#{profileFormBean.domainObjects}">
+														<f:validator
+															validatorId="com.fl.tools.ui.validators.ProfileDomainObjectsValidator" />
+													</h:inputFile>
 
 													<h:commandButton value="Save Profile"
 														styleClass="btn btn-primary btn-md"
@@ -84,15 +95,22 @@
 
 												</h:panelGrid>
 											</ui:fragment>
-											<h:panelGrid rendered="#{profileUIView.viewProfileView}">
+											<h:panelGrid rendered="#{profileUIView.viewProfileView}"
+												style="width:100%">
 												<h:commandLink styleClass="btn btn-primary btn-md"
 													value="Create new profile">
 													<f:attribute name="ViewType" value="0" />
 													<f:ajax render="mainForm:ajax-render-part" event="click"
 														listener="#{profilesActionHandler.handleNewProfileRequest}"></f:ajax>
 												</h:commandLink>
-											View Profile
-										</h:panelGrid>
+												<br />
+												<h:panelGrid styleClass="table table-sm" columns="3"
+													columnClasses="col-bold-150,col-bold-5,font-weight-light">
+													<h:outputText value="Profile Name" />
+													<h:outputText value=":" />
+													<h:outputText value="#{profilesActionBean.profile.name}" />
+												</h:panelGrid>
+											</h:panelGrid>
 										</h:panelGrid>
 									</p>
 								</div>

@@ -8,11 +8,13 @@ import org.springframework.stereotype.Component;
 
 import com.fl.tools.common.dto.ProfileDto;
 import com.fl.tools.common.utils.FileUtil;
+import com.fl.tools.infr.domain.ProfileWrapper;
 import com.fl.tools.service.ProfileService;
 import com.fl.tools.ui.ActionHandler;
 import com.fl.tools.ui.beans.ProfileFormBean;
 import com.fl.tools.ui.beans.ProfileUIView;
 import com.fl.tools.ui.beans.ProfileView;
+import com.fl.tools.ui.beans.ProfilesActionBean;
 
 @Component
 @ManagedBean
@@ -28,7 +30,15 @@ public class ProfilesActionHandler extends ActionHandler {
 
 	public void handleViewSelectedProfileRequest(AjaxBehaviorEvent evt) {
 		ProfileUIView profileView = getManagedBean("profileUIView");
+		String uuid = (String) evt.getComponent().getAttributes().get("uuid");
 
+		for (ProfileWrapper p : profileView.getProfiles().getProfiles()) {
+			if (p.getUUID().equalsIgnoreCase(uuid)) {
+				ProfilesActionBean actionBean = getManagedBean("profilesActionBean");
+				actionBean.setProfile(p);
+				break;
+			}
+		}
 		profileView.setViewType(ProfileView.VIEW_PROFILE);
 	}
 
