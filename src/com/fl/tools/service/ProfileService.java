@@ -13,5 +13,7 @@ public interface ProfileService {
 	public String saveProfile(ProfileDto theProfile);
 
 	public String removeProfile(ProfileLookupDto profile);
+	
+	public String makeProfileDefault(ProfileLookupDto theProfile);
 
 }

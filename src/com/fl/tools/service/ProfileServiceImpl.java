@@ -77,4 +77,10 @@ public class ProfileServiceImpl implements ProfileService {
 		return profileDao.removeProfile(profile);
 	}
 
+	@Override
+	public String makeProfileDefault(ProfileLookupDto theProfile) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

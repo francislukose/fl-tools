@@ -104,12 +104,94 @@
 														listener="#{profilesActionHandler.handleNewProfileRequest}"></f:ajax>
 												</h:commandLink>
 												<br />
-												<h:panelGrid styleClass="table table-sm" columns="3"
+												<h:outputText
+													value="Please choose or create a new profile to view profile details."
+													rendered="#{profilesActionBean.profile == null}"></h:outputText>
+												<h:panelGrid
+													rendered="#{profilesActionBean.profile != null}"
+													styleClass="table table-sm" columns="3"
 													columnClasses="col-bold-150,col-bold-5,font-weight-light">
 													<h:outputText value="Profile Name" />
 													<h:outputText value=":" />
-													<h:outputText value="#{profilesActionBean.profile.name}" />
+													<ui:fragment>
+														<h:outputText value="#{profilesActionBean.profile.name}" />
+
+														<span style="width: 5px; padding: 0.6rem;">|</span>
+														<h:commandLink value="Remove">
+															<f:attribute name="profileUUID"
+																value="#{profilesActionBean.profile.UUID}"></f:attribute>
+															<f:ajax render="mainForm:ajax-render-part"
+																listener="#{profilesActionHandler.handleRemoveProfileRequest}" />
+														</h:commandLink>
+													</ui:fragment>
 												</h:panelGrid>
+												<h:dataTable
+													rendered="#{profilesActionBean.profile != null}"
+													styleClass="table table-hover" var="version"
+													value="#{profilesActionBean.profile.profiles}"
+													columnClasses="col-5,col-150,col-30,col-30,col-150">
+													<h:column>
+														<f:facet name="header"></f:facet>
+														<ui:fragment rendered="#{version.defaultVersion}">
+															<span class="badge badge-info"
+																style="padding: .0rem .1rem;" title="Default">D</span>
+														</ui:fragment>
+													</h:column>
+													<h:column>
+														<f:facet name="header">Version Number</f:facet>
+														<h:outputText value="#{version.versionNumber}"></h:outputText>
+													</h:column>
+													<h:column>
+														<f:facet name="header">Components</f:facet>
+														<ui:fragment>
+															<span class="badge badge-info"
+																style="padding: .0rem .1rem;" title="Default">Yes</span>
+														</ui:fragment>
+													</h:column>
+													<h:column>
+														<f:facet name="header">Domain Objects</f:facet>
+														<ui:fragment>
+															<span class="badge badge-info"
+																style="padding: .0rem .1rem;" title="Default">No</span>
+														</ui:fragment>
+													</h:column>
+													<h:column>
+														<f:facet name="header"></f:facet>
+														<ui:fragment
+															rendered="#{profilesActionBean.profile.size > 1}">
+															<h:commandLink value="Remove">
+																<f:attribute name="versionUUID" value="#{version.UUID}" />
+																<f:attribute name="profileUUID"
+																	value="#{profilesActionBean.profile.UUID}" />
+																<f:ajax render="mainForm:ajax-render-part"
+																	listener="#{profilesActionHandler.handleRemoveProfileVersionRequest}" />
+															</h:commandLink>
+														</ui:fragment>
+
+														<ui:fragment
+															rendered="#{version.UUID != profileUIView.selectedProfileVersion.UUID}">
+															<span style="width: 5px; padding: 0.6rem;">|</span>
+															<h:commandLink value="Switch">
+																<f:attribute name="versionUUID" value="#{version.UUID}"></f:attribute>
+																<f:attribute name="profileUUID"
+																	value="#{profilesActionBean.profile.UUID}"></f:attribute>
+																<f:ajax render="mainForm:ajax-render-part"
+																	listener="#{profilesActionHandler.handleSwitchProfileRequest}" />
+															</h:commandLink>
+														</ui:fragment>
+														<ui:fragment rendered="#{not version.defaultVersion}">
+															<span style="width: 5px; padding: 0.6rem;">|</span>
+															<h:commandLink value="Make Default">
+																<f:attribute name="versionUUID" value="#{version.UUID}"></f:attribute>
+																<f:attribute name="profileUUID"
+																	value="#{profilesActionBean.profile.UUID}"></f:attribute>
+																<f:ajax render="mainForm:ajax-render-part"
+																	listener="#{profilesActionHandler.handleSwitchProfileRequest}" />
+															</h:commandLink>
+														</ui:fragment>
+													</h:column>
+
+												</h:dataTable>
 											</h:panelGrid>
 										</h:panelGrid>
 									</p>

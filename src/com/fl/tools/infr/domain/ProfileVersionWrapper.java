@@ -5,6 +5,10 @@ public class ProfileVersionWrapper {
 	private ComponentsMapView components;
 	private DomainObjectsMapView domainObjects;
 
+	public ProfileVersion getActual() {
+		return theProfileVersion;
+	}
+
 	public ProfileVersionWrapper(ProfileVersion theProfileVersion) {
 		this.theProfileVersion = theProfileVersion;
 	}

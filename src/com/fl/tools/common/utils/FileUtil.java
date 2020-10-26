@@ -18,6 +18,24 @@ public class FileUtil {
 		return in;
 	}
 
+	public static void removeDir(String dir) {
+		removeDir(new File(dir));
+	}
+
+	public static void removeDir(File dir) {
+		File[] allContents = dir.listFiles();
+		if (allContents != null) {
+			for (File file : allContents) {
+				if (file.isDirectory()) {
+					removeDir(file);
+				} else {
+					file.delete();
+				}
+			}
+		}
+		dir.delete();
+	}
+
 	public static void saveToDisk(byte[] data, String fileName, String dir) {
 		if (data == null) {
 			return;

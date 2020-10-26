@@ -31,12 +31,21 @@
 	width: 30px;
 	word-wrap: break-word;
 }
+.col-30-c {
+	width: 30px;
+	word-wrap: break-word;
+	text-align: center;
+}
 
 .col-10 {
 	width: 10px;
 	word-wrap: break-word;
 }
-
+.col-10-c {
+	width: 10px;
+	word-wrap: break-word;
+	text-align: center;
+}
 .col-150 {
 	width: 150px;
 	word-wrap: break-word;

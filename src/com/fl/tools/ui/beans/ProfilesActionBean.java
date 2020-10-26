@@ -2,11 +2,12 @@ package com.fl.tools.ui.beans;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import com.fl.tools.infr.domain.ProfileWrapper;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class ProfilesActionBean {
 	private ProfileWrapper profile;
 

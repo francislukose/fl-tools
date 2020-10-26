@@ -49,6 +49,9 @@ public class ApplicationUIInitializer {
 		}
 	}
 
+	public void flush() {
+		init();
+	}
 	public void reload() {
 		profileUIView.setProfiles(profileService.getProfiles());
 		if (profileUIView.getSelectedProfile() == null && profileUIView.getProfiles().hasProfiles()) {

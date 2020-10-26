@@ -29,12 +29,26 @@ public class ProfileWrapper {
 		return profiles;
 	}
 
+	public int getSize() {
+		return profiles.size();
+	}
+
 	public boolean isDefaultProfile() {
 		return theProfile.isDefaultProfile();
 	}
 
 	public String repoName() {
 		return getUUID().substring(4).toLowerCase();
+	}
+
+	public ProfileVersionWrapper getProfileVersion(String versionUUID) {
+		for (ProfileVersionWrapper v : profiles) {
+			if (v.getUUID().equalsIgnoreCase(versionUUID)) {
+				return v;
+			}
+		}
+
+		return null;
 	}
 
 	public ProfileVersionWrapper defaultVersion() {

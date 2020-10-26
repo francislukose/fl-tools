@@ -26,6 +26,7 @@ import com.fl.tools.infr.dao.ProfileDao;
 import com.fl.tools.infr.domain.DomainObject;
 import com.fl.tools.infr.domain.Profile;
 import com.fl.tools.infr.domain.ProfileVersion;
+import com.fl.tools.infr.domain.ProfileVersionWrapper;
 import com.fl.tools.infr.domain.ProfileWrapper;
 
 @Component
@@ -57,7 +58,7 @@ public class ProfileDaoImpl implements ProfileDao {
 
 	@Override
 	public String removeProfile(ProfileLookupDto profile) {
-		return null;
+		return profileDataSource.remove(profile);
 	}
 
 	class ProfileJsonDataSource {
@@ -136,6 +137,27 @@ public class ProfileDaoImpl implements ProfileDao {
 			return aProfile;
 		}
 
+		public String remove(ProfileLookupDto theProfile) {
+			if (profiles.containsKey(theProfile.getProfileUUID())) {
+				Profile profile = profiles.get(theProfile.getProfileUUID());
+				ProfileWrapper profileWrapper = new ProfileWrapper(profile);
+				if (theProfile.getProfileVersionUUID() != null) {
+					ProfileVersionWrapper theVersion = profileWrapper
+							.getProfileVersion(theProfile.getProfileVersionUUID());
+					if (theVersion != null) {
+						FileUtil.removeDir(configuration.getRootDir() + File.separator + "data" + File.separator
+								+ profileWrapper.repoName() + File.separator + theVersion.repoName());
+						profile.getProfiles().remove(theVersion.getActual());
+					}
+				} else {
+					FileUtil.removeDir(configuration.getRootDir() + File.separator + "data" + File.separator
+							+ profileWrapper.repoName());
+					profiles.remove(profile.getUUID());
+				}
+				updateRepository();
+			}
+			return theProfile.getProfileUUID();
+		}
 	}
 
 }

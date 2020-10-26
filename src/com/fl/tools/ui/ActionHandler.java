@@ -8,4 +8,9 @@ abstract public class ActionHandler extends FacesBean {
 		ApplicationUIInitializer initializer = getManagedBean("applicationUIInitializer");
 		initializer.reload();
 	}
+	
+	public void flushSession() {
+		ApplicationUIInitializer initializer = getManagedBean("applicationUIInitializer");
+		initializer.flush();
+	}
 }
