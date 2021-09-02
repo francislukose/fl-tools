@@ -6,7 +6,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:r="http://richfaces.org">
 
 <h:body>
 	<ui:composition template="../../templates/default.xhtml">
@@ -55,6 +56,7 @@
 													<h:outputText value="Profile Name" />
 													<h:outputText value=":" />
 													<ui:fragment>
+														
 														<h:inputText id="profileName" styleClass="form-control"
 															value="#{profileFormBean.profileName}" required="true"
 															binding="#{profileName}" />
